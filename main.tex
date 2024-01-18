@@ -1,0 +1,42 @@
+\documentclass[
+  twoside,
+  openright,
+  degree    = master,               % degree   = master  | doctor
+  language  = chinese,              % language = chinese | english
+  fontset   = template,             % fontset  = default | template | system | overleaf
+]{ccuthesis}
+
+\input{ccusetup}
+
+\begin{document}
+
+	% 封面與口試審定 Cover and Verification Letter
+	\makecover                          	% 論文封面（Cover）
+	% \makeverification                   	% 口試委員審定書（Verification Letter）
+	\renderverification{verification}		% 渲染口試委員審定書（Render Verification Letter）
+
+	% 致謝與論文摘要 Acknowledgement and Abstract
+	\makewatermark{0.25}{watermark}			% 加入浮水印（Watermark）
+	\input{frontpages/acknowledgement}		% 致謝（Acknowledgement）
+	\input{frontpages/abstract}				% 摘要（Abstract）
+	
+	% 生成目錄 Tables of Contents
+	\maketableofcontents                	% 目錄（Table of Contents）
+	\makelistoffigures                  	% 圖目錄（List of Figures）
+	\makelistoftables                   	% 表目錄（List of Tables）
+
+	% 論文內容 Contents of Thesis
+	\mainmatter
+	\input{sections/01introduction}			% 緒論 Introduction
+	\input{sections/02related_work}			% 文獻探討 Related work
+	\input{sections/03method}				% 研究方法 Method
+	\input{sections/04experiments}			% 研究結果 Experiments
+	\input{sections/05conclusion}			% 結論 Conclusion
+
+	% 參考文獻與附錄 References and Appendix
+	\refmatter
+	\bibliographystyle{IEEEtran}			% 參考文獻格式 References style
+	\bibliography{references}		% 參考文獻 References
+	\input{backpages/appendix}				% 附錄 Appendix
+
+\end{document}
