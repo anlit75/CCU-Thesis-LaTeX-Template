@@ -1,17 +1,22 @@
 \documentclass[
   twoside,
   openright,
-  degree    = master,               % degree   = master  | doctor
-  language  = chinese,              % language = chinese | english
-  fontset   = template,             % fontset  = default | template | system | overleaf
+  degree    = master,               		% degree   = master  | doctor
+  language  = chinese,              		% language = chinese | english
+  fontset   = template,             		% fontset  = default | template | system | overleaf
 ]{ccuthesis}
 
 \input{ccusetup}
 
 \begin{document}
 
-	% 封面與口試審定 Cover and Verification Letter
+	% 封面 Cover
 	\makecover                          	% 論文封面（Cover）
+
+	% 口試審定 Verification Letter
+	% \makeverification會生成空白的審定書
+	% 若有審定書pdf檔案，可用\renderverification{檔案路徑}渲染審定書
+	% 
 	% \makeverification                   	% 口試委員審定書（Verification Letter）
 	\renderverification{verification}		% 渲染口試委員審定書（Render Verification Letter）
 
@@ -31,18 +36,18 @@
 
 	% 論文內容 Contents of Thesis
 	\mainmatter
-	\input{sections/01introduction}			% 緒論 Introduction
-	\input{sections/02related_work}			% 文獻探討 Related work
-	\input{sections/03method}				% 研究方法 Method
-	\input{sections/04experiments}			% 研究結果 Experiments
-	\input{sections/05conclusion}			% 結論 Conclusion
+	\input{sections/01introduction}			% 緒論（Introduction）
+	\input{sections/02related_work}			% 文獻探討（Related Work）
+	\input{sections/03method}				% 研究方法（Method）
+	\input{sections/04experiments}			% 研究結果（Experiments）
+	\input{sections/05conclusion}			% 結論（Conclusion）
 
 	% 參考文獻 References
 	\refmatter
-	\bibliographystyle{IEEEtran}			% 參考文獻格式 References style
-	\bibliography{backpages/references}		% 參考文獻 References
+	\bibliographystyle{IEEEtran}			% 參考文獻格式（References Style）
+	\bibliography{backpages/references}		% 參考文獻資料庫（References Database）
 
 	% 附錄 Appendix
-	\input{backpages/appendix}				% 附錄 Appendix
+	\input{backpages/appendix}				% 附錄（Appendix）
 
 \end{document}

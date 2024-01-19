@@ -3,7 +3,7 @@
 % National Chung Cheng University (CCU) Thesis Template
 % --------------------------------------------------
 % Author        : anlit <anson40512@gmail.com>
-% Repository    : https://github.com/
+% Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
 % Last Updated  : 2024.01.17
 
 % --------------------------------------------------
@@ -206,19 +206,6 @@
   \kvsetkeys@expandafter{ccu@clist}{#1}%
 }
 
-% 命令: 日期格式
-% Commands: Data Formating
-%
-\newcommand{\ccu@format@date}[2]{%
-  \edef\ccu@@date{#2}%
-  \def\ccu@@process@date##1-##2-##3\@nil{%
-    #1{##1}{##2}{##3}%
-  }%
-  \expandafter\ccu@@process@date\ccu@@date\@nil
-}
-\newcommand\ccu@date@zh@short[3]{\zhdigits{#1}年\zhnumber{#2}月}
-\newcommand\ccu@date@zh@digit@short[3]{\the\numexpr#1-1911\relax~年~\number#2~月}
-
 \newcommand{\ccu@setgeometry}[1]{\expandafter\newgeometry\expandafter{#1}}
 
 % --------------------------------------------------
@@ -309,9 +296,6 @@
     default = {Name of author},
     name    = author@en,
   },
-  ID = {
-    default = {學號},
-  },
   advisor = {
     default = {指導教授},
   },
@@ -327,11 +311,7 @@
     name    = keywords@en,
   },
   date = {
-    default = {\the\year-\two@digits{\month}-\two@digits{\day}},
-  },
-  oral-date = {
-    name    = oraldate,
-    default = {\the\year-\two@digits{\month}-\two@digits{\day}},
+    default = {中華民國 一百一十四 年 七 月},
   },
 }
 
@@ -492,7 +472,18 @@
 % --------------------------------------------------
 
 % [圖表目錄]
+% 
 \graphicspath{{./figures/}}
+
+% [圖表格式]
+% 將圖，表，與公式的編號加上章節編號，並改為 - 分隔符號
+% 
+\counterwithin{figure}{section}
+\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+\counterwithin{table}{section}
+\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
+\counterwithin{equation}{section}
+\renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
 
 % [文章排版]
 %
@@ -509,7 +500,6 @@
 % - \setCJKsansfont{}			中文非襯字體
 % - \setCJKmonofont{}			中文等寬字體
 %
-
 \ifthenelse{\equal{\ccu@fontset}{default}}{
   \setmainfont{Times New Roman}[
     Path = \ccu@path@font ,
@@ -544,9 +534,6 @@
   \setCJKmonofont{AR PL KaitiM Big5}
 }
 
-% [顏色設定]
-%
-
 % [版面大小]
 %
 \geometry{
@@ -567,32 +554,24 @@
 }
 
 % [目錄格式]
-%
-\addtocontents{toc}                                         % 修改目錄樣式
-{~\hfill\textbf{Page}\par}
-{}
-{}
-{}
-
 % \titlecontents{標題名稱}[左間距]{標題格式}{標題內容}{無序號標題}{指引線與頁碼}[下間距]
-\titlecontents{section}[0em]                                % 修改目錄樣式
+%
+\addtocontents{toc}
+
+\titlecontents{section}[0em]                                              % 修改目錄樣式
 {\addvspace{0.5em}\normalsize\bfseries\protect}
 {\fboxrule=0pt\fboxsep=0pt\framebox[\ccu@tocsectionsize][l]{\ccu@titlesectiontoc}}
 {}
 {\hfill\contentspage}
 
-\setlength{\cftbeforesecskip}{8pt}                          % 修改目錄間距
-\setlength{\cftbeforesubsecskip}{8pt}
+\setlength{\cftbeforesecskip}{8pt}                                        % 修改目錄間距
+\setlength{\cftbeforesubsecskip}{0pt}                                     % 修改子目錄間距
 
-\setcounter{tocdepth}{3}                                    % 設定目錄深度
-\setcounter{secnumdepth}{3}                                 % 設定編號深度
+\setcounter{tocdepth}{3}                                                  % 設定目錄深度
+\setcounter{secnumdepth}{3}                                               % 設定編號深度
 
-% \cftsetindents{entry}{indent}{numwidth}
-\cftsetindents{section}{\ccu@tocsecindent}{\ccu@tocsecnumwidth}
-\cftsetindents{subsection}{\ccu@tocsubsecindent}{\ccu@tocsubsecnumwidth}
-
-% [頁首頁尾]
-%
+\cftsetindents{section}{\ccu@tocsecindent}{\ccu@tocsecnumwidth}           % 設定目錄縮排
+\cftsetindents{subsection}{\ccu@tocsubsecindent}{\ccu@tocsubsecnumwidth}  % 設定子目錄縮排
 
 % [標題格式]
 % 載入套件包 titlesec 設定各層標題格式
@@ -605,11 +584,11 @@
 % - before: 標題內容前增加文字
 % - after: 標題內容後增加文字
 %
-\titleformat{\section}                      % 設置 section 格式
-{\centering\Huge\bfseries}                  % 定義 format
-{\ccu@titlesection}              		        % 定義 label
-{1em}                                       % 定義 sep
-{}                                          % before
+\titleformat{\section}                                 % 設置 section 格式
+{\centering\fontsize{20pt}{24pt}\selectfont\bfseries}  % 修改字體大小為20pt
+{\ccu@titlesection}                                    % 定義 label
+{1em}                                                  % 定義 sep
+{}                                                     % before
 
 % [間距設定]
 % \titleformat{command}{left}{top}{bottom}
@@ -618,7 +597,9 @@
 % - top: 上邊界
 % - bottom: 下邊界
 %
-% \titlespacing*{\section}{0pt}{-40pt}{40pt}
+\titlespacing*{\section}{0pt}{0pt}{0pt}                % 設置 section 間距
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}             % 設置 subsection 間距
+% \titlespacing*{\paragraph}{0pt}{0pt}{0pt}              % 設置 paragraph 間距
 
 % [圖表標題]
 %
@@ -645,7 +626,6 @@
 % - \Eindent                    縮進
 % - \Enoindent                  不縮進
 %
-
 % 獲取並定義 CJK 字符寬度
 \newcommand{\ccu@CJKChar@size}{\hskip \f@size \p@}
 \newdimen{\ccu@CJKChar@size@dimen}
@@ -686,20 +666,6 @@
       \vfill
 }}}}
 
-% [插入數位識別]
-% - \InsertDOI{#1}              生成數位識別碼
-%   #1 DOI Code                 數位識別碼
-%
-% \newcommand{\insertdoi}[1]{
-%   \AddToShipoutPicture{
-%     \AtPageUpperLeft{
-%       \fboxrule=0pt\fboxsep=0pt\framebox[\paperwidth][r]{
-%       \raisebox{-\paperheight}{
-%       \put(\LenToUnit{-1cm},\LenToUnit{1cm}){
-%       \fboxrule=0pt\fboxsep=0pt\framebox[0pt][r]{
-%         \href{http://dx.doi.org/#1}{doi:#1}
-% }}}}}}}
-
 % [生成封面]
 % Generate the cover page
 %
@@ -711,26 +677,26 @@
       \begin{center}
         % 中文校系名稱 (28, 27)
         \fontsize{28}{27}\selectfont
-        \textbf{\ccu@university\ccu@institute}\par
+        \ccu@university\ccu@institute\par
         \vspace{1cm}
-        \textbf{\ccu@degree\ccu@type}\par
+        \ccu@degree\ccu@type\par
 
         % 中英文論文題目 (18, 27)
         \vfill
         \fontsize{18}{27}\selectfont
-        \textbf{\ccu@title}\par
-        \textbf{\ccu@title@en}\par
+        \ccu@title\par
+        \ccu@title@en\par
 
         % 中英文作者姓名 (18, 27)
         \vfill
-        \textbf{\ccu@author}\par
+        \ccu@author\par
         
         % 中英文指導教授 (18, 27)
         \vfill
-        \textbf{指導教授：\ccu@advisor~博士}\par
+        指導教授：\ccu@advisor~博士\par
 
         % 論文撰寫日期   (18, 27)
-        \textbf{中華民國~\ccu@format@date{\ccu@date@zh@short}{\ccu@date}}
+        中華民國~~\ccu@date
       \end{center}
     \end{singlespace}
   \end{titlepage}
@@ -745,42 +711,41 @@
 %
 \newcommand{\makeverification}{
   \clearpage
-  \phantomsection
   \ccu@setgeometry{\ccu@geometry@main}
-  % \pagenumbering{Roman}
-  % \addcontentsline{toc}{section}{\ccu@verificationletter}
-  \begin{singlespace}
-    %  口委審定書標題 (24, 36) (26, 39)
-    %  論文題目 (18, 30)
-    \begin{center}
-      \fontsize{24}{36}\selectfont
-      \textbf{{\ccu@university}{\ccu@degree}學位{\ccu@type}考試審定書}
-      \vfill
-      \fontsize{18}{39}\selectfont
-      {\ccu@institute}\par
-      研究生\underline{\ccu@author}所提之論文\par
-      \underline{\ccu@title}\par
-      經本委員會審查，符合{\ccu@degree}學位論文標準。
-    \end{center}
-  \end{singlespace}
+  \begin{titlepage}
+    \begin{singlespace}
+      %  口委審定書標題 (24, 36) (26, 39)
+      %  論文題目 (18, 30)
+      \begin{center}
+        \fontsize{24}{36}\selectfont
+        {\ccu@university}{\ccu@degree}學位{\ccu@type}考試審定書
+        \vfill
+        \fontsize{18}{39}\selectfont
+        {\ccu@institute}\par
+        研究生\underline{\ccu@author}所提之論文\par
+        \underline{\ccu@title}\par
+        經本委員會審查，符合{\ccu@degree}學位論文標準。
+      \end{center}
+    \end{singlespace}
 
-  \begin{doublespace}
-    % 口委簽名表格 (18, 24)
-    \begin{center}
-      \vfill
-      \fontsize{18}{24}\selectfont
-      學位考試委員會召集人：\underline{\hspace{6cm}}簽章\par
-      \begin{tabularx}{\textwidth}{Xl}
-        委員
-            & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt}  \\
-            & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt}
-      \end{tabularx}
-      \vfill
-      指導教授\underline{\hspace{8cm}}簽章\par
-      中華民國\underline{\hspace{3cm}}年\underline{\hspace{3cm}}月\underline{\hspace{3cm}}日
-      \vfill
-    \end{center}
-  \end{doublespace}
+    \begin{doublespace}
+      % 口委簽名表格 (18, 24)
+      \begin{center}
+        \vfill
+        \fontsize{18}{24}\selectfont
+        學位考試委員會召集人：\underline{\hspace{6cm}}簽章\par
+        \begin{tabularx}{\textwidth}{Xl}
+          委員
+              & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt}  \\
+              & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt}
+        \end{tabularx}
+        \vfill
+        指導教授\underline{\hspace{8cm}}簽章\par
+        中華民國\underline{\hspace{3cm}}年\underline{\hspace{3cm}}月\underline{\hspace{3cm}}日
+        \vfill
+      \end{center}
+    \end{doublespace}
+  \end{titlepage}
 
   % 恢復預設板型
   \restoregeometry
@@ -791,10 +756,6 @@
 % 
 \newcommand{\renderverification}[1]{
   \clearpage
-  % \phantomsection
-  % \ccu@setgeometry{\ccu@geometry@main}
-  % \pagenumbering{Roman}
-  % \addcontentsline{toc}{section}{\ccu@verificationletter}
   \includepdf[pages=-, pagecommand={\thispagestyle{empty}}, offset=0 0, width=\paperwidth, height=\paperheight]{#1}
 }
 
@@ -804,7 +765,8 @@
 % [生成目錄]
 % Generate table of contents page.
 %
-\renewcommand{\contentsname}{\centerline{\ccu@tableofcontents}}
+% 目錄
+\renewcommand{\contentsname}{\centerline{\fontsize{20}{24}\selectfont\ccu@tableofcontents}}
 \newcommand{\maketableofcontents}{
   \cleardoublepage
   \phantomsection
@@ -812,6 +774,7 @@
   \tableofcontents
 }
 
+% 圖目錄
 \let\oldnumberline\numberline
 \renewcommand{\listfigurename}{\centerline{\ccu@listoffigures}}
 \newcommand{\makelistoffigures}{
@@ -822,6 +785,7 @@
   \listoffigures
 }
 
+% 表目錄
 \renewcommand{\listtablename}{\centerline{\ccu@listoftables}}
 \newcommand{\makelistoftables}{
   \cleardoublepage
@@ -831,21 +795,13 @@
   \listoftables
 }
 
-% [設定間隔]
-% \renewcommand{\cftbeforetoctitleskip}{-0.25in}
-% \renewcommand{\cftaftertoctitleskip}{0in}
-% \renewcommand{\cftbeforeloftitleskip}{-0.25in}
-% \renewcommand{\cftafterloftitleskip}{0.2in}
-% \renewcommand{\cftbeforelottitleskip}{-0.25in}
-% \renewcommand{\cftafterlottitleskip}{0.2in}
-
 % [致謝與論文摘要]
 % \frontmatter
 %
 \newcommand{\frontmatter}{
   \cleardoublepage
   \ccu@setgeometry{\ccu@geometry@main}
-  \pagenumbering{Roman}
+  \pagenumbering{roman}
   \fontsize{12}{18}\selectfont
 }
 
@@ -879,9 +835,9 @@
   \addcontentsline{toc}{section}{\ccu@appendix~{#1}~---~#2}
 
   \renewcommand{\thesection}{\ccu@appendix}
-  \renewcommand{\thefigure}{\Roman{figure}}
-  \renewcommand{\theequation}{\Roman{equation}}
-  \renewcommand{\thetable}{\Roman{table}}
+  \renewcommand{\thefigure}{\roman{figure}}
+  \renewcommand{\theequation}{\roman{equation}}
+  \renewcommand{\thetable}{\roman{table}}
 
   \setcounter{equation}{0}
   \setcounter{figure}{0}
@@ -900,21 +856,17 @@
 % Denotation Environment
 %
 \newenvironment{denotation}[1][2.5cm]{
-\phantomsection
-\section*{\centering \ccu@denotation}
-\addcontentsline{toc}{section}{\ccu@denotation}
-\noindent
-\begin{list}{}{
-  \renewcommand\makelabel[1]{##1\hfill}
-  \setlength{\labelwidth}{#1}                     % 符號欄寬度
-  \setlength{\labelsep}{0.5cm}                    % 標籤與列表文字距離
-  \setlength{\itemindent}{0cm}                    % 標籤縮進
-  \setlength{\leftmargin}{\labelwidth+\labelsep}  % 標籤左邊界
-  \setlength{\rightmargin}{0cm}                   % 標籤右邊界
-  \setlength{\parsep}{0cm}                        % 段落間距
-  \setlength{\itemsep}{18pt}                      % 標籤間距
-  \setlength{\listparindent}{0cm}                 % 段落縮進
-  \setlength{\topsep}{0pt}                        % 標籤與上文距離
+  \clearpage
+  \phantomsection
+  \section*{\centering \ccu@denotation}
+  \addcontentsline{toc}{section}{\ccu@denotation}
+  \noindent
+  \begin{list}{}{
+    \renewcommand\makelabel[1]{##1\hfill}
+    \setlength{\labelwidth}{#1}                     % 符號欄寬度
+    \setlength{\labelsep}{0.5cm}                    % 標籤與列表文字距離
+    \setlength{\leftmargin}{\labelwidth+\labelsep}  % 標籤左邊界
+    \setlength{\rightmargin}{0cm}                   % 標籤右邊界
 }}{\end{list}}
 
 % [致謝環境]
@@ -955,17 +907,6 @@
 % --------------------------------------------------
 % 10 文檔處理（Document Processing）
 % --------------------------------------------------
-
-% 根據設定決定是否添加浮水印
-% Insert watermark according to the config.
-%
-\ifthenelse{\equal{\ccu@watermark}{true}}{\makewatermark{0.25}{watermark}}{}
-
-% 根據設定決定是否添加數位標識
-% Insert DOI according to the config.
-%
-% \ifthenelse{\equal{\ccu@doi}{true}}{\insertdoi{\ccu@DOI}}{}
-
 % 章節之間加入分頁符號
 \let\oldsection\section
 \renewcommand{\section}{\clearpage\oldsection}

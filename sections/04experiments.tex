@@ -1,1 +1,89 @@
 \section{研究結果與討論}
+
+方程式測試，方程式\ref{eq:eq1}。演算法測試，演算法\ref{alg:alg1}，\ref{code:fram:extract}
+
+\begin{equation}[h]
+    \label{eq:eq1}
+    (\hat{n})=\operatorname*{arg\,max}_{n\in \{1,\dots,M\}}(\mathbf{X}_{n})
+\end{equation}
+
+\begin{algorithm}[htb]
+    \caption{範例演算法}
+    \label{alg:alg1}
+    \begin{algorithmic}[1]
+        \Require
+        The set of positive samples for current batch, $P_n$;
+        The set of unlabelled samples for current batch, $U_n$;
+        Ensemble of classifiers on former batches, $E_{n-1}$;
+        \Ensure
+        Ensemble of classifiers on the current batch, $E_n$;
+        \State Extracting the set of reliable negative and/or positive samples $T_n$ from $U_n$ with help of $P_n$;
+        \label{code:fram:extract}
+        \State Training ensemble of classifiers $E$ on $T_n \cup P_n$, with help of data in former batches;
+        \label{code:fram:trainbase}
+        \State $E_n=E_{n-1}cup E$;
+        \label{code:fram:add}
+        \State Classifying samples in $U_n-T_n$ by $E_n$;
+        \label{code:fram:classify}
+        \State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+        \label{code:fram:select} \\
+        \Return $E_n$;
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{相關文獻比較}
+整頁垂直翻轉表格測試，表\ref{tab:LPer}。
+
+\begin{sidewaystable}[h]
+    \caption{垂直翻轉表格} % 表格標題
+    \centering % 居中對齊
+    \begin{tabular}{l c c rrrrrrrrrrrrr} % 建立 15 列
+        \hline\hline % 插入雙線
+        音頻 & 可聽性 & 判斷 &\multicolumn{8}{c}{提取位元總和}
+        \\ [0.5ex]
+        \hline % 插入單線
+        % 輸入第一列
+        & & 軟 & 1.23 & $-1.45$ & 1.67 & 1.34 & $-1.12$ & $-1.56$ & 1.78 & 1.99 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[-1ex]
+        \raisebox{1.5ex}{警察} & \raisebox{1.5ex}{5} & 硬
+        & 2.34 & $-4.56$ & 4.78 & 4.23 & $-2.34$ & $-4.56$ & 4.78 & 2.34 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[1ex]
+        % 輸入第二列
+        & & 軟 & 1.56 & $-1.78$ & 1.99 & 1.23 & $-1.45$ & $-1.67$ & 1.34 & 1.12 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[-1ex]
+        \raisebox{1.5ex}{貝多芬} & \raisebox{1.5ex}{5} & 硬
+        & 8.45 & $-8.67$ & 2.34 & 8.56 & $-8.78$ & $-8.23$ & 6.34 & 4.12 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[1ex]
+        % 輸入第三列
+        & & 軟 & 1.67 & $-1.34$ & 1.12 & 1.56 & $-1.78$ & $-1.99$ & 1.23 & 1.45 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[-1ex]
+        \raisebox{1.5ex}{金屬樂團} & \raisebox{1.5ex}{5} & 硬
+        & 4.78 & $-8.23$ & 8.34 & 4.56 & $-8.67$ & $-8.45$ & 8.56 & 6.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[1ex]
+        % 輸入第四列
+        & & 軟 & 1.99 & $-1.23$ & 1.45 & 1.67 & $-1.34$ & $-1.12$ & 1.56 & 1.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[-1ex]
+        \raisebox{1.5ex}{莫札特} & \raisebox{1.5ex}{5} & 硬
+        & 6.34 & $-6.12$ & 6.45 & 6.67 & $-6.34$ & $-6.56$ & 6.78 & 8.99 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[1ex]
+        % 輸入第五列
+        & & 軟 & 1.12 & $-1.56$ & 1.78 & 1.99 & $-1.23$ & $-1.45$ & 1.67 & 1.34 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[-1ex]
+        \raisebox{1.5ex}{披頭四} & \raisebox{1.5ex}{5} & 硬
+        & 2.34 & $-4.56$ & 4.78 & 4.23 & $-2.34$ & $-4.56$ & 4.78 & 2.34 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[1ex]
+        % 輸入第六列
+        & & 軟 & 1.56 & $-1.78$ & 1.99 & 1.23 & $-1.45$ & $-1.67$ & 1.34 & 1.12 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[-1ex]
+        \raisebox{1.5ex}{鄉村音樂} & \raisebox{1.5ex}{5} & 硬
+        & 8.45 & $-8.67$ & 2.34 & 8.56 & $-8.78$ & $-8.23$ & 6.34 & 4.12 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[1ex]
+        % 輸入第七列
+        & & 軟 & 1.67 & $-1.34$ & 1.12 & 1.56 & $-1.78$ & $-1.99$ & 1.23 & 1.45 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[-1ex]
+        \raisebox{1.5ex}{搖滾樂團} & \raisebox{1.5ex}{5} & 硬
+        & 4.78 & $-8.23$ & 8.34 & 4.56 & $-8.67$ & $-8.45$ & 8.56 & 6.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[1ex]
+        % 輸入第八列
+        & & 軟 & 1.99 & $-1.23$ & 1.45 & 1.67 & $-1.34$ & $-1.12$ & 1.56 & 1.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[-1ex]
+        \raisebox{1.5ex}{交響樂團} & \raisebox{1.5ex}{5} & 硬
+        & 6.34 & $-6.12$ & 6.45 & 6.67 & $-6.34$ & $-6.56$ & 6.78 & 8.99 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[1ex]
+        % 輸入第九列
+        & & 軟 & 1.12 & $-1.56$ & 1.78 & 1.99 & $-1.23$ & $-1.45$ & 1.67 & 1.34 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[-1ex]
+        \raisebox{1.5ex}{爵士樂團} & \raisebox{1.5ex}{5} & 硬
+        & 2.34 & $-4.56$ & 4.78 & 4.23 & $-2.34$ & $-4.56$ & 4.78 & 2.34 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[1ex]
+        % 輸入第十列
+        & & 軟 & 1.56 & $-1.78$ & 1.99 & 1.23 & $-1.45$ & $-1.67$ & 1.34 & 1.12 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[-1ex]
+        \raisebox{1.5ex}{搖滾樂團} & \raisebox{1.5ex}{5} & 硬
+        & 8.45 & $-8.67$ & 2.34 & 8.56 & $-8.78$ & $-8.23$ & 6.34 & 4.12 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[1ex]
+        % [1ex] 添加垂直間距
+        \hline % 插入單線
+    \end{tabular}
+    \label{tab:LPer}
+\end{sidewaystable}
