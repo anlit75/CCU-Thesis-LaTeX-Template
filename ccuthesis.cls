@@ -53,8 +53,8 @@
 \newcommand{\ccu@tablename@zh}{表}
 \newcommand{\ccu@kwsymbol@zh}{、}
 
-\newcommand{\ccu@titlechapter@zh}{第\CJKnumber{\thechapter}章}
-\newcommand{\ccu@titlechaptertoc@zh}{第\CJKnumber{\thecontentslabel}章}
+\newcommand{\ccu@titlesection@zh}{第\CJKnumber{\thesection}章}
+\newcommand{\ccu@titlesectiontoc@zh}{第\CJKnumber{\thecontentslabel}章}
 
 % 變數: 英文翻譯
 % Variables: Translation (English)
@@ -72,8 +72,8 @@
 \newcommand{\ccu@figurename@en}{Figure}
 \newcommand{\ccu@tablename@en}{Table}
 
-\newcommand{\ccu@titlechapter@en}{Chapter~\thechapter}
-\newcommand{\ccu@titlechaptertoc@en}{Chapter~\thecontentslabel}
+\newcommand{\ccu@titlesection@en}{Chapter~\thesection}
+\newcommand{\ccu@titlesectiontoc@en}{Chapter~\thecontentslabel}
 
 % 變數: 版面設定
 % Variables: Layouts
@@ -81,8 +81,8 @@
 \newcommand{\ccu@geometry@cover}{top=2.54cm, bottom=2.54cm, left=3.17cm, right=3.17cm}
 
 \newcommand{\ccu@tocvspace}{1em}
-\newcommand{\ccu@tocchaptersize@zh}{4.5em}
-\newcommand{\ccu@tocchaptersize@en}{5.5em}
+\newcommand{\ccu@tocsectionsize@zh}{4.5em}
+\newcommand{\ccu@tocsectionsize@en}{5.5em}
 
 \newcommand{\ccu@tocsecindent@zh}{1.5em}
 \newcommand{\ccu@tocsecnumwidth@zh}{3.0em}
@@ -217,7 +217,6 @@
   \expandafter\ccu@@process@date\ccu@@date\@nil
 }
 \newcommand\ccu@date@zh@short[3]{\zhdigits{#1}年\zhnumber{#2}月}
-\newcommand\ccu@date@zh@digit[3]{\the\numexpr#1-1911\relax~年~\number#2~月~\number#3~日}
 \newcommand\ccu@date@zh@digit@short[3]{\the\numexpr#1-1911\relax~年~\number#2~月}
 
 \newcommand{\ccu@setgeometry}[1]{\expandafter\newgeometry\expandafter{#1}}
@@ -263,13 +262,6 @@
     default = default,
   },
   watermark = {
-    choices = {
-      true,
-      false,
-    },
-    default = false,
-  },
-  doi = {
     choices = {
       true,
       false,
@@ -327,9 +319,6 @@
     default = {Name of supervisor},
     name    = advisor@en,
   },
-  % DOI = {
-  %   default = {DOI Number},
-  % },
   keywords = {
     default = {關鍵字},
   },
@@ -353,13 +342,13 @@
 % 繼承類別選項（將未定義的傳給基礎文檔）
 % Option Declaration (pass tundefined options to father class)
 \DeclareDefaultOption{
-  \PassOptionsToClass{\CurrentOption}{report}
+  \PassOptionsToClass{\CurrentOption}{article}
 }
 
 % 處理選項並載入基礎文檔
 % Terminates the options processing and loads the basic class.
 \ProcessKeyvalOptions*\relax
-\LoadClass[a4paper, 12pt]{report}
+\LoadClass[a4paper, 12pt]{article}
 
 
 % 根據設定值賦值變數
@@ -380,9 +369,9 @@
 
 \ifthenelse{\equal{\ccu@language}{chinese}}{
   % 設定中文
-  \newcommand{\ccu@titlechapter}{\ccu@titlechapter@zh}
-  \newcommand{\ccu@titlechaptertoc}{\ccu@titlechaptertoc@zh}
-  \newcommand{\ccu@tocchaptersize}{\ccu@tocchaptersize@zh}
+  \newcommand{\ccu@titlesection}{\ccu@titlesection@zh}
+  \newcommand{\ccu@titlesectiontoc}{\ccu@titlesectiontoc@zh}
+  \newcommand{\ccu@tocsectionsize}{\ccu@tocsectionsize@zh}
   \newcommand{\ccu@tocsectionindent}{\ccu@tocsectionindent@zh}
   \newcommand{\ccu@tocsubsectionindent}{\ccu@tocsubsectionindent@zh}
   \newcommand{\ccu@acknowledgement}{\ccu@acknowledgement@zh}
@@ -405,9 +394,9 @@
 
 \ifthenelse{\equal{\ccu@language}{english}}{
   % 設定英文
-  \newcommand{\ccu@titlechapter}{\ccu@titlechapter@en}
-  \newcommand{\ccu@titlechaptertoc}{\ccu@titlechaptertoc@en}
-  \newcommand{\ccu@tocchaptersize}{\ccu@tocchaptersize@en}
+  \newcommand{\ccu@titlesection}{\ccu@titlesection@en}
+  \newcommand{\ccu@titlesectiontoc}{\ccu@titlesectiontoc@en}
+  \newcommand{\ccu@tocsectionsize}{\ccu@tocsectionsize@en}
   \newcommand{\ccu@tocsectionindent}{\ccu@tocsectionindent@en}
   \newcommand{\ccu@tocsubsectionindent}{\ccu@tocsubsectionindent@en}
   \newcommand{\ccu@acknowledgement}{\ccu@acknowledgement@en}
@@ -443,7 +432,7 @@
 % - titlesec                    設定章節格式
 % - titletoc, tocloft           設定目錄格式
 % - fancyhdr                    設定頁首頁尾
-% - ulem, CJKulem               下劃線、雙下劃線與波浪紋效果
+% - ulem                        下劃線、雙下劃線與波浪紋效果
 % - setspace                    設定行距（標題內文分別設定）
 % - graphicx                    插入圖片
 % - tikz                        繪圖
@@ -458,34 +447,39 @@
 % - amsmath, amsthm, amssymb    引入 AMS 數學環境
 % - datetime                    日期格式轉換
 % - CJKnumb                     中文數字轉換
+% - zhnumber                    中文數字
 % - fp, calc                    計算功能
 % - hyperref                    超連結
 % - paralist                    列表環境
 % - footmisc                    自訂腳註符號
 % - caption, subcaption         插入圖片、表格標題
-% - natbib                      參考文獻
 %
+\RequirePackage{ifthen}
 \RequirePackage{xparse}
 \RequirePackage{xeCJK}
 \RequirePackage{indentfirst}
 \RequirePackage{fontspec}
 \RequirePackage{xcolor}
+\RequirePackage{geometry}
 \RequirePackage{titlesec}
 \RequirePackage{titletoc, tocloft}
 \RequirePackage{fancyhdr}
+\RequirePackage{ulem}
 \RequirePackage{setspace}
 \RequirePackage{graphicx}
-\RequirePackage{eso-pic}
 \RequirePackage{tikz}
+\RequirePackage{eso-pic}
 \RequirePackage{pdfpages}
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
-\RequirePackage{multirow}
-\RequirePackage{diagbox}
 \RequirePackage{array}
 \RequirePackage{longtable}
+\RequirePackage{diagbox}
+\RequirePackage{multirow}
+\RequirePackage{amsmath, amsthm, amssymb}
 \RequirePackage{datetime}
 \RequirePackage{CJKnumb}
+\RequirePackage{zhnumber}
 \RequirePackage{fp, calc}
 \RequirePackage{hyperref}
 \RequirePackage{paralist}
@@ -555,7 +549,6 @@
 
 % [版面大小]
 %
-\RequirePackage{geometry}
 \geometry{
   top=2.54cm,
   bottom=2.54cm,
@@ -582,9 +575,9 @@
 {}
 
 % \titlecontents{標題名稱}[左間距]{標題格式}{標題內容}{無序號標題}{指引線與頁碼}[下間距]
-\titlecontents{chapter}[0em]                                % 修改目錄樣式
+\titlecontents{section}[0em]                                % 修改目錄樣式
 {\addvspace{0.5em}\normalsize\bfseries\protect}
-{\fboxrule=0pt\fboxsep=0pt\framebox[\ccu@tocchaptersize][l]{\ccu@titlechaptertoc}}
+{\fboxrule=0pt\fboxsep=0pt\framebox[\ccu@tocsectionsize][l]{\ccu@titlesectiontoc}}
 {}
 {\hfill\contentspage}
 
@@ -612,9 +605,9 @@
 % - before: 標題內容前增加文字
 % - after: 標題內容後增加文字
 %
-\titleformat{\chapter}                      % 設置 Chapter 格式
+\titleformat{\section}                      % 設置 section 格式
 {\centering\Huge\bfseries}                  % 定義 format
-{\ccu@titlechapter}              		        % 定義 label
+{\ccu@titlesection}              		        % 定義 label
 {1em}                                       % 定義 sep
 {}                                          % before
 
@@ -625,7 +618,7 @@
 % - top: 上邊界
 % - bottom: 下邊界
 %
-\titlespacing*{\chapter}{0pt}{-40pt}{40pt}
+% \titlespacing*{\section}{0pt}{-40pt}{40pt}
 
 % [圖表標題]
 %
@@ -682,29 +675,30 @@
 \newcommand{\makewatermark}[2]{
   \AddToShipoutPicture{
     \put(-\paperwidth/2,-\paperheight/2){
-            \parbox[b][\paperheight]{\paperwidth}{
-              \vfill
-              \centering
-              \begin{tikzpicture}[remember picture, overlay]
-                \coordinate (WM) at (current page.center);
-                \node [scale=1.5] at (WM) {\includegraphics[width=5cm, height=5cm]{#2}};
-                \filldraw [fill=white, draw=none, opacity=1-\the\numexpr#1] (current page.north east) rectangle (current page.south west);
-              \end{tikzpicture}
-            \vfill
+      \parbox[b][\paperheight]{\paperwidth}{
+        \vfill
+        \centering
+        \begin{tikzpicture}[remember picture, overlay]
+          \coordinate (WM) at (current page.center);
+          \node [scale=1.5] at (WM) {\includegraphics[width=5cm, height=5cm]{#2}};
+          \filldraw [fill=white, draw=none, opacity=1-\the\numexpr#1] (current page.north east) rectangle (current page.south west);
+        \end{tikzpicture}
+      \vfill
 }}}}
+
 % [插入數位識別]
 % - \InsertDOI{#1}              生成數位識別碼
 %   #1 DOI Code                 數位識別碼
 %
-\newcommand{\insertdoi}[1]{
-  \AddToShipoutPicture{
-    \AtPageUpperLeft{
-      \fboxrule=0pt\fboxsep=0pt\framebox[\paperwidth][r]{
-      \raisebox{-\paperheight}{
-      \put(\LenToUnit{-1cm},\LenToUnit{1cm}){
-      \fboxrule=0pt\fboxsep=0pt\framebox[0pt][r]{
-        \href{http://dx.doi.org/#1}{doi:#1}
-}}}}}}}
+% \newcommand{\insertdoi}[1]{
+%   \AddToShipoutPicture{
+%     \AtPageUpperLeft{
+%       \fboxrule=0pt\fboxsep=0pt\framebox[\paperwidth][r]{
+%       \raisebox{-\paperheight}{
+%       \put(\LenToUnit{-1cm},\LenToUnit{1cm}){
+%       \fboxrule=0pt\fboxsep=0pt\framebox[0pt][r]{
+%         \href{http://dx.doi.org/#1}{doi:#1}
+% }}}}}}}
 
 % [生成封面]
 % Generate the cover page
@@ -736,7 +730,7 @@
         \textbf{指導教授：\ccu@advisor~博士}\par
 
         % 論文撰寫日期   (18, 27)
-        \textbf{中華民國~\ccu@format@date{\ccu@date@zh@digit@short}{\ccu@date}}
+        \textbf{中華民國~\ccu@format@date{\ccu@date@zh@short}{\ccu@date}}
       \end{center}
     \end{singlespace}
   \end{titlepage}
@@ -753,8 +747,8 @@
   \clearpage
   \phantomsection
   \ccu@setgeometry{\ccu@geometry@main}
-  \pagenumbering{Roman}
-  \addcontentsline{toc}{chapter}{\ccu@verificationletter}
+  % \pagenumbering{Roman}
+  % \addcontentsline{toc}{section}{\ccu@verificationletter}
   \begin{singlespace}
     %  口委審定書標題 (24, 36) (26, 39)
     %  論文題目 (18, 30)
@@ -797,13 +791,12 @@
 % 
 \newcommand{\renderverification}[1]{
   \clearpage
-  \phantomsection
-  \ccu@setgeometry{\ccu@geometry@main}
-  \pagenumbering{Roman}
-  \addcontentsline{toc}{chapter}{\ccu@verificationletter}
+  % \phantomsection
+  % \ccu@setgeometry{\ccu@geometry@main}
+  % \pagenumbering{Roman}
+  % \addcontentsline{toc}{section}{\ccu@verificationletter}
   \includepdf[pages=-, pagecommand={\thispagestyle{empty}}, offset=0 0, width=\paperwidth, height=\paperheight]{#1}
 }
-
 
 % 定義 \cleardoublepage 命令，讓它的行為與 \clearpage 相同
 \let\cleardoublepage\clearpage
@@ -815,7 +808,7 @@
 \newcommand{\maketableofcontents}{
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\ccu@tableofcontents}
+  \addcontentsline{toc}{section}{\ccu@tableofcontents}
   \tableofcontents
 }
 
@@ -824,7 +817,7 @@
 \newcommand{\makelistoffigures}{
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\ccu@listoffigures}
+  \addcontentsline{toc}{section}{\ccu@listoffigures}
   \renewcommand{\numberline}{\figurename~\oldnumberline}
   \listoffigures
 }
@@ -833,17 +826,28 @@
 \newcommand{\makelistoftables}{
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\ccu@listoftables}
+  \addcontentsline{toc}{section}{\ccu@listoftables}
   \renewcommand{\numberline}{\tablename~\oldnumberline}
   \listoftables
 }
 
-\renewcommand{\cftbeforetoctitleskip}{-0.25in}
-\renewcommand{\cftaftertoctitleskip}{0in}
-\renewcommand{\cftbeforeloftitleskip}{-0.25in}
-\renewcommand{\cftafterloftitleskip}{0.2in}
-\renewcommand{\cftbeforelottitleskip}{-0.25in}
-\renewcommand{\cftafterlottitleskip}{0.2in}
+% [設定間隔]
+% \renewcommand{\cftbeforetoctitleskip}{-0.25in}
+% \renewcommand{\cftaftertoctitleskip}{0in}
+% \renewcommand{\cftbeforeloftitleskip}{-0.25in}
+% \renewcommand{\cftafterloftitleskip}{0.2in}
+% \renewcommand{\cftbeforelottitleskip}{-0.25in}
+% \renewcommand{\cftafterlottitleskip}{0.2in}
+
+% [致謝與論文摘要]
+% \frontmatter
+%
+\newcommand{\frontmatter}{
+  \cleardoublepage
+  \ccu@setgeometry{\ccu@geometry@main}
+  \pagenumbering{Roman}
+  \fontsize{12}{18}\selectfont
+}
 
 % [正文開始]
 % \mainmatter
@@ -861,19 +865,31 @@
 \newcommand{\refmatter}{
   \cleardoublepage
   \phantomsection
-  \renewcommand{\bibname}{\ccu@bibliography}
-  \addcontentsline{toc}{chapter}{\ccu@bibliography}
+  \renewcommand{\refname}{\ccu@bibliography}
+  \addcontentsline{toc}{section}{\ccu@bibliography}
 }
 
 % [附錄]
 % \appendix{NUM}{TITLE}
 %
 \renewcommand{\appendix}[2]{
-  \chapter*{\ccu@appendix~{#1}~---~#2}
+  \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\ccu@appendix~{#1}~---~#2}
+  \section*{\ccu@appendix~{#1}~---~#2}
+  \addcontentsline{toc}{section}{\ccu@appendix~{#1}~---~#2}
+
+  \renewcommand{\thesection}{\ccu@appendix}
+  \renewcommand{\thefigure}{\Roman{figure}}
+  \renewcommand{\theequation}{\Roman{equation}}
+  \renewcommand{\thetable}{\Roman{table}}
+
+  \setcounter{equation}{0}
+  \setcounter{figure}{0}
+  \setcounter{footnote}{0}
   \setcounter{section}{0}
-  \renewcommand{\thechapter}{#1}
+  \setcounter{subsection}{0}
+  \setcounter{subsubsection}{0}
+  \setcounter{table}{0}
 }
 
 % --------------------------------------------------
@@ -884,8 +900,9 @@
 % Denotation Environment
 %
 \newenvironment{denotation}[1][2.5cm]{
-\chapter*{\centering \ccu@denotation}
-\addcontentsline{toc}{chapter}{\ccu@denotation}
+\phantomsection
+\section*{\centering \ccu@denotation}
+\addcontentsline{toc}{section}{\ccu@denotation}
 \noindent
 \begin{list}{}{
   \renewcommand\makelabel[1]{##1\hfill}
@@ -904,8 +921,9 @@
 % Acknowledgement Environment
 %
 \newenvironment{acknowledgement}{
-  \chapter*{\centering \ccu@acknowledgement}
-  \addcontentsline{toc}{chapter}{\ccu@acknowledgement}
+  \phantomsection
+  \section*{\centering \ccu@acknowledgement}
+  \addcontentsline{toc}{section}{\ccu@acknowledgement}
   \fontsize{12}{18}\selectfont
 }
 
@@ -914,8 +932,9 @@
 %
 \renewenvironment{abstract}{
   \fontsize{12}{18}\selectfont
-  \chapter*{\centering \ccu@abstract@zh}
-  \addcontentsline{toc}{chapter}{\ccu@abstract@zh}
+  \phantomsection
+  \section*{\centering \ccu@abstract@zh}
+  \addcontentsline{toc}{section}{\ccu@abstract@zh}
 }{
   \bigbreak
   \noindent \textbf{\ccu@keyword@zh}
@@ -924,8 +943,9 @@
 
 \newenvironment{abstract*}{
   \fontsize{12}{24}\selectfont
-  \chapter*{\centering \ccu@abstract@en}
-  \addcontentsline{toc}{chapter}{\ccu@abstract@en}
+  \phantomsection
+  \section*{\centering \ccu@abstract@en}
+  \addcontentsline{toc}{section}{\ccu@abstract@en}
 }{
   \bigbreak
   \noindent \textbf{\ccu@keyword@en}
@@ -944,7 +964,11 @@
 % 根據設定決定是否添加數位標識
 % Insert DOI according to the config.
 %
-\ifthenelse{\equal{\ccu@doi}{true}}{\insertdoi{\ccu@DOI}}{}
+% \ifthenelse{\equal{\ccu@doi}{true}}{\insertdoi{\ccu@DOI}}{}
+
+% 章節之間加入分頁符號
+\let\oldsection\section
+\renewcommand{\section}{\clearpage\oldsection}
 
 % 設定行距
 % 1.2：1.5 倍行距

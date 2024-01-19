@@ -15,15 +15,19 @@
 	% \makeverification                   	% 口試委員審定書（Verification Letter）
 	\renderverification{verification}		% 渲染口試委員審定書（Render Verification Letter）
 
-	% 致謝與論文摘要 Acknowledgement and Abstract
+	% 加入浮水印 Watermark
 	\makewatermark{0.25}{watermark}			% 加入浮水印（Watermark）
+
+	% 致謝與論文摘要 Acknowledgement and Abstract
+	\frontmatter
 	\input{frontpages/acknowledgement}		% 致謝（Acknowledgement）
 	\input{frontpages/abstract}				% 摘要（Abstract）
 	
-	% 生成目錄 Tables of Contents
+	% 生成目錄與符號列表 Tables of Contents and Denotation
 	\maketableofcontents                	% 目錄（Table of Contents）
 	\makelistoffigures                  	% 圖目錄（List of Figures）
 	\makelistoftables                   	% 表目錄（List of Tables）
+	\input{frontpages/denotation}           % 符號列表（Denotation）
 
 	% 論文內容 Contents of Thesis
 	\mainmatter
@@ -33,10 +37,12 @@
 	\input{sections/04experiments}			% 研究結果 Experiments
 	\input{sections/05conclusion}			% 結論 Conclusion
 
-	% 參考文獻與附錄 References and Appendix
+	% 參考文獻 References
 	\refmatter
 	\bibliographystyle{IEEEtran}			% 參考文獻格式 References style
-	\bibliography{references}		% 參考文獻 References
+	\bibliography{backpages/references}		% 參考文獻 References
+
+	% 附錄 Appendix
 	\input{backpages/appendix}				% 附錄 Appendix
 
 \end{document}

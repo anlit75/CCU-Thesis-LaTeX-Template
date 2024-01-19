@@ -20,7 +20,6 @@
   advisor*      = {Sung-Nien Yu},
   date          = {2024-07-01},         % 若註解掉，則預設為當天
   oral-date     = {2024-07-01},         % 若註解掉，則預設為當天
-  % DOI           = {10.5566/ccu2018XXXXX},
   keywords      = {LaTeX, 中文, 論文, 模板},
   keywords*     = {LaTeX, CJK, Thesis, Template},
 }
@@ -30,18 +29,15 @@
 % --------------------------------------------------
 
 \usepackage{amsmath, amsthm, amssymb}   % 數學環境
-\usepackage{ulem, CJKulem}              % 下劃線、雙下劃線與波浪紋效果
+\usepackage{ulem}                       % 下劃線、雙下劃線與波浪紋效果
 \usepackage{booktabs}                   % 改善表格設置
 \usepackage{multirow}                   % 合併儲存格
 \usepackage{diagbox}                    % 插入表格反斜線
 \usepackage{array}                      % 調整表格高度
 \usepackage{longtable}                  % 支援跨頁長表格
 \usepackage{paralist}                   % 列表環境
+\usepackage{zhnumber}                   % 中文數字
 
-
+% 下列產生亂字的pkg可刪除
 \usepackage{lipsum}                     % 英文亂字
 \usepackage{zhlipsum}                   % 中文亂字
-
-% --------------------------------------------------
-% 套件設定（Packages Settings）
-% --------------------------------------------------
