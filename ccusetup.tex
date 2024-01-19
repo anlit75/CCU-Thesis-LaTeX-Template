@@ -1,0 +1,44 @@
+% !TeX root = ./main.tex
+
+% --------------------------------------------------
+% 資訊設定（Information Configs）
+% --------------------------------------------------
+
+\ccusetup{
+  university*   = {National Chung Cheng University},
+  university    = {國立中正大學},
+  college       = {工學院},
+  college*      = {College of Engineering},
+  institute     = {電機工程研究所},
+  institute*    = {Department of Electrical Engineering}, % 請確認您的科系為Department of xxx或Institute of xxx
+  title         = {國立中正大學碩博士畢業論文模版},
+  title*        = {National Chung Cheng University (CCU) \\ Thesis/Dissertation Template in \LaTeX},
+  author        = {鄭庭安},
+  author*       = {Ting-An Cheng},
+  advisor       = {余松年},
+  advisor*      = {Sung-Nien Yu},
+  date          = {一百一十四年~七月},                      % ~ 表示空格
+  keywords      = {LaTeX, 中文, 論文, 模板},
+  keywords*     = {LaTeX, CJK, Thesis, Template},
+}
+
+% --------------------------------------------------
+% 加載套件（Include Packages）
+% --------------------------------------------------
+
+\usepackage{amsmath, amsthm, amssymb}   % 數學環境
+\usepackage{ulem}                       % 下劃線、雙下劃線與波浪紋效果
+\usepackage{booktabs}                   % 改善表格設置
+\usepackage{multirow}                   % 合併儲存格
+\usepackage{diagbox}                    % 插入表格反斜線
+\usepackage{array}                      % 調整表格高度
+\usepackage{longtable}                  % 支援跨頁長表格
+\usepackage{paralist}                   % 列表環境
+\usepackage{zhnumber}                   % 中文數字
+\usepackage{algorithm, algpseudocode}   % 演算法
+\usepackage{graphics, graphicx}         % 圖片
+\usepackage{rotating}                   % 旋轉圖片
+
+% 下列產生亂字的pkg可刪除
+\usepackage{lipsum}                     % 英文亂字
+\usepackage{zhlipsum}                   % 中文亂字
