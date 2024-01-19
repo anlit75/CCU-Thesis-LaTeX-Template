@@ -1,15 +1,15 @@
 \section{研究結果與討論}
 
-方程式測試，方程式\ref{eq:eq1}。演算法測試，演算法\ref{alg:alg1}，\ref{code:fram:extract}
+方程式測試，方程式\ref{equation:eq1}。演算法測試，演算法\ref{algorithm:alg1}。
 
 \begin{equation}[h]
-    \label{eq:eq1}
+    \label{equation:eq1}
     (\hat{n})=\operatorname*{arg\,max}_{n\in \{1,\dots,M\}}(\mathbf{X}_{n})
 \end{equation}
 
 \begin{algorithm}[htb]
     \caption{範例演算法}
-    \label{alg:alg1}
+    \label{algorithm:alg1}
     \begin{algorithmic}[1]
         \Require
         The set of positive samples for current batch, $P_n$;
@@ -32,11 +32,12 @@
 \end{algorithm}
 
 \subsection{相關文獻比較}
-整頁垂直翻轉表格測試，表\ref{tab:LPer}。
+整頁垂直翻轉表格測試，表\ref{table:LPer}。
 
 \begin{sidewaystable}[h]
-    \caption{垂直翻轉表格} % 表格標題
     \centering % 居中對齊
+    \caption{垂直翻轉表格} % 表格標題
+    \label{table:LPer}
     \begin{tabular}{l c c rrrrrrrrrrrrr} % 建立 15 列
         \hline\hline % 插入雙線
         音頻 & 可聽性 & 判斷 &\multicolumn{8}{c}{提取位元總和}
@@ -85,5 +86,4 @@
         % [1ex] 添加垂直間距
         \hline % 插入單線
     \end{tabular}
-    \label{tab:LPer}
 \end{sidewaystable}

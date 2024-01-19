@@ -1,10 +1,11 @@
 % --------------------------------------------------
 % 國立中正大學碩博士論文模板
-% National Chung Cheng University (CCU) Thesis Template
+% National Chung Cheng University (CCU) Thesis LaTeX Template
 % --------------------------------------------------
 % Author        : anlit <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
-% Last Updated  : 2024.01.17
+% Last Updated  : 2024.01.19
+% --------------------------------------------------
 
 % --------------------------------------------------
 % 01 類別宣告（Class Declaration）
@@ -24,7 +25,7 @@
 
 % [引入套件]
 % Include required packages for basic settings.
-
+% 
 \RequirePackage{kvdefinekeys, kvsetkeys, kvoptions}
 \RequirePackage{iftex}
 \RequirePackage{ifthen}
@@ -311,7 +312,7 @@
     name    = keywords@en,
   },
   date = {
-    default = {中華民國 一百一十四 年 七 月},
+    default = {一百一十四年~七月},
   },
 }
 
@@ -402,7 +403,6 @@
 % --------------------------------------------------
 
 % [載入套件]
-% - ifthen                      條件判斷支持
 % - xparse                      定義命令
 % - xeCJK                       排版中日韓(CJK)字符
 % - indentfirst                 首行縮進
@@ -434,7 +434,6 @@
 % - footmisc                    自訂腳註符號
 % - caption, subcaption         插入圖片、表格標題
 %
-\RequirePackage{ifthen}
 \RequirePackage{xparse}
 \RequirePackage{xeCJK}
 \RequirePackage{indentfirst}
@@ -599,7 +598,7 @@
 %
 \titlespacing*{\section}{0pt}{0pt}{0pt}                % 設置 section 間距
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}             % 設置 subsection 間距
-% \titlespacing*{\paragraph}{0pt}{0pt}{0pt}              % 設置 paragraph 間距
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}          % 設置 subsubsection 間距
 
 % [圖表標題]
 %
