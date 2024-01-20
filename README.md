@@ -5,20 +5,22 @@
 - [模板範例演示](#模板範例演示)
 - [模板檔案結構](#模板檔案結構)
 - [LaTeX環境建置](#latex環境建置)
-  - [vscode設置](#vscode設置)
+    - [vscode設置](#vscode設置)
 - [LaTeX基礎語法](#latex基礎語法)
-  - [標題](#標題)
-  - [插入圖片](#插入圖片)
-  - [插入表格](#插入表格)
-  - [插入數學公式](#插入數學公式)
-  - [插入演算法](#插入演算法)
-  - [論文引用](#論文引用)
+    - [標題](#標題)
+    - [字體](#字體)
+    - [列點項目](#列點項目)
+    - [插入圖片](#插入圖片)
+    - [插入表格](#插入表格)
+    - [插入數學公式](#插入數學公式)
+    - [插入演算法](#插入演算法)
+    - [引用](#引用)
 - [致謝](#致謝)
 - [免責聲明](#免責聲明)
 - [License](#license)
 
 ## 模板範例演示
-`mian.pdf` 為本LaTeX模板的繁體中文論文範例檔案，可供使用者參考。
+- [mian.pdf](./main.pdf) 為本LaTeX模板的繁體中文論文範例檔案，可供使用者參考。
 
 ## 模板檔案結構
 
@@ -37,7 +39,7 @@ Template Structure
 │   └── conclusion.tex              // 結論
 ├── backpages
 │   ├── appendix.tex                // 附錄
-│   └── reference.bib               // 參考文獻文件
+│   └── reference.bib               // 參考文獻資料庫
 ├── figures
 │   ├── watermark.jpg               // 浮水印
 │   └── ...
@@ -112,6 +114,27 @@ Template Structure
 \subsubsection*{無編號小小標題}  % 無編號小小標題
 ```
 
+### 字體
+```latex
+粗體   : \textbf{粗體字}
+斜體   : \textit{斜體字}
+粗斜體 : \textbf{\textit{粗斜體字}}
+底線   : \underline{底線字}
+```
+
+### 列點項目
+```latex
+\begin{itemize}
+    \item 個別項目1
+    \item 個別項目2
+\end{itemize}
+
+\begin{enumerate}
+    \item 清單編號1
+    \item 清單編號2
+\end{enumerate}
+```
+
 ### 插入圖片
 ```latex
 % 圖片標題在下方
@@ -180,9 +203,11 @@ Template Structure
 \end{algorithm}
 ```
 
-### 論文引用
+### 引用
 ```LaTeX
 引用論文 : \cite{paper1}, \cite{paper2, paper3}
+引用圖片 : \ref{figure:figname}
+引用表格 : \ref{table:tabname}
 ```
 
 ## 致謝
