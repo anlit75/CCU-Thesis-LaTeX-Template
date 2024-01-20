@@ -5,16 +5,7 @@
 - [模板範例演示](#模板範例演示)
 - [模板檔案結構](#模板檔案結構)
 - [LaTeX環境建置](#latex環境建置)
-    - [vscode設置](#vscode設置)
-- [LaTeX基礎語法](#latex基礎語法)
-    - [標題](#標題)
-    - [字體](#字體)
-    - [列點項目](#列點項目)
-    - [插入圖片](#插入圖片)
-    - [插入表格](#插入表格)
-    - [插入數學公式](#插入數學公式)
-    - [插入演算法](#插入演算法)
-    - [引用](#引用)
+- [模板使用說明](#模板使用說明)
 - [致謝](#致謝)
 - [免責聲明](#免責聲明)
 - [License](#license)
@@ -27,6 +18,7 @@
 ```
 Template Structure
 ├── main.tex                        // 主文件
+├── main.pdf                        // 主文件編譯後的PDF檔
 ├── frontpages
 │   ├── abstract.tex                // 中/英文摘要
 │   ├── acknowledgement.tex         // 致謝
@@ -98,117 +90,11 @@ Template Structure
 "latex-workshop.latex.autoClean.run": "onSucceeded",    // 當編譯成功時自動清理
 ```
 
-## LaTeX基礎語法
-以下為LaTeX基礎語法，若需要更完整的教學，可參考 [Overleaf LaTeX Basics](https://www.overleaf.com/learn/latex/) 或在 `sections/*.tex` 中參考其中範例。
-
-### 標題
-```latex
-% 編號標題
-\section{大標題}                 % 大標題
-\subsection{小標題}              % 小標題
-\subsubsection{小小標題}         % 小小標題
-
-% 無編號標題
-\section*{無編號大標題}          % 無編號大標題
-\subsection*{無編號小標題}       % 無編號小標題
-\subsubsection*{無編號小小標題}  % 無編號小小標題
-```
-
-### 字體
-```latex
-粗體   : \textbf{粗體字}
-斜體   : \textit{斜體字}
-粗斜體 : \textbf{\textit{粗斜體字}}
-底線   : \underline{底線字}
-```
-
-### 列點項目
-```latex
-\begin{itemize}
-    \item 個別項目1
-    \item 個別項目2
-\end{itemize}
-
-\begin{enumerate}
-    \item 清單編號1
-    \item 清單編號2
-\end{enumerate}
-```
-
-### 插入圖片
-```latex
-% 圖片標題在下方
-引用圖片 : \ref{figure:figname}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{./path/to/figure}
-    \caption{圖片標題}
-    \label{figure:figname}
-\end{figure}
-```
-
-### 插入表格
-```latex
-% 表格標題在上方
-引用表格 : \ref{table:tabname}
-\begin{table}[htbp]
-    \centering
-    \caption{表格標題}
-    \label{table:tabname}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        1 & 2 & 3 \\
-        \hline
-        4 & 5 & 6 \\
-        \hline
-    \end{tabular}
-\end{table}
-```
-
-### 插入數學公式
-```LaTeX
-% 公式標題在右方
-引用公式 : \ref{equation:eqname}
-\begin{equation}
-    \label{equation:eqname}
-    \begin{aligned}
-        \mathbf{X} &= \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
-    \end{aligned}
-\end{equation}
-```
-
-### 插入演算法
-```LaTeX
-% 演算法標題在上方
-引用演算法 : \ref{algorithm:algoname}
-\begin{algorithm}[htbp]
-    \caption{演算法標題}
-    \label{algorithm:algoname}
-    \begin{algorithmic}[1]
-        \Require $n \geq 0$
-        \Ensure $y = x^n$
-        \State $y \leftarrow 1$
-        \State $X \leftarrow x$
-        \State $N \leftarrow n$
-        \While{$N \neq 0$}
-            \If{$N$ is even}
-                \State $X \leftarrow X \times X$
-                \State $N \leftarrow N / 2$
-            \Else[$N$ is odd]
-                \State $y \leftarrow y \times X$
-                \State $N \leftarrow N - 1$
-            \EndIf
-        \EndWhile
-    \end{algorithmic}
-\end{algorithm}
-```
-
-### 引用
-```LaTeX
-引用論文 : \cite{paper1}, \cite{paper2, paper3}
-引用圖片 : \ref{figure:figname}
-引用表格 : \ref{table:tabname}
-```
+## 模板使用說明
+詳細模板使用說明請見 [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki)，請依造下列順序進行閱讀，並根據指示修改設定 :
+1. [模板資料設定 ( Information Configs Manual )](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/Information-Configs-Manual)
+2. [模板使用說明 ( User Guide )](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/User-Guide)
+3. [LaTeX基本語法 ( LaTeX Basic Syntax )](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax)
 
 ## 致謝
 感謝以下模板作者的貢獻，提供了許多參考，使得本模板能夠順利完成 : 
