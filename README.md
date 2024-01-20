@@ -11,7 +11,9 @@
 - [License](#license)
 
 ## 模板範例演示
-- [mian.pdf](./main.pdf) 為本LaTeX模板的繁體中文論文範例檔案，可供使用者參考。
+以下為模板的範例檔案，僅供參考 :
+- [demo/master_chinese_template.pdf](./demo/master_chinese_template.pdf) 為**碩士繁體中文**論文範例檔案
+- [demo/doctor_chinese_template.pdf](./demo/doctor_chinese_template.pdf) 為**博士繁體中文**論文範例檔案
 
 ## 模板檔案結構
 
@@ -22,7 +24,8 @@ Template Structure
 ├── frontpages
 │   ├── abstract.tex                // 中/英文摘要
 │   ├── acknowledgement.tex         // 致謝
-│   └── denotation.tex              // 符號列表
+│   ├── denotation.tex              // 符號列表
+│   └── verification.pdf            // 論文審定書PDF檔
 ├── sections
 │   ├── introduction.tex            // 緒論
 │   ├── related_work.tex            // 文獻探討

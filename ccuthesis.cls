@@ -736,7 +736,7 @@
         \vfill
         \fontsize{18}{39}\selectfont
         {\ccu@institute}\par
-        研究生\underline{\ccu@author}所提之論文\par
+        {\ccu@degree}生\underline{\ccu@author}所提之論文\par
         \underline{\ccu@title}\par
         經本委員會審查，符合{\ccu@degree}學位論文標準。
       \end{center}
