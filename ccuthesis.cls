@@ -2,7 +2,7 @@
 % 國立中正大學碩博士論文模板
 % National Chung Cheng University (CCU) Thesis LaTeX Template
 % --------------------------------------------------
-% Author        : anlit <anson40512@gmail.com>
+% Author        : Ting-An Cheng <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
 % Last Updated  : 2024.01.19
 % --------------------------------------------------
@@ -433,6 +433,8 @@
 % - paralist                    列表環境
 % - footmisc                    自訂腳註符號
 % - caption, subcaption         插入圖片、表格標題
+% - chemfig                     繪製化學結構式
+% - circuitikz                  繪製電路圖
 %
 \RequirePackage{xparse}
 \RequirePackage{xeCJK}
@@ -465,6 +467,19 @@
 \RequirePackage{footmisc}
 \RequirePackage{caption}
 \RequirePackage[labelformat=simple]{subcaption}
+\RequirePackage{chemfig}
+\RequirePackage{circuitikz, siunitx}
+
+\usetikzlibrary{
+  positioning, 
+  shapes.geometric, 
+  arrows.meta,
+  chains,
+  matrix,
+  calc,
+  fit,
+  quotes
+}
 
 % --------------------------------------------------
 % 07 套件設定 (Package Settings)
@@ -721,7 +736,7 @@
         \vfill
         \fontsize{18}{39}\selectfont
         {\ccu@institute}\par
-        研究生\underline{\ccu@author}所提之論文\par
+        {\ccu@degree}生\underline{\ccu@author}所提之論文\par
         \underline{\ccu@title}\par
         經本委員會審查，符合{\ccu@degree}學位論文標準。
       \end{center}

@@ -1,17 +1,92 @@
+% !TeX root = ../main.tex
+
+% =================== 研究方法 =================== %
 \section{研究方法}
 
-表格測試，表\ref{table:hardware_software}。
+在段落中使用行內數學公式可以 \begin{math}E=mc^2\end{math}，可以$E=mc^2$，也可以\(E=mc^2\)。
+方程式測試，方程式\ref{equation:eq1}。演算法測試，演算法\ref{algorithm:alg1}。
 
-\begin{table}[h]
+\begin{equation}[htbp]
+    \label{equation:eq1}
+    (\hat{n})=\operatorname*{arg\,max}_{n\in \{1,\dots,M\}}(\mathbf{X}_{n})
+\end{equation}
+
+\begin{algorithm}[htbp]
+    \caption{範例演算法}
+    \label{algorithm:alg1}
+    \begin{algorithmic}[1]
+        \Require
+        The set of positive samples for current batch, $P_n$;
+        The set of unlabelled samples for current batch, $U_n$;
+        Ensemble of classifiers on former batches, $E_{n-1}$;
+        \Ensure
+        Ensemble of classifiers on the current batch, $E_n$;
+        \State Extracting the set of reliable negative and/or positive samples $T_n$ from $U_n$ with help of $P_n$;
+        \label{code:fram:extract}
+        \State Training ensemble of classifiers $E$ on $T_n \cup P_n$, with help of data in former batches;
+        \label{code:fram:trainbase}
+        \State $E_n=E_{n-1}cup E$;
+        \label{code:fram:add}
+        \State Classifying samples in $U_n-T_n$ by $E_n$;
+        \label{code:fram:classify}
+        \State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+        \label{code:fram:select} \\
+        \Return $E_n$;
+    \end{algorithmic}
+\end{algorithm}
+
+% ------------------- 流程圖 -------------------- %
+\subsection{流程圖}
+
+\begin{figure}[htbp]
     \centering
-    \caption{範例表格}
-    \label{table:hardware_software}
-    \begin{tabular}{p{\textwidth/2}p{\textwidth/2}}
-        \hline
-        \multicolumn{1}{c}{\textbf{硬體}} & \multicolumn{1}{c}{\textbf{軟體}} \\ \hline
-        Intel(R) Core(TM) i7-8700 CPU      & Ubuntu 18.04.3 LTS               \\
-        NVIDIA GeForce GTX 1080 Ti         & CUDA 10.1                        \\
-        DDR4 32GB                          & PyTorch 1.3.1                    \\
-        SSD 1TB                            &                                  \\ \hline
-    \end{tabular}
-\end{table}
+    \begin{tikzpicture}[node distance=10pt]
+        \node[draw, rounded corners]                        (start)   {Start};
+        \node[draw, below=of start]                         (step 1)  {Step 1};
+        \node[draw, below=of step 1]                        (step 2)  {Step 2};
+        \node[draw, diamond, aspect=2, below=of step 2]     (choice)  {Choice};
+        \node[draw, right=30pt of choice]                   (step x)  {Step X};
+        \node[draw, rounded corners, below=20pt of choice]  (end)     {End};
+        
+        \draw[->] (start)  -- (step 1);
+        \draw[->] (step 1) -- (step 2);
+        \draw[->] (step 2) -- (choice);
+        \draw[->] (choice) -- node[left]  {Yes} (end);
+        \draw[->] (choice) -- node[above] {No}  (step x);
+        \draw[->] (step x) -- (step x|-step 2) -> (step 2);
+    \end{tikzpicture}
+    \caption{範例流程圖}
+    \label{figure:flowchart1}
+\end{figure}
+
+% ------------------- 小標題 -------------------- %
+\clearpage
+\subsection{小標題}
+
+化學結構式測試，圖\ref{figure:chem1}，電路圖測試，圖\ref{figure:circ1}。
+
+\begin{figure}[htbp]
+    \centering
+    \chemfig{
+        H_3C-[:72]{\color{blue}N}*5(- 
+        *6(-(={\color{red}O})-
+        {\color{blue}N}(-CH_3)-
+        (={\color{red}O})-
+        {\color{blue}N}(-CH_3)-=)--
+        {\color{blue}N}=-)
+    }
+    \caption{範例化學結構式}
+    \label{figure:chem1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{circuitikz}
+        \draw (0,0) to[V=1V] (0,2)
+            to[R=$1\Omega$] (2,2) -- (4,2)
+            to[C=1F] (4,0) -- (0,0);
+        \draw (2,2) to[L=1H, *-*] (2,0);
+    \end{circuitikz}
+    \caption{範例電路圖}
+    \label{figure:circ1}
+\end{figure}
