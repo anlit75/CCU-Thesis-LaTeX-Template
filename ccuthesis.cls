@@ -2,7 +2,7 @@
 % 國立中正大學碩博士論文模板
 % National Chung Cheng University (CCU) Thesis LaTeX Template
 % --------------------------------------------------
-% Author        : anlit <anson40512@gmail.com>
+% Author        : Ting-An Cheng <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
 % Last Updated  : 2024.01.19
 % --------------------------------------------------
