@@ -433,6 +433,8 @@
 % - paralist                    列表環境
 % - footmisc                    自訂腳註符號
 % - caption, subcaption         插入圖片、表格標題
+% - chemfig                     繪製化學結構式
+% - circuitikz                  繪製電路圖
 %
 \RequirePackage{xparse}
 \RequirePackage{xeCJK}
@@ -465,6 +467,19 @@
 \RequirePackage{footmisc}
 \RequirePackage{caption}
 \RequirePackage[labelformat=simple]{subcaption}
+\RequirePackage{chemfig}
+\RequirePackage{circuitikz, siunitx}
+
+\usetikzlibrary{
+  positioning, 
+  shapes.geometric, 
+  arrows.meta,
+  chains,
+  matrix,
+  calc,
+  fit,
+  quotes
+}
 
 % --------------------------------------------------
 % 07 套件設定 (Package Settings)
