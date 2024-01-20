@@ -45,6 +45,10 @@ Template Structure
 │   └── english
 │       ├── Times New Roman-*.ttf   // Times New Roman
 │       └── ...
+├── demo
+│   ├── master_chinese_template.pdf // 碩士繁體中文論文範例檔案
+│   ├── doctor_chinese_template.pdf // 博士繁體中文論文範例檔案
+│   └── ...
 ├── ccusetup.tex                    // 模板設定
 └── ccuthesis.cls                   // 模板文件
 ```
