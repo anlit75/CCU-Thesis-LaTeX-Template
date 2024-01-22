@@ -1,34 +1,34 @@
-# 國立中正大學碩博士論文LaTeX模板
-本模板適用於國立中正大學碩博士論文的撰寫，並設置好論文基本架構和基礎語法示例供使用者參考，使用者只需根據自己的需求進行增減即可，並已預先設置Times New Roman與標楷體兩種通用字型。
+# 國立中正大學碩博士論文LaTeX模板 | CCU Thesis LaTeX Template
+本模板適用於國立中正大學碩博士論文的撰寫，並設置好論文基本架構和基礎語法示例供使用者參考，使用者只需根據自己的需求進行增減即可，已預先設置 Times New Roman 與標楷體兩種通用字型。
 
-## 目錄
-- [Getting Started](#getting-started)
-- [模板範例演示](#模板範例演示)
-- [模板檔案結構](#模板檔案結構)
-- [LaTeX環境建置](#latex環境建置)
-- [模板使用說明](#模板使用說明)
-- [致謝](#致謝)
-- [免責聲明](#免責聲明)
+## 目錄 | Table of Contents
+- [入門 | Getting Started](#入門--getting-started)
+- [模板範例演示 | Template Demonstration](#模板範例演示--template-demonstration)
+- [模板檔案結構 | Template Structure](#模板檔案結構--template-structure)
+- [LaTeX環境建置 | LaTeX Environment Setup](#latex環境建置--latex-environment-setup)
+- [模板使用說明 | User Guide](#模板使用說明--user-guide)
+- [致謝 | Acknowledgement](#致謝--acknowledgement)
+- [免責聲明 | Disclaimer](#免責聲明--disclaimer)
 - [License](#license)
 
-## Getting Started
-你有以下幾種方式可以取得本模板，請依照自己的需求選擇，推薦使用`方式5` :
-1. 直接下載本專案的 zip 檔案
+## 入門 | Getting Started
+您有以下幾種方式可以取得本模板，請依照自己的喜好選擇:
+1. 下載本模板的 zip 檔案
 2. 使用 git clone 指令 : `git clone https://github.com/anlit75/CCU-Thesis-LaTeX-Template.git`
-3. 使用 fork 功能將本專案 fork 到自己的 github 帳號
+3. 使用 fork 功能將本模板複製到自己的 github
 4. 下載 release 版本 : https://github.com/anlit75/CCU-Thesis-LaTeX-Template/releases
-5. 點擊**此頁面右上方綠色**的 `Use this template` 按鈕，創建一個新的 repository
+5. 點擊**此頁面右上方綠色**的 `Use this template` 按鈕，創建一個新的 repository ( 推薦使用此方式 )
 
-如果你之前未使用過 Git / GitHub，以下是一些入門指南：
+如果您之前未使用過 Git / GitHub，以下是一些入門指南：
 - Basics of git : [Learn the Basics of Git in Under 10 Minutes](https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/)
 - GitHub Fork : [Fork a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 
-## 模板範例演示
+## 模板範例演示 | Template Demonstration
 以下為模板的範例檔案，僅供參考 :
 - [demo/master_chinese_template.pdf](./demo/master_chinese_template.pdf) 為**碩士繁體中文**論文範例檔案
 - [demo/doctor_chinese_template.pdf](./demo/doctor_chinese_template.pdf) 為**博士繁體中文**論文範例檔案
 
-## 模板檔案結構
+## 模板檔案結構 | Template Structure
 
 ```
 Template Structure
@@ -68,13 +68,13 @@ Template Structure
 
 根據內容決定撰寫在哪個檔案，sections中的文件可以自行透過增加/移除`.tex`檔進行調整，只需將新增的檔案在主文件`main.tex`中根據位置用`\input{./path/to/texfile}`新增即可。
 
-## LaTeX環境建置
-- Requirements: `MiKTex`, `perl`, `vscode` 
+## LaTeX環境建置 | LaTeX Environment Setup
+- Requirements: `MiKTex`, `perl`, `vscode(option)`
 1. 安裝`MiKTex`，並設置為預設的compiler ( https://miktex.org/download )
 2. 安裝`perl` ( https://strawberryperl.com/ )
-2. 安裝`vscode`，並安裝`LaTeX Workshop`擴充程式
+2. 安裝`vscode`，並安裝 `LaTeX Workshop`、`LaTeX Utilities` 擴充程式
 
-### vscode設置
+### LaTeX Workshop Settings
 在`settings.json`中，recipe可以調換順序，最上面的是預設執行的compiler，須將`"latexmk (xelatex)"`組別移動到最上方，如下所示 :
 ```json
 "latex-workshop.latex.recipes": [
@@ -122,20 +122,43 @@ Template Structure
 
 ![SyncTex](./figures/sync_demo.gif)
 
-## 模板使用說明
+### LaTeX Utilities Settings
+此擴充程式可以在**貼上**時自動生成模板，適用於表格及圖片，請先在`settings.json`中輸入下方設定 :
+```json
+"latex-utilities.formattedPaste.useAsDefault": true,    // `ctrl+v`時自動套用模板，若為false則需使用`ctrl+shift+v`
+
+// 圖片模板
+"latex-utilities.formattedPaste.image.template": [
+    "\\begin{figure}[!htb]",
+    "\t\\centering",
+    "\t\\includegraphics[width=\\textwidth]{${imageFilePath}}",
+    "\t\\caption{${imageFileNameWithoutExt}}",
+    "\t\\label{fig:${imageFileNameWithoutExt}}",
+    "\\end{figure}",
+    ""
+],
+```
+
+實際操作效果如下所示 :
+
+![formattedPaste](./figures/paste_demo.gif)
+
+更詳細的設定請參考 [LaTeX Utilities Wiki](https://github.com/tecosaur/LaTeX-Utilities/wiki)
+
+## 模板使用說明 | User Guide
 詳細模板使用說明請見 [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki)，請依造下列順序進行閱讀，並根據指示修改設定 :
 1. [模板資料設定 ( Information Configs Manual )](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/Information-Configs-Manual)
 2. [模板使用說明 ( User Guide )](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/User-Guide)
 3. [LaTeX基本語法 ( LaTeX Basic Syntax )](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax)
 
-## 致謝
+## 致謝 | Acknowledgement
 感謝以下模板作者的貢獻，提供了許多參考，使得本模板能夠順利完成 : 
 - [joeyuping/ccu-thesis-latextemplate](https://github.com/joeyuping/ccu-thesis-latextemplate)
 - [Hsins/NTU-Thesis-LaTeX-Template](https://github.com/Hsins/NTU-Thesis-LaTeX-Template)
 - [hasanabs/nsysu-thesis-latex-template](https://github.com/hasanabs/nsysu-thesis-latex-template)
 
 
-## 免責聲明
+## 免責聲明 | Disclaimer
 本模板為非官方版本，因此格式可能有誤，僅供參考，若使用上有任何問題，請自行承擔風險。
 
 建議使用者根據系上的要求進行調整，若有任何問題，請提issue或是寄信至[作者信箱](mailto:anson40512@gmail.com)。
