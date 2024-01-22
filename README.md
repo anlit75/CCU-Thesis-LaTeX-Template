@@ -13,7 +13,7 @@
 - [License](#license)
 
 ## 入門 | Getting Started
-您有以下幾種方式可以取得本模板，請依照自己的喜好選擇:
+您有以下幾種方式可以取得本模板，請依照自己的喜好選擇 :
 1. 下載本模板的 zip 檔案
 2. 使用 git clone 指令 : `git clone https://github.com/anlit75/CCU-Thesis-LaTeX-Template.git`
 3. 使用 fork 功能將本模板複製到自己的 github
@@ -126,7 +126,8 @@ Template Structure
 ### LaTeX Utilities Settings
 此擴充程式可以在**貼上**時自動生成模板，適用於表格及圖片，請先在`settings.json`中輸入下方設定 :
 ```json
-"latex-utilities.formattedPaste.useAsDefault": true,    // `ctrl+v`時自動套用模板，若為false則需使用`ctrl+shift+v`
+// `ctrl+v`時自動套用模板，若為false則需使用`ctrl+shift+v`
+"latex-utilities.formattedPaste.useAsDefault": true,
 
 // 圖片模板
 "latex-utilities.formattedPaste.image.template": [
