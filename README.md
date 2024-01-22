@@ -2,6 +2,7 @@
 本模板適用於國立中正大學碩博士論文的撰寫，並設置好論文基本架構和基礎語法示例供使用者參考，使用者只需根據自己的需求進行增減即可，並已預先設置Times New Roman與標楷體兩種通用字型。
 
 ## 目錄
+- [Getting Started](#getting-started)
 - [模板範例演示](#模板範例演示)
 - [模板檔案結構](#模板檔案結構)
 - [LaTeX環境建置](#latex環境建置)
@@ -9,6 +10,18 @@
 - [致謝](#致謝)
 - [免責聲明](#免責聲明)
 - [License](#license)
+
+## Getting Started
+你有以下幾種方式可以取得本模板，請依照自己的需求選擇，推薦使用`方式5` :
+1. 直接下載本專案的 zip 檔案
+2. 使用 git clone 指令 : `git clone https://github.com/anlit75/CCU-Thesis-LaTeX-Template.git`
+3. 使用 fork 功能將本專案 fork 到自己的 github 帳號
+4. 下載 release 版本 : https://github.com/anlit75/CCU-Thesis-LaTeX-Template/releases
+5. 點擊**此頁面右上方綠色**的 `Use this template` 按鈕，創建一個新的 repository
+
+如果你之前未使用過 Git / GitHub，以下是一些入門指南：
+- Basics of git : [Learn the Basics of Git in Under 10 Minutes](https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/)
+- GitHub Fork : [Fork a repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 
 ## 模板範例演示
 以下為模板的範例檔案，僅供參考 :
@@ -96,6 +109,18 @@ Template Structure
 "latex-workshop.latex.autoBuild.run": "onSave",         // 當儲存時自動編譯
 "latex-workshop.latex.autoClean.run": "onSucceeded",    // 當編譯成功時自動清理
 ```
+
+### LaTeX Workshop SyncTex
+在 Shorcut Settings 中可以設置 `SyncTex` 的快捷鍵 (如下圖所示)，預設為 `ctrl+alt+j`，可自行調整。
+
+![SyncTex](./figures/synctex.png)
+
+- `ctrl+Left-Click`PDF檔案中的文字，會自動跳轉到對應的`.tex`檔案中
+- 在`.tex`檔案中使用 `ctrl+alt+j` 會自動跳轉到對應的PDF檔案中
+
+實際操作效果如下所示 :
+
+![SyncTex](./figures/sync_demo.gif)
 
 ## 模板使用說明
 詳細模板使用說明請見 [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki)，請依造下列順序進行閱讀，並根據指示修改設定 :
