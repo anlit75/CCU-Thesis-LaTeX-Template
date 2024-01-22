@@ -243,18 +243,9 @@
   fontset = {
     choices = {
       default,
-      system,
-      overleaf,
       template,
     },
     default = default,
-  },
-  watermark = {
-    choices = {
-      true,
-      false,
-    },
-    default = false,
   },
 }
 
@@ -313,6 +304,10 @@
   },
   date = {
     default = {一百一十四年~七月},
+  },
+  date* = {
+    default = {July~2025},
+    name    = date@en,
   },
 }
 
@@ -537,15 +532,6 @@
     Path = \ccu@path@cjkfont ,
     Extension = .ttf ,
     BoldFont = Kaiti-Black, ]
-}
-
-\ifthenelse{\equal{\ccu@fontset}{overleaf}}{
-  \setmainfont{Times New Roman}
-  \setsansfont{Droid Sans}
-  \setmonofont{Courier New}
-  \setCJKmainfont{AR PL KaitiM Big5}
-  \setCJKsansfont{AR PL KaitiM Big5}
-  \setCJKmonofont{AR PL KaitiM Big5}
 }
 
 % [版面大小]
