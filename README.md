@@ -8,6 +8,7 @@
 - [LaTeX環境建置 | LaTeX Environment Setup](#latex環境建置--latex-environment-setup)
 - [模板使用說明 | User Guide](#模板使用說明--user-guide)
 - [致謝 | Acknowledgement](#致謝--acknowledgement)
+- [合作者 | Collaborators](#合作者--collaborators)
 - [免責聲明 | Disclaimer](#免責聲明--disclaimer)
 - [License](#license)
 
@@ -153,10 +154,12 @@ Template Structure
 
 ## 致謝 | Acknowledgement
 感謝以下模板作者的貢獻，提供了許多參考，使得本模板能夠順利完成 : 
-- [joeyuping/ccu-thesis-latextemplate](https://github.com/joeyuping/ccu-thesis-latextemplate)
 - [Hsins/NTU-Thesis-LaTeX-Template](https://github.com/Hsins/NTU-Thesis-LaTeX-Template)
 - [hasanabs/nsysu-thesis-latex-template](https://github.com/hasanabs/nsysu-thesis-latex-template)
+- [joeyuping/ccu-thesis-latextemplate](https://github.com/joeyuping/ccu-thesis-latextemplate)
 
+## 合作者 | Collaborators
+特別感謝 [joeyuping](https://github.com/joeyuping) 學長的貢獻，使得本模板能夠更加完善 !
 
 ## 免責聲明 | Disclaimer
 本模板為非官方版本，因此格式可能有誤，僅供參考，若使用上有任何問題，請自行承擔風險。
