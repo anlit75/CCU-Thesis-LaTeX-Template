@@ -33,38 +33,38 @@
 
 ```
 Template Structure
-├── main.tex                        // 主文件
-├── main.pdf                        // 主文件編譯後的PDF檔
+├── main.tex                            // 主文件
+├── main.pdf                            // 主文件編譯後的PDF檔
 ├── frontpages
-│   ├── abstract.tex                // 中/英文摘要
-│   ├── acknowledgement.tex         // 致謝
-│   ├── denotation.tex              // 符號列表
-│   └── verification.pdf            // 論文審定書PDF檔
+│   ├── abstract.tex                    // 中/英文摘要
+│   ├── acknowledgement.tex             // 致謝
+│   ├── denotation.tex                  // 符號列表
+│   └── verification.pdf                // 論文審定書PDF檔
 ├── sections
-│   ├── introduction.tex            // 緒論
-│   ├── related_work.tex            // 文獻探討
-│   ├── method.tex                  // 研究方法
-│   ├── experiments.tex             // 研究結果
-│   └── conclusion.tex              // 結論
+│   ├── introduction.tex                // 緒論
+│   ├── related_work.tex                // 文獻探討
+│   ├── method.tex                      // 研究方法
+│   ├── experiments.tex                 // 研究結果
+│   └── conclusion.tex                  // 結論
 ├── backpages
-│   ├── appendix.tex                // 附錄
-│   └── reference.bib               // 參考文獻資料庫
+│   ├── appendix.tex                    // 附錄
+│   └── reference.bib                   // 參考文獻資料庫
 ├── figures
-│   ├── watermark.jpg               // 浮水印
+│   ├── watermark.jpg                   // 浮水印
 │   └── ...
 ├── fonts
 │   ├── chinese
-│   │   ├── BiauKai.ttf             // 標楷體
+│   │   ├── BiauKai.ttf                 // 標楷體
 │   │   └── ...
 │   └── english
-│       ├── Times New Roman-*.ttf   // Times New Roman
+│       ├── Times New Roman-*.ttf       // Times New Roman
 │       └── ...
 ├── demo
-│   ├── master_chinese_template.pdf // 碩士繁體中文論文範例檔案
-│   ├── doctor_chinese_template.pdf // 博士繁體中文論文範例檔案
+│   ├── master_chinese_template.pdf     // 碩士繁體中文論文範例檔案
+│   ├── doctor_chinese_template.pdf     // 博士繁體中文論文範例檔案
 │   └── ...
-├── ccusetup.tex                    // 模板設定
-└── ccuthesis.cls                   // 模板文件
+├── ccusetup.tex                        // 模板設定
+└── ccuthesis.cls                       // 模板文件
 ```
 
 根據內容決定撰寫在哪個檔案，sections中的文件可以自行透過增加/移除`.tex`檔進行調整，只需將新增的檔案在主文件`main.tex`中根據位置用`\input{./path/to/texfile}`新增即可。
