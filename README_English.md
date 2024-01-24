@@ -116,6 +116,8 @@ Move the group `latexmk (xelatex)` to the top, as shown below:
 "latex-workshop.latex.autoClean.run": "onSucceeded",    // automatically clean up when compilation is successful
 ```
 
+> After the installation is complete, VSCode must be restarted!
+
 ### LaTeX Workshop SyncTex
 In the Keyboard Shortcuts Settings, you can configure the shortcut for `SyncTex` as shown in the image below.  
 The default is `ctrl+alt+j`, but you can adjust as needed.
@@ -135,7 +137,7 @@ Please paste the following settings in the `settings.json` file :
 
 ```json
 // The template is automatically applied when `ctrl+v` is used. If it is false, you need to use `ctrl+shift+v`
-"latex-utilities.formattedPaste.useAsDefault": true,
+"latex-utilities.formattedPaste.useAsDefault": false,
 
 // figure template
 "latex-utilities.formattedPaste.image.template": [
