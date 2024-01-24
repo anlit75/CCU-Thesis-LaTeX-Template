@@ -71,10 +71,10 @@ Template Structure
 請依據內容撰寫在相對應的 .tex 檔案。如需增減章節，可在 sections 資料夾中增加/移除 `.tex` 檔進行調整，並在主文件 `main.tex` 中根據增減的位置用 `\input{./path/to/texfile}` 語法新增章節，或刪除相關章節即可。
 
 ## LaTeX環境建置 | LaTeX Environment Setup
-- Requirements: `MiKTex`, `perl`, `vscode(option)`
+- Requirements: `MiKTex`, `perl`, `VSCode (option)`
 1. 安裝 `MiKTex`，並設置為預設的compiler ( https://miktex.org/download )
 2. 安裝 `perl` ( https://strawberryperl.com/ )
-3. 安裝 `vscode`，並安裝 `LaTeX Workshop`、`LaTeX Utilities` 擴充程式
+3. 安裝 `VSCode`，並安裝 `LaTeX Workshop`、`LaTeX Utilities` 擴充程式
 
 ### LaTeX Workshop Settings
 在 `settings.json` 中，recipes 可以調換順序，最上面的是預設執行的compiler，須將 `"latexmk (xelatex)"` 組別移動到最上方，如下所示 :
@@ -113,6 +113,8 @@ Template Structure
 "latex-workshop.latex.autoClean.run": "onSucceeded",    // 當編譯成功時自動清理
 ```
 
+> 安裝完成後須重新啟動 VSCode!
+
 ### LaTeX Workshop SyncTex
 在 Shorcut Settings 中可以設置 `SyncTex` 的快捷鍵 (如下圖所示)，預設為 `ctrl+alt+j`，可自行調整。
 
@@ -129,8 +131,8 @@ Template Structure
 此擴充程式可以在**貼上**時自動生成模板，適用於表格及圖片，請先在 `settings.json` 中輸入下方設定 :
 
 ```json
-// `ctrl+v`時自動套用模板，若為false則需使用`ctrl+shift+v`
-"latex-utilities.formattedPaste.useAsDefault": true,
+//true時使用`ctrl+v`自動套用模板，若為false則需使用`ctrl+shift+v`
+"latex-utilities.formattedPaste.useAsDefault": false,
 
 // 圖片模板 figure template
 "latex-utilities.formattedPaste.image.template": [
