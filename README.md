@@ -93,7 +93,7 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 接著在 `Remote Explorer` 擴充程式中會看到剛建立的 container，如下圖所示，接著在 `thesis` 資料夾處右鍵，選擇 `Open in Container in Current Window` 即可進入 container 環境中。
 
 <div style="text-align: center;">
-    <img src="./figures/remoteexplorer.png" alt="Remote Explorer"> <br>
+    <img src="./figures/RemoteExplorer.png" alt="Remote Explorer"> <br>
     Remote Explorer - Dev Container <br><br>
     <img src="./figures/attach.png" alt="Open in Container in Current Window"> <br>
     Open in Container in Current Window <br><br>
