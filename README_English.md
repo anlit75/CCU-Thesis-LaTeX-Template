@@ -8,6 +8,8 @@ The template has been pre-set with Times New Roman and DFKai-SB as two commonly 
 - [Template Demonstration](#template-demonstration)
 - [Template Structure](#template-structure)
 - [LaTeX Environment Setup](#latex-environment-setup)
+    - [Docker Environment Setup](#docker-environment-setup)
+    - [Local Environment Setup](#local-environment-setup)
 - [User Guide](#user-guide)
 - [Acknowledgement](#acknowledgement)
 - [Collaborators](#collaborators)
@@ -73,12 +75,46 @@ Please write in the corresponding .tex file based on the content. If you wish to
 Then, in the `main.tex`, use the `\input{./path/to/texfile}` syntax to add new section or delete relevant section accordingly.
 
 ## LaTeX Environment Setup
+> Before setting up the LaTeX environment, please make sure that you have downloaded this template to your local computer!
+
+There are two ways to set up the environment for users to choose from.
+You only need to **install one of them**. It is recommended to use [Docker Environment Setup](#docker-environment-setup) to avoid environment configuration issues.
+If you are not familiar with Docker, you can refer to [Local Environment Setup](#local-environment-setup) to install the environment by yourself.
+
+### Docker Environment Setup
+- Requirements: `Docker`, `VSCode`
+1. Install `Docker Desktop` ( https://www.docker.com/products/docker-desktop ), and restart your computer after installation.
+2. Install `VSCode` and add the extensions `Remote Explorer`, `Dev Containers`, `Docker (optional)`.
+
+#### Create Docker Container
+Open `VSCode` in the root directory of the thesis template, and enter the following command in the terminal to create a Docker Container :
+
+```bash
+# --name thesis : Specify the container name as thesis (can be changed by yourself)
+docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
+```
+
+Next, in the `Remote Explorer` extension, you will see the newly created container as shown in the following image.  
+Right-click on the `thesis` folder and select `Open in Container in Current Window` to enter the container environment.
+
+<div style="text-align: center;">
+    <img src="./figures/remoteexplorer.png" alt="Remote Explorer"> <br>
+    Remote Explorer - Dev Container <br><br>
+    <img src="./figures/attach.png" alt="Open in Container in Current Window"> <br>
+    Open in Container in Current Window <br><br>
+</div>
+
+Next, you can then use the template according to the [User Guide](#user-guide).
+
+### Local Environment Setup
 - Requirements: `MiKTex`, `perl`, `VSCode (option)`
 1. Install `MiKTeX` and set it as the default compiler ( https://miktex.org/download ).
 2. Install `perl` ( https://strawberryperl.com/ ).
 3. Install `VSCode` and add the extensions `LaTeX Workshop` and `LaTeX Utilities`.
 
-### LaTeX Workshop Settings
+> After the installation is complete, VSCode must be restarted!
+
+#### LaTeX Workshop Settings
 In the `settings.json` file, you can rearrange the order of the recipes, and the one at the top will be the default compiler.  
 Move the group `latexmk (xelatex)` to the top, as shown below:
 
@@ -116,9 +152,7 @@ Move the group `latexmk (xelatex)` to the top, as shown below:
 "latex-workshop.latex.autoClean.run": "onSucceeded",    // automatically clean up when compilation is successful
 ```
 
-> After the installation is complete, VSCode must be restarted!
-
-### LaTeX Workshop SyncTex
+#### LaTeX Workshop SyncTex
 In the Keyboard Shortcuts Settings, you can configure the shortcut for `SyncTex` as shown in the image below.  
 The default is `ctrl+alt+j`, but you can adjust as needed.
 
@@ -131,7 +165,7 @@ The actual operation results are demonstrated as follows :
 
 ![SyncTex](./figures/sync_demo.gif)
 
-### LaTeX Utilities Settings
+#### LaTeX Utilities Settings
 This extension can automatically generate formatted tables and figures when **pasting** into vscode.  
 Please paste the following settings in the `settings.json` file :
 
