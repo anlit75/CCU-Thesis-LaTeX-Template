@@ -7,6 +7,6 @@
 *.toc
 *.bbl
 *.blg
+*.xdv
 .vscode
 *.synctex
-userguide
