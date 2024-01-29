@@ -98,7 +98,7 @@ Next, in the `Remote Explorer` extension, you will see the newly created contain
 Right-click on the `thesis` folder and select `Open in Container in Current Window` to enter the container environment.
 
 <div style="text-align: center;">
-    <img src="./figures/remoteexplorer.png" alt="Remote Explorer"> <br>
+    <img src="./figures/RemoteExplorer.png" alt="Remote Explorer"> <br>
     Remote Explorer - Dev Container <br><br>
     <img src="./figures/attach.png" alt="Open in Container in Current Window"> <br>
     Open in Container in Current Window <br><br>
