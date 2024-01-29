@@ -8,6 +8,8 @@
 - [模板範例演示 | Template Demonstration](#模板範例演示--template-demonstration)
 - [模板檔案結構 | Template Structure](#模板檔案結構--template-structure)
 - [LaTeX環境建置 | LaTeX Environment Setup](#latex環境建置--latex-environment-setup)
+    - [Docker Environment Setup](#docker-environment-setup)
+    - [Local Environment Setup](#local-environment-setup)
 - [模板使用說明 | User Guide](#模板使用說明--user-guide)
 - [致謝 | Acknowledgement](#致謝--acknowledgement)
 - [合作者 | Collaborators](#合作者--collaborators)
@@ -71,12 +73,43 @@ Template Structure
 請依據內容撰寫在相對應的 .tex 檔案。如需增減章節，可在 sections 資料夾中增加/移除 `.tex` 檔進行調整，並在主文件 `main.tex` 中根據增減的位置用 `\input{./path/to/texfile}` 語法新增章節，或刪除相關章節即可。
 
 ## LaTeX環境建置 | LaTeX Environment Setup
-- Requirements: `MiKTex`, `perl`, `VSCode (option)`
+> 在建置 LaTeX 環境之前，請先確保已下載本模板至本機端!
+
+以下兩種環境建置方式供使用者選擇，只須**擇一安裝**即可，建議使用 [Docker Environment Setup](#docker-environment-setup) 來避免環境設定的問題。若對於 Docker 不熟悉，可參考 [Local Environment Setup](#local-environment-setup) 自行安裝環境。
+
+### Docker Environment Setup
+- Requirements : `Docker`, `VSCode`
+1. 安裝 `Docker Desktop` ( https://www.docker.com/products/docker-desktop )，安裝後須重新啟動電腦
+2. 安裝 `VSCode`，並安裝 `Remote Explorer`、`Dev Containers`、`Docker (optional)` 擴充程式
+
+#### 建立 Docker Container
+於論文根目錄下開啟 `VSCode`，並在終端機中輸入以下指令，即可建立 Docker Container :
+
+```bash
+# --name thesis : 指定 container 名稱為 thesis (可自行更改)
+docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
+```
+
+接著在 `Remote Explorer` 擴充程式中會看到剛建立的 container，如下圖所示，接著在 `thesis` 資料夾處右鍵，選擇 `Open in Container in Current Window` 即可進入 container 環境中。
+
+<div style="text-align: center;">
+    <img src="./figures/remoteexplorer.png" alt="Remote Explorer"> <br>
+    Remote Explorer - Dev Container <br><br>
+    <img src="./figures/attach.png" alt="Open in Container in Current Window"> <br>
+    Open in Container in Current Window <br><br>
+</div>
+
+接下來就可以根據[模板使用說明](#模板使用說明--user-guide)來使用模板了。
+
+### Local Environment Setup
+- Requirements : `MiKTex`, `perl`, `VSCode (optional)`
 1. 安裝 `MiKTex`，並設置為預設的compiler ( https://miktex.org/download )
 2. 安裝 `perl` ( https://strawberryperl.com/ )
 3. 安裝 `VSCode`，並安裝 `LaTeX Workshop`、`LaTeX Utilities` 擴充程式
 
-### LaTeX Workshop Settings
+> 安裝完成後須重新啟動 VSCode!
+
+#### LaTeX Workshop Settings
 在 `settings.json` 中，recipes 可以調換順序，最上面的是預設執行的compiler，須將 `"latexmk (xelatex)"` 組別移動到最上方，如下所示 :
 
 ```json
@@ -113,9 +146,7 @@ Template Structure
 "latex-workshop.latex.autoClean.run": "onSucceeded",    // 當編譯成功時自動清理
 ```
 
-> 安裝完成後須重新啟動 VSCode!
-
-### LaTeX Workshop SyncTex
+#### LaTeX Workshop SyncTex
 在 Shorcut Settings 中可以設置 `SyncTex` 的快捷鍵 (如下圖所示)，預設為 `ctrl+alt+j`，可自行調整。
 
 ![SyncTex](./figures/synctex.png)
@@ -127,7 +158,7 @@ Template Structure
 
 ![SyncTex](./figures/sync_demo.gif)
 
-### LaTeX Utilities Settings
+#### LaTeX Utilities Settings
 此擴充程式可以在**貼上**時自動生成模板，適用於表格及圖片，請先在 `settings.json` 中輸入下方設定 :
 
 ```json
