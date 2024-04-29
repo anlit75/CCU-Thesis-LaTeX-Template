@@ -4,7 +4,7 @@
 % --------------------------------------------------
 % Author        : Ting-An Cheng <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
-% Last Updated  : 2024.01.19
+% Last Updated  : 2024.04.29
 % --------------------------------------------------
 
 % --------------------------------------------------
@@ -40,6 +40,7 @@
 
 % 變數: 中文翻譯
 % Variables: Translation (Chinese)
+\newcommand{\ccu@draft@zh}{初稿}
 \newcommand{\ccu@verificationletter@zh}{口試委員審定書}
 \newcommand{\ccu@acknowledgement@zh}{致謝}
 \newcommand{\ccu@abstract@zh}{摘要}
@@ -59,6 +60,7 @@
 
 % 變數: 英文翻譯
 % Variables: Translation (English)
+\newcommand{\ccu@draft@en}{Draft}
 \newcommand{\ccu@verificationletter@en}{Verification Letter from the Oral Examination Committee}
 \newcommand{\ccu@tableofcontents@en}{Contents}
 \newcommand{\ccu@listoffigures@en}{List of Figures}
@@ -79,7 +81,7 @@
 % 變數: 版面設定
 % Variables: Layouts
 \newcommand{\ccu@geometry@main}{top=2.54cm, bottom=2.54cm, left=3.17cm, right=3.17cm}
-\newcommand{\ccu@geometry@cover}{top=2.54cm, bottom=2.54cm, left=3.17cm, right=3.17cm}
+\newcommand{\ccu@geometry@cover}{top=2.54cm, bottom=2.54cm, left=3cm, right=3cm}
 
 \newcommand{\ccu@tocvspace}{1em}
 \newcommand{\ccu@tocsectionsize@zh}{4.5em}
@@ -360,6 +362,7 @@
   \newcommand{\ccu@appendix}{\ccu@appendix@zh}
   \newcommand{\ccu@figurename}{\ccu@figurename@zh}
   \newcommand{\ccu@tablename}{\ccu@tablename@zh}
+  \newcommand{\ccu@draft}{\ccu@draft@zh}
 
   % 設定單位
   \newcommand{\ccu@tocsecindent}{\ccu@tocsecindent@zh}
@@ -385,6 +388,7 @@
   \newcommand{\ccu@appendix}{\ccu@appendix@en}
   \newcommand{\ccu@figurename}{\ccu@figurename@en}
   \newcommand{\ccu@tablename}{\ccu@tablename@en}
+  \newcommand{\ccu@draft}{\ccu@draft@en}
 
   % 設定單位
   \newcommand{\ccu@tocsecindent}{\ccu@tocsecindent@en}
@@ -663,13 +667,13 @@
           \node [scale=1.5] at (WM) {\includegraphics[width=5cm, height=5cm]{#2}};
           \filldraw [fill=white, draw=none, opacity=1-\the\numexpr#1] (current page.north east) rectangle (current page.south west);
         \end{tikzpicture}
-      \vfill
+        \vfill
 }}}}
 
 % [生成封面]
 % Generate the cover page
 %
-\newcommand{\makecover}{
+\newcommand{\makecover}[1]{
   \ccu@setgeometry{\ccu@geometry@cover}
 
   \begin{titlepage}
@@ -680,6 +684,13 @@
         \ccu@university\ccu@institute\par
         \vspace{1cm}
         \ccu@degree\ccu@type\par
+        
+        % 初稿 (18, 27)
+        \ifthenelse{\equal{#1}{draft}}{
+          \vspace{5pt}
+          \fontsize{18}{27}\selectfont
+          (\ccu@draft)\par
+        }
 
         % 中英文論文題目 (18, 27)
         \vfill

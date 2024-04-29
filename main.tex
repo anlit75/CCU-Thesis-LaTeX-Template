@@ -4,6 +4,7 @@
   degree    = master,                       % degree   = master  | doctor
   language  = chinese,                      % language = chinese | english
   fontset   = template,                     % fontset  = default | template
+%   draft                                   % LaTex draft mode (images will change to box)
 ]{ccuthesis}
 
 \input{ccusetup}
@@ -13,6 +14,8 @@
 	\makewatermark{0.25}{watermark}                   % 加入浮水印（Watermark）
 
 	% 封面 Cover
+	% 若需要在封面加上（初稿）字樣，請在\makecover後加上{draft}
+	% \makecover{draft}                               % 有（初稿）字樣的論文封面（Cover with Draft）
 	\makecover                                        % 論文封面（Cover）
 
 	% 口試審定 Verification Letter
