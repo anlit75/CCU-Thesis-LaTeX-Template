@@ -4,7 +4,7 @@
 % --------------------------------------------------
 % Author        : Ting-An Cheng <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
-% Last Updated  : 2024.04.29
+% Last Updated  : 2024.04.30
 % --------------------------------------------------
 
 % --------------------------------------------------
@@ -652,11 +652,10 @@
 }
 
 % [插入浮水印]
-% - \makewatermark{#1}{#2}      生成浮水印
-%   #1 Opacity                  設置透明度
-%   #2 Logo Path                校徽路徑
+% - \makewatermark{#1}          生成浮水印
+%   #1 Logo Path                校徽路徑
 %
-\newcommand{\makewatermark}[2]{
+\newcommand{\makewatermark}[1]{
   \AddToShipoutPicture{
     \put(-\paperwidth/2,-\paperheight/2){
       \parbox[b][\paperheight]{\paperwidth}{
@@ -664,8 +663,7 @@
         \centering
         \begin{tikzpicture}[remember picture, overlay]
           \coordinate (WM) at (current page.center);
-          \node [scale=1.5] at (WM) {\includegraphics[width=5cm, height=5cm]{#2}};
-          \filldraw [fill=white, draw=none, opacity=1-\the\numexpr#1] (current page.north east) rectangle (current page.south west);
+          \node [scale=1.5] at (WM) {\includegraphics[width=5cm, height=5cm]{#1}};
         \end{tikzpicture}
         \vfill
 }}}}

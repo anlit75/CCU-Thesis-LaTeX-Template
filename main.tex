@@ -10,11 +10,9 @@
 \input{ccusetup}
 
 \begin{document}
-	% 加入浮水印 Watermark
-	\makewatermark{0.25}{watermark}                   % 加入浮水印（Watermark）
-
 	% 封面 Cover
 	% 若需要在封面加上（初稿）字樣，請在\makecover後加上{draft}
+	% 
 	% \makecover{draft}                               % 有（初稿）字樣的論文封面（Cover with Draft）
 	\makecover                                        % 論文封面（Cover）
 
@@ -24,6 +22,9 @@
 	% 
 	% \makeverification                               % 口試委員審定書（Verification Letter）
 	\renderverification{frontpages/verification}      % 渲染口試委員審定書（Render Verification Letter）
+
+	% 加入浮水印 Watermark
+	\makewatermark{watermark}                         % 加入浮水印（Watermark）
 
 	% 致謝與論文摘要 Acknowledgement and Abstract
 	\frontmatter
