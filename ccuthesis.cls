@@ -4,7 +4,7 @@
 % --------------------------------------------------
 % Author        : Ting-An Cheng <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
-% Last Updated  : 2024.04.30
+% Last Updated  : 2024.05.03
 % --------------------------------------------------
 
 % --------------------------------------------------
@@ -429,7 +429,7 @@
 % - zhnumber                    中文數字
 % - fp, calc                    計算功能
 % - hyperref                    超連結
-% - paralist                    列表環境
+% - paralist, enumitem          列表環境
 % - footmisc                    自訂腳註符號
 % - caption, subcaption         插入圖片、表格標題
 % - chemfig                     繪製化學結構式
@@ -462,7 +462,7 @@
 \RequirePackage{zhnumber}
 \RequirePackage{fp, calc}
 \RequirePackage{hyperref}
-\RequirePackage{paralist}
+\RequirePackage{paralist, enumitem}
 \RequirePackage{footmisc}
 \RequirePackage{caption}
 \RequirePackage[labelformat=simple]{subcaption}
@@ -550,11 +550,12 @@
 % [連結設定]
 %
 \hypersetup{
-  colorlinks=true,
-  linkcolor=black,
-  filecolor=gray,
-  anchorcolor=blue,
-  citecolor=blue
+  colorlinks=true,           % false: boxed links; true: colored links
+  linkcolor=black,           % color of internal links
+  urlcolor=black,            % color of external links
+  filecolor=black,           % color of file links
+  anchorcolor=black,         % color of anchor links
+  citecolor=black            % color of links to bibliography
 }
 
 % [目錄格式]
@@ -604,6 +605,11 @@
 \titlespacing*{\section}{0pt}{0pt}{0pt}                % 設置 section 間距
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}             % 設置 subsection 間距
 \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}          % 設置 subsubsection 間距
+
+% [列表設定]
+% 
+\setlist[itemize]{noitemsep, topsep=0pt}               % 設定列表間距
+\setlist[enumerate]{noitemsep, topsep=0pt}             % 設定編號間距
 
 % [圖表標題]
 %
@@ -827,6 +833,12 @@
 % [參考文獻]
 % \refmatter
 %
+\let\oldbibliography\thebibliography
+\renewcommand{\thebibliography}[1]{%
+  \oldbibliography{#1}%
+  \setlength{\itemsep}{0pt}%
+}
+
 \newcommand{\refmatter}{
   \cleardoublepage
   \phantomsection
