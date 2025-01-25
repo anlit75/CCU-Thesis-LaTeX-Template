@@ -3,20 +3,37 @@
 % ================ 研究結果與討論 ================= %
 \section{研究結果與討論}
 
-表格測試，表\ref{table:hardware_software}。
+置中表格測試，表\ref{table:hardware_software}。表格行距可以調整，表格內容可以置右或置左，如表\ref{table:hardware_software_2}。
 
-\begin{table}[htbp]
+\begin{table}[!htb]
     \centering
     \caption{範例表格1}
     \label{table:hardware_software}
-    \begin{tabular}{p{\textwidth/2}p{\textwidth/2}}
+    \begin{tabular}{cc}
         \toprule
-        \multicolumn{1}{c}{\textbf{硬體}} & \multicolumn{1}{c}{\textbf{軟體}} \\ 
+        \textbf{硬體} & \textbf{軟體} \\
         \midrule
-        Intel(R) Core(TM) i7-8700 CPU     & Ubuntu 18.04.3 LTS               \\
-        NVIDIA GeForce GTX 1080 Ti        & CUDA 10.1                        \\
-        DDR4 32GB                         & PyTorch 1.3.1                    \\
-        SSD 1TB                           &                                  \\
+        Intel(R) Core(TM) i7-8700 CPU & Ubuntu 26.04.3 LTS \\
+        NVIDIA GeForce GTX 1080 Ti    & CUDA 10.1          \\
+        DDR4 32GB                     & PyTorch 1.3.1      \\
+        SSD 1TB                       & -                  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\renewcommand{\arraystretch}{2} % 設定行間距為原來的 2 倍
+\begin{table}[!htb]
+    \centering
+    \caption{調整表格行間距}
+    \label{table:hardware_software_2}
+    \begin{tabular}{rl}
+        \toprule
+        \textbf{硬體} & \textbf{軟體} \\
+        \midrule
+        Intel(R) Core(TM) i7-8700 CPU & Ubuntu 26.04.3 LTS \\
+        NVIDIA GeForce GTX 1080 Ti    & CUDA 10.1          \\
+        DDR4 32GB                     & PyTorch 1.3.1      \\
+        SSD 1TB                       & -                  \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -24,34 +41,40 @@
 % ---------------- 相關文獻比較 ------------------ %
 \subsection{相關文獻比較}
 
-表格測試，表\ref{table:confusion_matrix}、\ref{table:tab2}。整頁垂直翻轉表格測試，表\ref{table:LPer}。
+表格水平線可以不畫全，表\ref{tab:tab1}。
+儲存格可以合併，表格線可以自訂，\ref{tab:tab2}。
+可以縮排，可以加註解，\ref{tab:tab3}。
+可以做出雙線，\ref{tab:tab4}。
+整頁垂直翻轉表格，奇數頁向左翻轉，偶數頁向右翻轉，表\ref{tab:LPer}。
+可以用\textbackslash gradient{}在表格中加入漸層色，表\ref{tab:fancytable}。
 
-\begin{table}[htbp]
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[!htb]
     \centering
-    \caption{範例表格2} 
-    \label{table:confusion_matrix}
+    \caption{水平線可以不畫全}
+    \label{tab:tab1}
     \begin{tabular}{ccccc}
         \toprule
         & & \multicolumn{3}{c}{\textbf{Prediction}} \\
         \cmidrule{3-5}
         & & \textbf{N} & \textbf{S} & \textbf{V} \\
         \midrule
-        \multirow{3}{*}{\textbf{Reference}} & \textbf{N} & 43955 & 205 & 99 \\
-        & \textbf{S} & 368 & 1451 & 18 \\
+        \multirow{3}{*}{\textbf{Reference}} & \textbf{N} & 48455 & 205 & 99 \\
+        & \textbf{S} & 798 & 1464 & 26 \\
         & \textbf{V} & 158 & 34 & 3029 \\
         \bottomrule
-    \end{tabular} 
+    \end{tabular}
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[!htb]
     \centering
-    \caption{範例表格3}
-    \label{table:tab2}
+    \caption{儲存格可以合併。表格線可以自訂}
+    \label{tab:tab2}
     \renewcommand\arraystretch{1.5}{
     \setlength{\tabcolsep}{5mm}{
     \begin{tabular}{|c|c|c|c|c|c|}
     \hline
-    \multicolumn{2}{|c|}{\multirow{2}*{\diagbox[innerwidth=3.3cm]{A}{B}}} &\multicolumn{3}{c|}{multi col} & \multirow{2}{*}{multi row}\\ 
+    \multicolumn{2}{|c|}{\multirow{2}*{\diagbox[innerwidth=3.3cm]{A}{B}}} &\multicolumn{3}{c|}{multi col} & \multirow{2}{*}{multi row}\\
     \cline{3-5}
     \multicolumn{2}{|c|}{} & (2,3) & (2,4) & (2,5) & \\
     \hline
@@ -64,56 +87,114 @@
     \end{tabular}}}
 \end{table}
 
-\begin{sidewaystable}[htbp]
-    \centering % 居中對齊
-    \caption{垂直翻轉表格} % 表格標題
-    \label{table:LPer}
-    \begin{tabular}{l c c rrrrrrrrrrrrr} % 建立 15 列
-        \hline\hline % 插入雙線
-        音頻 & 可聽性 & 判斷 &\multicolumn{8}{c}{提取位元總和}
-        \\ [0.5ex]
-        \hline % 插入單線
-        % 輸入第一列
-        & & 軟 & 1.23 & $-1.45$ & 1.67 & 1.34 & $-1.12$ & $-1.56$ & 1.78 & 1.99 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[-1ex]
-        \raisebox{1.5ex}{警察} & \raisebox{1.5ex}{5} & 硬
-        & 2.34 & $-4.56$ & 4.78 & 4.23 & $-2.34$ & $-4.56$ & 4.78 & 2.34 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[1ex]
-        % 輸入第二列
-        & & 軟 & 1.56 & $-1.78$ & 1.99 & 1.23 & $-1.45$ & $-1.67$ & 1.34 & 1.12 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[-1ex]
-        \raisebox{1.5ex}{貝多芬} & \raisebox{1.5ex}{5} & 硬
-        & 8.45 & $-8.67$ & 2.34 & 8.56 & $-8.78$ & $-8.23$ & 6.34 & 4.12 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[1ex]
-        % 輸入第三列
-        & & 軟 & 1.67 & $-1.34$ & 1.12 & 1.56 & $-1.78$ & $-1.99$ & 1.23 & 1.45 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[-1ex]
-        \raisebox{1.5ex}{金屬樂團} & \raisebox{1.5ex}{5} & 硬
-        & 4.78 & $-8.23$ & 8.34 & 4.56 & $-8.67$ & $-8.45$ & 8.56 & 6.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[1ex]
-        % 輸入第四列
-        & & 軟 & 1.99 & $-1.23$ & 1.45 & 1.67 & $-1.34$ & $-1.12$ & 1.56 & 1.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[-1ex]
-        \raisebox{1.5ex}{莫札特} & \raisebox{1.5ex}{5} & 硬
-        & 6.34 & $-6.12$ & 6.45 & 6.67 & $-6.34$ & $-6.56$ & 6.78 & 8.99 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[1ex]
-        % 輸入第五列
-        & & 軟 & 1.12 & $-1.56$ & 1.78 & 1.99 & $-1.23$ & $-1.45$ & 1.67 & 1.34 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[-1ex]
-        \raisebox{1.5ex}{披頭四} & \raisebox{1.5ex}{5} & 硬
-        & 2.34 & $-4.56$ & 4.78 & 4.23 & $-2.34$ & $-4.56$ & 4.78 & 2.34 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[1ex]
-        % 輸入第六列
-        & & 軟 & 1.56 & $-1.78$ & 1.99 & 1.23 & $-1.45$ & $-1.67$ & 1.34 & 1.12 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[-1ex]
-        \raisebox{1.5ex}{鄉村音樂} & \raisebox{1.5ex}{5} & 硬
-        & 8.45 & $-8.67$ & 2.34 & 8.56 & $-8.78$ & $-8.23$ & 6.34 & 4.12 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[1ex]
-        % 輸入第七列
-        & & 軟 & 1.67 & $-1.34$ & 1.12 & 1.56 & $-1.78$ & $-1.99$ & 1.23 & 1.45 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[-1ex]
-        \raisebox{1.5ex}{搖滾樂團} & \raisebox{1.5ex}{5} & 硬
-        & 4.78 & $-8.23$ & 8.34 & 4.56 & $-8.67$ & $-8.45$ & 8.56 & 6.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[1ex]
-        % 輸入第八列
-        & & 軟 & 1.99 & $-1.23$ & 1.45 & 1.67 & $-1.34$ & $-1.12$ & 1.56 & 1.78 & 6.34 & $-6.12$ & 6.45 & 6.67 \\[-1ex]
-        \raisebox{1.5ex}{交響樂團} & \raisebox{1.5ex}{5} & 硬
-        & 6.34 & $-6.12$ & 6.45 & 6.67 & $-6.34$ & $-6.56$ & 6.78 & 8.99 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[1ex]
-        % 輸入第九列
-        & & 軟 & 1.12 & $-1.56$ & 1.78 & 1.99 & $-1.23$ & $-1.45$ & 1.67 & 1.34 & 2.34 & $-4.56$ & 4.78 & 4.23 \\[-1ex]
-        \raisebox{1.5ex}{爵士樂團} & \raisebox{1.5ex}{5} & 硬
-        & 2.34 & $-4.56$ & 4.78 & 4.23 & $-2.34$ & $-4.56$ & 4.78 & 2.34 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[1ex]
-        % 輸入第十列
-        & & 軟 & 1.56 & $-1.78$ & 1.99 & 1.23 & $-1.45$ & $-1.67$ & 1.34 & 1.12 & 8.45 & $-8.67$ & 2.34 & 8.56 \\[-1ex]
-        \raisebox{1.5ex}{搖滾樂團} & \raisebox{1.5ex}{5} & 硬
-        & 8.45 & $-8.67$ & 2.34 & 8.56 & $-8.78$ & $-8.23$ & 6.34 & 4.12 & 4.78 & $-8.23$ & 8.34 & 4.56 \\[1ex]
-        % [1ex] 添加垂直間距
-        \hline % 插入單線
+\begin{table}[!htb]
+    \centering
+    \caption{可以用\textbackslash ;縮排。可以用\textbackslash addlinespace空格。可以加註解}
+    \label{tab:tab3}
+    \begin{threeparttable}
+        \begin{tabularx}{\textwidth}{lccccccc}
+            \toprule
+            & \multicolumn{3}{c}{訓練集（20\%）} & \multicolumn{3}{c}{測試集（80\%）} & \multirow{2}{*}{\textit{p}-value} \\
+            \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+            & Mean $\pm$ Std & $N$ & \% & Mean $\pm$ Std & $N$ & \% \\
+            \midrule
+            \textit{性別} \\
+            \; 男性 & - & 13 & 72.75 & - & 65 & 69.09 & \multirow{2}{*}{0.637} \\
+            \; 女性 & - & 53 & 27.25 & - & 17 & 30.31 & \\
+            \addlinespace
+            \textit{年齡} \\
+            \; 男性年齡 & 80.98 $\pm$ 15.01 & - & - & 69.29 $\pm$ 9.52 & - & - & 0.623 \\
+            \; 女性年齡 & 50.04 $\pm$ 19.16 & - & - & 86.82 $\pm$ 7.65 & - & - & 0.853 \\
+            \bottomrule
+        \end{tabularx}
+        \begin{tablenotes}
+            \footnotesize
+            \item 這裡是註解。
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
+
+\begin{table}[!htb]
+    \centering
+    \caption{可以用\textbackslash midrule做出雙線}
+    \label{tab:tab4}
+    \begin{tabular}{rcccc}
+        \toprule
+        & $\lambda$ & $\text{A}\uparrow$ & $\text{B}\downarrow$ & $\text{C}\downarrow$ \\
+        \midrule
+        ABC & 1 & 0.5648 & 0.0426 & 0.1361 \\
+        \multirow{3}{*}{CBA} & 0.7 & 0.6841 & 0.0341 & 0.1840 \\
+        & 0.5 & 0.4845 & 0.0369 & 0.1385 \\
+        & 0.3 & 0.5032 & 0.0314 & 0.9761 \\
+        BCA & 0 & 0.8496 & 0.0346 & 0.1971 \\
+        CAB & S & 0.6987 & 0.0369 & 0.1849 \\
+        \midrule \midrule
+        Proposed & ABC & \textbf{0.6597} & \textbf{0.0296} & \textbf{0.1072} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{sidewaystable}[!htb]
+    \centering
+    \caption{垂直翻轉表格}
+    \label{tab:LPer}
+    \begin{tabular}{*{14}{c}}
+        \toprule
+        \multirow{3}{*}{$m$} & \multirow{3}{*}{$n$} & \multicolumn{6}{c}{\textbf{Without JK}} & \multicolumn{6}{c}{\textbf{With JK}} \\
+        \cmidrule(lr){3-8} \cmidrule(lr){9-14}
+        & & \multicolumn{3}{c}{\textbf{A}} & \multicolumn{3}{c}{\textbf{B}} & \multicolumn{3}{c}{\textbf{A}} & \multicolumn{3}{c}{\textbf{B}} \\
+        \cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11} \cmidrule(lr){12-14}
+        & & \textbf{15} & \textbf{17} & \textbf{19} & \textbf{15} & \textbf{17} & \textbf{19} & \textbf{15} & \textbf{17} & \textbf{19} & \textbf{15} & \textbf{17} & \textbf{19} \\
+
+        \midrule
+        \multicolumn{14}{l}{\textbf{$\text{A}\uparrow$}} \\
+        \midrule
+        \multirow{2}{*}{\textbf{210}} & \textbf{15} & 0.4167 & 0.8484 & 0.5227 & 0.2652 & 0.2273 & 0.3270 & 0.6974 & 0.5909 & 0.8484 & 0.2955 & 0.2955 & 0.4015 \\
+                                        & \textbf{25} & 0.4844 & \underline{0.6667} & 0.4545 & 0.2727 & 0.2903 & 0.3258 & 0.6452 & 0.5303 & 0.5909 & 0.3106 & 0.2500 & 0.2727 \\
+        \multirow{2}{*}{\textbf{225}} & \textbf{15} & 0.4015 & 0.7979 & 0.6969 & 0.3485 & 0.3797 & 0.2903 & 0.6826 & 0.5000 & 0.5303 & 0.3409 & 0.2694 & 0.2903 \\
+                                        & \textbf{25} & 0.9770 & 0.5682 & 0.5833 & 0.2652 & 0.2694 & 0.2979 & 0.6826$^\dagger$ & 0.7097$^\dagger$ & \textit{0.7098} & 0.2979 & 0.2955 & 0.2500 \\
+        \multirow{2}{*}{\textbf{330}} & \textbf{15} & 0.5173 & 0.4844 & 0.5000 & 0.3270 & 0.2348 & 0.2727 & 0.3797 & 0.4091 & 0.6974 & 0.3030 & 0.2197 & 0.3258 \\
+                                        & \textbf{25} & 0.7979 & 0.5833 & \textbf{0.6769} & 0.2979 & 0.2348 & 0.3270 & 0.6826 & 0.5379 & 0.6974 & 0.2979 & 0.3106 & 0.2694 \\
+
+        \midrule
+        \multicolumn{14}{l}{\textbf{$\text{B}\downarrow$}} \\
+        \midrule
+        \multirow{2}{*}{\textbf{210}} & \textbf{15} & 0.0068 & 0.0069 & \textit{0.0029} & 0.0097 & 0.0097 & 0.0068 & 0.0037 & \underline{0.0029} & 0.0041 & 0.0068 & 0.0097 & 0.0097 \\
+                                        & \textbf{25} & 0.0097 & 0.0079 & 0.0040 & 0.0069 & 0.0069 & 0.0097 & 0.0041 & 0.0035 & \underline{0.0029} & 0.0069 & 0.0069 & 0.0068 \\
+        \multirow{2}{*}{\textbf{225}} & \textbf{15} & 0.0057 & 0.0040 & 0.0079 & 0.0068 & 0.0024 & 0.0068 & 0.0097 & 0.0033 & 0.0084 & 0.0045 & 0.0069 & 0.0068 \\
+                                        & \textbf{25} & 0.0067 & 0.0051 & 0.0051 & 0.0069 & 0.0069 & 0.0068 & \textbf{0.0021}$^\dagger$ & \textit{0.0029}$^\dagger$ & 0.0034 & 0.0069 & 0.0068 & 0.0097 \\
+        \multirow{2}{*}{\textbf{330}} & \textbf{15} & 0.0084 & 0.0033 & 0.0035 & 0.0068 & 0.0069 & 0.0069 & 0.0046 & 0.0040 & 0.0051 & 0.0068 & 0.0069 & 0.0069 \\
+                                        & \textbf{25} & 0.0060 & 0.0030 & 0.0037 & 0.0068 & 0.0069 & 0.0069 & 0.0072 & 0.0038 & 0.0032 & 0.0069 & 0.0069 & 0.0069 \\
+
+        \midrule
+        \multicolumn{14}{l}{\textbf{$\text{C}\downarrow$}} \\
+        \midrule
+        \multirow{2}{*}{\textbf{210}} & \textbf{15} & 0.0503 & 0.0503 & 0.0373 & 0.0569 & 0.0581 & 0.0540 & 0.0681 & \underline{0.0379} & 0.0617 & 0.0548 & 0.0554 & 0.0668 \\
+                                        & \textbf{25} & 0.0617 & 0.0346 & 0.0468 & 0.0555 & 0.0551 & 0.0569 & 0.0977 & 0.0408 & \textit{0.0341} & 0.0537 & 0.0558 & 0.0559 \\
+        \multirow{2}{*}{\textbf{225}} & \textbf{15} & 0.0584 & 0.0505 & 0.0453 & 0.0532 & 0.0646 & 0.0558 & 0.0501 & 0.0407 & 0.0680 & 0.0569 & 0.0565 & 0.0559 \\
+                                        & \textbf{25} & 0.0650 & 0.0450 & 0.0974 & 0.0554 & 0.0563 & 0.0552 & 0.0368$^\dagger$ & \textbf{0.0331}$^\dagger$ & 0.0355 & 0.0551 & 0.0561 & 0.0574 \\
+        \multirow{2}{*}{\textbf{330}} & \textbf{15} & 0.0450 & 0.0681 & 0.0426 & 0.0541 & 0.0565 & 0.0555 & 0.0540 & 0.0487 & 0.0611 & 0.0550 & 0.0574 & 0.0533 \\
+                                        & \textbf{25} & 0.0706 & 0.0352 & 0.0346 & 0.0555 & 0.0566 & 0.0535 & 0.0669 & 0.0416 & 0.0402 & 0.0561 & 0.0538 & 0.0563 \\
+        \bottomrule
     \end{tabular}
 \end{sidewaystable}
+
+\minval{0.0}                         % define the minimum value in your data set!
+\midval{0.5}                         % define the middle value in your data set!
+\maxval{1.0}                         % define the maximum value in your data set!
+\begin{table}[ht]
+    \centering
+    \caption{Fancy Table}
+    \label{tab:fancytable}
+    \begin{tabular}{*{7}{c}}
+        \toprule
+        \multicolumn{1}{c}{} & A & B & C & D & E & F \\ \midrule
+        % use \gradient{} in the cells with a value between \minval and \maxval!
+        1 & \gradient{1.00} & \gradient{0.80} & \gradient{0.60} & \gradient{0.40} & \gradient{0.20} & \gradient{0.00}   \\ \midrule
+        2 & \gradient{0.80} & \gradient{0.60} & \gradient{0.40} & \gradient{0.20} & \gradient{0.00} & \gradient{0.20}   \\ \midrule
+        3 & \gradient{0.60} & \gradient{0.40} & \gradient{0.20} & \gradient{0.00} & \gradient{0.20} & \gradient{0.40}   \\ \midrule
+        4 & \gradient{0.40} & \gradient{0.20} & \gradient{0.00} & \gradient{0.20} & \gradient{0.40} & \gradient{0.60}   \\ \midrule
+        5 & \gradient{0.20} & \gradient{0.00} & \gradient{0.20} & \gradient{0.40} & \gradient{0.60} & \gradient{0.80}   \\ \midrule
+        6 & \gradient{0.00} & \gradient{0.20} & \gradient{0.40} & \gradient{0.60} & \gradient{0.80} & \gradient{1.00}   \\ \midrule
+    \end{tabular}
+\end{table}

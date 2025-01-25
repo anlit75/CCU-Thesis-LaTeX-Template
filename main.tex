@@ -12,27 +12,27 @@
 \begin{document}
 	% 封面 Cover
 	% 若需要在封面加上（初稿）字樣，請在\makecover後加上{draft}
-	% 
+	%
 	% \makecover{draft}                               % 有（初稿）字樣的論文封面（Cover with Draft）
 	\makecover                                        % 論文封面（Cover）
 
 	% 口試審定 Verification Letter
 	% \makeverification會生成空白的審定書
 	% 若有審定書pdf檔案，可用\renderverification{檔案路徑}渲染審定書
-	% 
+	%
 	% \makeverification                               % 口試委員審定書（Verification Letter）
 	\renderverification{frontpages/verification}      % 渲染口試委員審定書（Render Verification Letter）
 
 	% 加入浮水印 Watermark
 	% 若需要再封面加上浮水印，請將\makewatermark{watermark}放在\makecover之前
-	% 
+	%
 	\makewatermark{watermark}                         % 加入浮水印（Watermark）
 
 	% 致謝與論文摘要 Acknowledgement and Abstract
 	\frontmatter
 	\input{frontpages/acknowledgement}                % 致謝（Acknowledgement）
 	\input{frontpages/abstract}                       % 摘要（Abstract）
-	
+
 	% 生成目錄與符號列表 Tables of Contents and Denotation
 	\maketableofcontents                              % 目錄（Table of Contents）
 	\makelistoffigures                                % 圖目錄（List of Figures）

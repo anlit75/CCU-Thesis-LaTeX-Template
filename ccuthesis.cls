@@ -4,7 +4,7 @@
 % --------------------------------------------------
 % Author        : Ting-An Cheng <anson40512@gmail.com>
 % Repository    : https://github.com/anlit75/CCU-Thesis-LaTeX-Template
-% Last Updated  : 2024.05.03
+% Last Updated  : 2024.07.24
 % --------------------------------------------------
 
 % --------------------------------------------------
@@ -25,7 +25,7 @@
 
 % [引入套件]
 % Include required packages for basic settings.
-% 
+%
 \RequirePackage{kvdefinekeys, kvsetkeys, kvoptions}
 \RequirePackage{iftex}
 \RequirePackage{ifthen}
@@ -305,10 +305,10 @@
     name    = keywords@en,
   },
   date = {
-    default = {一百一十四年~七月},
+    default = {一百一十三年~七月},
   },
   date* = {
-    default = {July~2025},
+    default = {July~2024},
     name    = date@en,
   },
 }
@@ -406,7 +406,7 @@
 % - xeCJK                       排版中日韓(CJK)字符
 % - indentfirst                 首行縮進
 % - fontspec                    設定中英文字體
-% - xcolor                      設定顏色
+% - xcolor, colortbl            設定顏色
 % - geometry                    設定版面大小
 % - titlesec                    設定章節格式
 % - titletoc, tocloft           設定目錄格式
@@ -434,12 +434,13 @@
 % - caption, subcaption         插入圖片、表格標題
 % - chemfig                     繪製化學結構式
 % - circuitikz                  繪製電路圖
+% - listings                    插入程式碼
 %
 \RequirePackage{xparse}
 \RequirePackage{xeCJK}
 \RequirePackage{indentfirst}
 \RequirePackage{fontspec}
-\RequirePackage{xcolor}
+\RequirePackage{xcolor, colortbl}
 \RequirePackage{geometry}
 \RequirePackage{titlesec}
 \RequirePackage{titletoc, tocloft}
@@ -468,10 +469,11 @@
 \RequirePackage[labelformat=simple]{subcaption}
 \RequirePackage{chemfig}
 \RequirePackage{circuitikz, siunitx}
+\RequirePackage{listings}
 
 \usetikzlibrary{
-  positioning, 
-  shapes.geometric, 
+  positioning,
+  shapes.geometric,
   arrows.meta,
   chains,
   matrix,
@@ -485,12 +487,12 @@
 % --------------------------------------------------
 
 % [圖表目錄]
-% 
+%
 \graphicspath{{./figures/}}
 
 % [圖表格式]
 % 將圖，表，與公式的編號加上章節編號，並改為 - 分隔符號
-% 
+%
 \counterwithin{figure}{section}
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
 \counterwithin{table}{section}
@@ -607,7 +609,7 @@
 \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}          % 設置 subsubsection 間距
 
 % [列表設定]
-% 
+%
 \setlist[itemize]{noitemsep, topsep=0pt}               % 設定列表間距
 \setlist[enumerate]{noitemsep, topsep=0pt}             % 設定編號間距
 
@@ -688,7 +690,7 @@
         \ccu@university\ccu@institute\par
         \vspace{1cm}
         \ccu@degree\ccu@type\par
-        
+
         % 初稿 (18, 27)
         \ifthenelse{\equal{#1}{draft}}{
           \vspace{5pt}
@@ -705,7 +707,7 @@
         % 中英文作者姓名 (18, 27)
         \vfill
         \ccu@author\par
-        
+
         % 中英文指導教授 (18, 27)
         \vfill
         指導教授：\ccu@advisor~博士\par
@@ -768,7 +770,7 @@
 
 % [渲染口委審定書掃描檔]
 % Render the verification letter scan pdf file
-% 
+%
 \newcommand{\renderverification}[1]{
   \clearpage
   \includepdf[pages=-, pagecommand={\thispagestyle{empty}}, offset=0 0, width=\paperwidth, height=\paperheight]{#1}
@@ -868,6 +870,46 @@
   \setcounter{subsubsection}{0}
   \setcounter{table}{0}
 }
+
+% [自訂表格]
+%
+\renewcommand{\arraystretch}{1.2}                  % 設定行間距為原來的1.2倍
+
+\setlength{\aboverulesep}{0pt}                     % rules 上方間距
+\setlength{\belowrulesep}{0pt}                     % rules 下方間距
+
+% 漸層背景表格
+% Reference: https://www.siavoosh.com/blog/2019/01/05/latex-table-cell-coloring-based-on-values-in-the-cell/
+%
+\definecolor{high}{HTML}{f8696b}                   % the color for the highest number in your data set
+\definecolor{mid}{HTML}{ffffff}                    % the color for the middle number in your data set
+\definecolor{low}{HTML}{5a8ac6}                    % the color for the lowest number in your data set
+\newcommand*{\opacity}{90}                         % here you can change the opacity of the background color!
+
+\newcommand*{\minval}{0.0}                         % define the minimum value in your data set!
+\newcommand*{\midval}{0.5}                         % define the middle value in your data set!
+\newcommand*{\maxval}{1.0}                         % define the maximum value in your data set!
+
+% The values are calculated linearly between \minval, \midval and \maxval
+% \gardient{VALUE}
+%
+\newcommand{\gradient}[1]{
+  \ifdimcomp{#1pt}{>}{\maxval pt}{#1}{
+  \ifdimcomp{#1pt}{<}{\minval pt}{#1}{
+  \ifdimcomp{#1pt}{<}{\midval pt}{
+    \pgfmathparse{int(round(100*(#1/(\midval-\minval))-(\minval*(100/(\midval-\minval)))))}
+    \xdef\tempa{\pgfmathresult}
+    \cellcolor{mid!\tempa!low!\opacity} #1
+  }{
+    \pgfmathparse{int(round(100*(#1/(\maxval-\midval))-(\midval*(100/(\maxval-\midval)))))}
+    \xdef\tempa{\pgfmathresult}
+    \cellcolor{high!\tempa!mid!\opacity} #1
+  }}}
+}
+
+% [自訂顏色]
+%
+\definecolor{coral}{RGB}{191, 74, 116}             % 珊瑚紅
 
 % --------------------------------------------------
 % 09 自訂環境（Custom Environments）

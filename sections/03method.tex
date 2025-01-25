@@ -3,15 +3,51 @@
 % =================== 研究方法 =================== %
 \section{研究方法}
 
-在段落中使用行內數學公式可以 \begin{math}E=mc^2\end{math}，可以$E=mc^2$，也可以\(E=mc^2\)。
-方程式測試，方程式\ref{equation:eq1}。演算法測試，演算法\ref{algorithm:alg1}。
+行內方程式（$E=mc^2$）有三種方式可以實現，
+\begin{verbatim}
+    1. \begin{math}E=mc^2\end{math}
+    2. $E=mc^2$     % 推薦使用這個格式
+    3. \(E=mc^2\)
+\end{verbatim}
 
-\begin{equation}[htbp]
+編號方程式測試，方程式（\ref{equation:eq1}）；條件方程式測試，方程式（\ref{eq:st}）；
+多行方程式等號對齊測試，方程式（\ref{eq:ht_st}）。
+（搭配sections/03method.tex來看會更清楚）
+
+\begin{equation}
     \label{equation:eq1}
-    (\hat{n})=\operatorname*{arg\,max}_{n\in \{1,\dots,M\}}(\mathbf{X}_{n})
+    \hat{n}=\operatorname*{arg\,max}_{n\in \{1,\dots,M\}}(\mathbf{X}_{n})
 \end{equation}
 
-\begin{algorithm}[htbp]
+\begin{equation}
+    S(t) = P(T > t),\ t \geq 0 \ \
+    \begin{cases}
+        & \text{if}\ t=0,\ S(t)=1 \\
+        & \text{if}\ t=\infty,\ S(t)=0 \\
+    \end{cases}
+    \label{eq:st}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+        \int_{0}^{t}h(u)du & = -\int_{0}^{t}\frac{d}{du}\log[S(u)]du \\
+                           & = -\log[S(t)] + \log[S(0)] \\
+                           & = -\log[S(t)] \\
+        \Rightarrow\ S(t)  & = \exp\{-\int_{0}^{t}h(u)du\}
+    \end{aligned}
+    \label{eq:ht_st}
+\end{equation}
+
+無編號方程式測試，方程式：
+$$ \frac{P\left((t \leq T < t + \Delta t) \cap (T \geq t)\right)}{P(T \geq t)} = \frac{P(t \leq T < t + \Delta t)}{P(T \geq t)} $$
+
+在方程式環境中，若要使用粗體請用\textbackslash bm\{\}，文字請用\textbackslash text\{\}，左右括號希望越外層越大請使用\textbackslash left(以及\textbackslash right)，如下：
+$$ \bm{h}^{(k)}_u = \sigma\left(\bm{W}^{(k)}_{\text{self}}\bm{h}^{(k-1)}_u + \bm{W}^{(k)}_{\text{neigh}}\sum_{v \in \mathcal{N}(u)}\bm{h}^{(k-1)}_v + b^{(k)}\right) $$
+
+
+演算法測試，演算法\ref{algorithm:alg1}。Require和Ensure可以改成Input和Output，如演算法\ref{alg:alg2}。
+
+\begin{algorithm}[!htb]
     \caption{範例演算法}
     \label{algorithm:alg1}
     \begin{algorithmic}[1]
@@ -30,15 +66,35 @@
         \State Classifying samples in $U_n-T_n$ by $E_n$;
         \label{code:fram:classify}
         \State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
-        \label{code:fram:select} \\
+        \label{code:fram:select}
         \Return $E_n$;
     \end{algorithmic}
 \end{algorithm}
 
+\begin{algorithm}[!htb]
+    \caption{範例演算法2}
+    \label{alg:alg2}
+    \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+	\renewcommand{\algorithmicensure}{\textbf{Output:}}
+    \begin{algorithmic}[1]
+        \Require{Somthing}
+        \For{each Somthing}
+            \If{Somthing area is less than 90\%}
+                \State Discard
+            \Else
+                \State Extract Somthing
+            \EndIf
+        \EndFor
+        \Ensure{Somthing Cool}
+    \end{algorithmic}
+\end{algorithm}
+
+\clearpage
+
 % ------------------- 流程圖 -------------------- %
 \subsection{流程圖}
 
-\begin{figure}[htbp]
+\begin{figure}[!htb]
     \centering
     \begin{tikzpicture}[node distance=10pt]
         \node[draw, rounded corners]                        (start)   {Start};
@@ -47,7 +103,7 @@
         \node[draw, diamond, aspect=2, below=of step 2]     (choice)  {Choice};
         \node[draw, right=30pt of choice]                   (step x)  {Step X};
         \node[draw, rounded corners, below=20pt of choice]  (end)     {End};
-        
+
         \draw[->] (start)  -- (step 1);
         \draw[->] (step 1) -- (step 2);
         \draw[->] (step 2) -- (choice);
@@ -59,16 +115,16 @@
     \label{figure:flowchart1}
 \end{figure}
 
+
 % ------------------- 小標題 -------------------- %
-\clearpage
 \subsection{小標題}
 
 化學結構式測試，圖\ref{figure:chem1}，電路圖測試，圖\ref{figure:circ1}。
 
-\begin{figure}[htbp]
+\begin{figure}[!htb]
     \centering
     \chemfig{
-        H_3C-[:72]{\color{blue}N}*5(- 
+        H_3C-[:72]{\color{blue}N}*5(-
         *6(-(={\color{red}O})-
         {\color{blue}N}(-CH_3)-
         (={\color{red}O})-
@@ -79,7 +135,7 @@
     \label{figure:chem1}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[!htb]
     \centering
     \begin{circuitikz}
         \draw (0,0) to[V=1V] (0,2)
@@ -90,3 +146,19 @@
     \caption{範例電路圖}
     \label{figure:circ1}
 \end{figure}
+
+
+% ------------------- 程式碼 -------------------- %
+\subsection{程式碼}
+
+程式碼測試，程式碼\ref{code:python}。支援的程式語言可以參考\ \href{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Supported_languages}{Source Code Listings}。
+
+\begin{lstlisting}[language=Python , caption={範例程式碼}, label={code:python}]
+    import os
+
+    def main():
+        print("Hello World!")
+
+    if __name__ == "__main__":
+        main()
+\end{lstlisting}
