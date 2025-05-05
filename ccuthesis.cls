@@ -411,7 +411,6 @@
 % - titlesec                    設定章節格式
 % - titletoc, tocloft           設定目錄格式
 % - fancyhdr                    設定頁首頁尾
-% - ulem                        下劃線、雙下劃線與波浪紋效果
 % - setspace                    設定行距（標題內文分別設定）
 % - graphicx                    插入圖片
 % - tikz                        繪圖
@@ -436,40 +435,44 @@
 % - circuitikz                  繪製電路圖
 % - listings                    插入程式碼
 %
-\RequirePackage{xparse}
-\RequirePackage{xeCJK}
-\RequirePackage{indentfirst}
-\RequirePackage{fontspec}
-\RequirePackage{xcolor, colortbl}
-\RequirePackage{geometry}
-\RequirePackage{titlesec}
-\RequirePackage{titletoc, tocloft}
-\RequirePackage{fancyhdr}
-\RequirePackage{ulem}
-\RequirePackage{setspace}
-\RequirePackage{graphicx}
-\RequirePackage{tikz}
-\RequirePackage{eso-pic}
-\RequirePackage{pdfpages}
-\RequirePackage{tabularx}
-\RequirePackage{booktabs}
-\RequirePackage{array}
-\RequirePackage{longtable}
-\RequirePackage{diagbox}
-\RequirePackage{multirow}
-\RequirePackage{amsmath, amsthm, amssymb}
-\RequirePackage{datetime}
-\RequirePackage{CJKnumb}
-\RequirePackage{zhnumber}
-\RequirePackage{fp, calc}
-\RequirePackage{hyperref}
-\RequirePackage{paralist, enumitem}
-\RequirePackage{footmisc}
-\RequirePackage{caption}
-\RequirePackage[labelformat=simple]{subcaption}
-\RequirePackage{chemfig}
-\RequirePackage{circuitikz, siunitx}
-\RequirePackage{listings}
+\RequirePackage{xparse}                     % 定義命令
+\RequirePackage{xeCJK}                      % 排版中日韓(CJK)字符
+\RequirePackage{indentfirst}                % 首行縮進
+\RequirePackage{fontspec}                   % 設定中英文字體
+\RequirePackage{xcolor, colortbl}           % 設定顏色  
+\RequirePackage{geometry}                   % 設定版面大小
+\RequirePackage{titlesec}                   % 設定章節格式
+\RequirePackage{titletoc, tocloft}          % 設定目錄格式
+\RequirePackage{fancyhdr}                   % 頁首頁尾
+\RequirePackage{setspace}                   % 設定行距
+\RequirePackage{graphics, graphicx}         % 插入圖片
+\RequirePackage{tikz}                       % 繪圖
+\RequirePackage{eso-pic}                    % 插入圖片於文字下方
+\RequirePackage{pdfpages}                   % 插入 pdf 檔案
+\RequirePackage{tabularx}                   % 插入表格
+\RequirePackage{booktabs}                   % 改善表格設置
+\RequirePackage{array}                      % 調整表格高度
+\RequirePackage{longtable}                  % 支援跨頁長表格
+\RequirePackage{diagbox}                    % 插入表格反斜線
+\RequirePackage{multirow}                   % 合併儲存格
+\RequirePackage{amsmath, amsthm, amssymb}   % 數學環境
+\RequirePackage{bm}                         % 數學符號加粗
+\RequirePackage{datetime}                   % 日期格式轉換
+\RequirePackage{CJKnumb}                    % 中文數字轉換
+\RequirePackage{zhnumber}                   % 中文數字
+\RequirePackage{fp, calc}                   % 計算功能
+\RequirePackage{hyperref}                   % 超連結
+\RequirePackage{paralist, enumitem}         % 列表環境
+\RequirePackage{footmisc}                   % 自訂腳註符號
+\RequirePackage{caption}                    % 標題環境
+\RequirePackage[labelformat=simple]{subcaption} % 子標題環境
+\RequirePackage{chemfig}                    % 化學結構式
+\RequirePackage{circuitikz, siunitx}        % 電路圖
+\RequirePackage{listings}                   % 程式碼
+\RequirePackage{threeparttable}             % 表格加註解
+\RequirePackage{algorithm, algpseudocode}   % 演算法
+\RequirePackage{rotating}                   % 旋轉圖片
+\RequirePackage{notoccite}                  % 避免文獻引用標號順序錯亂
 
 \usetikzlibrary{
   positioning,
