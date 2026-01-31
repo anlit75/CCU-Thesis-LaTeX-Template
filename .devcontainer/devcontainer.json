@@ -1,0 +1,47 @@
+{
+  "name": "CCU Thesis LaTeX Env",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y texlive-xetex texlive-lang-chinese texlive-science latexmk && mkdir -p ~/.local/share/fonts/ && curl -L -o ~/.local/share/fonts/cwTeXQKai.ttf https://raw.githubusercontent.com/l10n-tw/cwtex-q-fonts-TTFs/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop",      // 必裝：LaTeX 編譯核心
+        "eamodio.gitlens",              // 選裝：版控神器
+        "yzhang.markdown-all-in-one"    // 選裝：寫文件用
+      ],
+      "settings": {
+        // 設定 LaTeX Workshop 預設使用 latexmk (xelatex)
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk (xelatex)",
+            "tools": ["xelatexmk"]
+          }
+        ],
+        "latex-workshop.latex.tools": [
+          {
+            "name": "xelatexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-xelatex",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ],
+            "env": {}
+          }
+        ],
+
+        // 可選參數
+        "latex-workshop.latex.autoBuild.run": "onSave",         // 當儲存時自動編譯
+        "latex-workshop.latex.autoClean.run": "onSucceeded"     // 當編譯成功時自動清理
+      }
+    }
+  },
+
+  // 開放轉發 Port (如果 LaTeX Workshop 啟動 PDF 預覽伺服器)
+  "forwardPorts": []
+}
