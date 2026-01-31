@@ -546,7 +546,7 @@
     }{
       % 情況 3: CI 環境 (GitHub Actions)
       % 改用文鼎 PL 中楷 (AR PL UKai TW)
-      \setCJKmainfont{AR PL UKai TW}[AutoFakeBold=#1, AutoFakeSlant=.2]
+      \setCJKmainfont{cwTeX Q Kai}[AutoFakeBold=#1, AutoFakeSlant=.2]
     }
   }
 }

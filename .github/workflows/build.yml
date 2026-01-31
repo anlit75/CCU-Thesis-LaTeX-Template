@@ -21,9 +21,9 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-          pre_compile: "apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community ttf-arphic-ukai && fc-cache -fv"
+          pre_compile: "mkdir -p ~/.local/share/fonts/ && wget -q -O ~/.local/share/fonts/cwTeXQKai.ttf https://github.com/l10n-tw/cwtex-q-fonts/raw/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv"
 
-      - name: Rename PDF (Optional)
+      - name: Rename PDF
         run: mv main.pdf CCU_Thesis_Template.pdf
 
       - name: Upload PDF artifact
