@@ -21,7 +21,7 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-          extra_system_packages: "fonts-arphic-ukai"
+          extra_system_packages: "ttf-arphic-ukai"
 
       - name: Rename PDF (Optional)
         run: mv main.pdf CCU_Thesis_Template.pdf
