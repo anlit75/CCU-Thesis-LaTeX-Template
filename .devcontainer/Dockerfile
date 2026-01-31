@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     fonts-noto-cjk \
     fontconfig \
+    latex-cjk-common \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/local/share/fonts/ \
