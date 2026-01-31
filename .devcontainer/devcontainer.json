@@ -1,9 +1,8 @@
 {
   "name": "CCU Thesis LaTeX Env",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y texlive-xetex texlive-lang-chinese texlive-science latexmk && mkdir -p ~/.local/share/fonts/ && curl -L -o ~/.local/share/fonts/cwTeXQKai.ttf https://raw.githubusercontent.com/l10n-tw/cwtex-q-fonts-TTFs/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv",
-
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -42,6 +41,5 @@
     }
   },
 
-  // 開放轉發 Port (如果 LaTeX Workshop 啟動 PDF 預覽伺服器)
-  "forwardPorts": []
+  "remoteUser": "vscode"
 }
