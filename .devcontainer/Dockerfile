@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-latex-extra \
     texlive-science \
     texlive-pictures \
+    texlive-plain-generic \
     texlive-bibtex-extra \
     biber \
     python3-pygments \
