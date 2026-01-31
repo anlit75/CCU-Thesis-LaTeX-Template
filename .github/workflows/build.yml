@@ -21,7 +21,6 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-          pre_compile: "cp fonts/*.ttf ~/.local/share/fonts/ && fc-cache -fv"
 
       - name: Rename PDF (Optional)
         run: mv main.pdf CCU_Thesis_Template.pdf

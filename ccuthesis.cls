@@ -439,7 +439,7 @@
 \RequirePackage{xeCJK}                      % 排版中日韓(CJK)字符
 \RequirePackage{indentfirst}                % 首行縮進
 \RequirePackage{fontspec}                   % 設定中英文字體
-\RequirePackage{xcolor, colortbl}           % 設定顏色  
+\RequirePackage{xcolor, colortbl}           % 設定顏色
 \RequirePackage{geometry}                   % 設定版面大小
 \RequirePackage{titlesec}                   % 設定章節格式
 \RequirePackage{titletoc, tocloft}          % 設定目錄格式
@@ -511,6 +511,7 @@
 \setlength{\parindent}{2em}
 
 % [字體設定]
+% 本地端使用系統字體(Times/標楷)，CI環境使用開源替代字體(TeX Gyre/Fandol)
 % - \setmainfont{}          	襯線字體
 % - \setsansfont{}          	非襯字體
 % - \setmonofont{}          	等寬字體
@@ -518,30 +519,57 @@
 % - \setCJKsansfont{}			中文非襯字體
 % - \setCJKmonofont{}			中文等寬字體
 %
-\ifthenelse{\equal{\ccu@fontset}{default}}{
-  \setmainfont{Times New Roman}[
-    Path = \ccu@path@font ,
-    Extension = .ttf ,
-    BoldFont = *-Bold ,
-    ItalicFont = *-Italic ,
-    BoldItalicFont = *-BoldItalic, ]
-  \setCJKmainfont{BiauKai}[
-    Path = \ccu@path@cjkfont ,
-    Extension = .ttf , ]
+% 定義英文 Fallback 邏輯
+\newcommand{\ccu@setmainfont}{
+  \IfFontExistsTF{Times New Roman}{
+    % 情況 1: 系統有 Times New Roman (Windows/Mac)
+    \setmainfont{Times New Roman}[
+      BoldFont = *,
+      BoldFeatures = {FakeBold=2}
+    ]
+  }{
+    % 情況 2: CI 環境 (使用 TeX Gyre Termes 替代)
+    \setmainfont{TeX Gyre Termes}
+  }
 }
 
-\ifthenelse{\equal{\ccu@fontset}{template}}{
-  \setmainfont{Times New Roman}[
-    Path = \ccu@path@font ,
-    Extension = .ttf ,
-    BoldFont = *-Bold ,
-    ItalicFont = *-Italic ,
-    BoldItalicFont = *-BoldItalic, ]
-  \setCJKmainfont{BiauKai}[
-    Path = \ccu@path@cjkfont ,
-    Extension = .ttf ,
-    BoldFont = Kaiti-Black, ]
+% 定義中文 Fallback 邏輯
+% 參數 #1: 是否為 template 模式 (如果是，粗體加重)
+\newcommand{\ccu@setcjkfont}[1]{
+  \IfFontExistsTF{BiauKai}{
+    % 情況 1: Mac/自訂安裝
+    \setCJKmainfont{BiauKai}[
+      AutoFakeBold = #1, % 如果是 template 模式，加粗
+      AutoFakeSlant = .2
+    ]
+  }{
+    \IfFontExistsTF{DFKai-SB}{
+      % 情況 2: Windows 標楷體
+      \setCJKmainfont{DFKai-SB}[
+        AutoFakeBold = #1,
+        AutoFakeSlant = .2
+      ]
+    }{
+      % 情況 3: CI 環境 (使用 FandolKai)
+      \setCJKmainfont{FandolKai-Regular}[
+        AutoFakeBold = #1,
+        AutoFakeSlant = .2
+      ]
+    }
+  }
 }
+
+% --- 實際套用設定 ---
+%
+\ifthenelse{\equal{\ccu@fontset}{default}}{
+  \ccu@setmainfont
+  \ccu@setcjkfont{2.5}
+}{}
+
+\ifthenelse{\equal{\ccu@fontset}{template}}{
+  \ccu@setmainfont
+  \ccu@setcjkfont{4}
+}{}
 
 % [版面大小]
 %
