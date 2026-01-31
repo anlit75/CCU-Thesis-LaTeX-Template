@@ -537,24 +537,16 @@
 % 參數 #1: 是否為 template 模式 (如果是，粗體加重)
 \newcommand{\ccu@setcjkfont}[1]{
   \IfFontExistsTF{BiauKai}{
-    % 情況 1: Mac/自訂安裝
-    \setCJKmainfont{BiauKai}[
-      AutoFakeBold = #1, % 如果是 template 模式，加粗
-      AutoFakeSlant = .2
-    ]
+    % 情況 1: Mac (標楷體)
+    \setCJKmainfont{BiauKai}[AutoFakeBold=#1, AutoFakeSlant=.2]
   }{
     \IfFontExistsTF{DFKai-SB}{
-      % 情況 2: Windows 標楷體
-      \setCJKmainfont{DFKai-SB}[
-        AutoFakeBold = #1,
-        AutoFakeSlant = .2
-      ]
+      % 情況 2: Windows (標楷體)
+      \setCJKmainfont{DFKai-SB}[AutoFakeBold=#1, AutoFakeSlant=.2]
     }{
-      % 情況 3: CI 環境 (使用 FandolKai)
-      \setCJKmainfont{FandolKai-Regular}[
-        AutoFakeBold = #1,
-        AutoFakeSlant = .2
-      ]
+      % 情況 3: CI 環境 (GitHub Actions)
+      % 改用文鼎 PL 中楷 (AR PL UKai TW)
+      \setCJKmainfont{AR PL UKai TW}[AutoFakeBold=#1, AutoFakeSlant=.2]
     }
   }
 }
