@@ -10,3 +10,7 @@
 *.xdv
 .vscode
 *.synctex
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.pdf
