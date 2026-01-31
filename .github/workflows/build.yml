@@ -21,7 +21,7 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-          extra_system_packages: "ttf-arphic-ukai"
+          pre_compile: "apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community ttf-arphic-ukai && fc-cache -fv"
 
       - name: Rename PDF (Optional)
         run: mv main.pdf CCU_Thesis_Template.pdf
