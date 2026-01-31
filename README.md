@@ -1,72 +1,74 @@
 # 國立中正大學碩博士論文LaTeX模板
-本模板適用於國立中正大學碩博士論文的撰寫，並設置好論文基本架構和基礎語法示例供使用者參考，使用者只需根據自己的需求進行增減即可。
+整合 Docker 開發環境的國立中正大學學位論文 LaTeX 模板，能自動化解決環境配置與排版合規性問題。確保您在任何作業系統上，都能產出格式一致的學位論文。
 
 > English version of `README` file please refer to [README_English.md](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/master/README_English.md)
 
 ## 目錄 | Table of Contents
-- [⚡ 獲取本專案 (Getting Started)](#-獲取本專案-getting-started)
-- [🚀 快速開始 | Quick Start (GitHub Codespaces)](#-快速開始--quick-start-github-codespaces)
-- [⚙️ 本機環境建置 (可選) | Local Installation (Optional)](#️-本機環境建置-可選--local-installation-optional)
-- [🐳 Local DevContainer (標準 / 本機開發)](#-local-devcontainer-標準--本機開發)
-- [🛠️ Local LaTeX Environment (進階 / 手動配置)](#️-local-latex-environment-進階--手動配置)
+- [⚡ 獲取本模板 | Get The Template](#-獲取本模板--get-the-template)
+- [🚀 快速開始 | Quick Start](#-快速開始--quick-start)
+- [⚙️ 本地環境建置 | Local Installation](#️-本地環境建置--local-installation)
+    - [🐳 Local DevContainer (標準 / 本地開發)](#-local-devcontainer-標準--本地開發)
+    - [🛠️ Local LaTeX Environment (進階 / 手動配置)](#️-local-latex-environment-進階--手動配置)
 - [📂 模板檔案結構 | Template Structure](#-模板檔案結構--template-structure)
 - [📖 模板使用說明 | User Guide](#-模板使用說明--user-guide)
-- [🎨 模板範例演示 | Template Demonstration](#-模板範例演示--template-demonstration)
+    - [🎨 模板範例演示 | Template Demonstration](#-模板範例演示--template-demonstration)
 - [🤝 致謝 | Acknowledgement](#-致謝--acknowledgement)
 - [⚠️ 免責聲明 | Disclaimer](#️-免責聲明--disclaimer)
 - [📄 License](#-license)
 
-## ⚡ 獲取本專案 (Getting Started)
+## ⚡ 獲取本模板 | Get The Template
 
-請點擊上方綠色的 **`[Use this template]`** 按鈕，並選擇 **Private** 來建立您的論文專案。
+請點擊上方綠色的 **`[Use this template]`** 按鈕，並選擇 **Private** 來建立您的論文儲存庫。
 
 > [!WARNING]\
-> 請勿直接 Fork 本專案！\
-> 論文應保持機密，Fork 的專案預設為公開（除非您想貢獻程式碼）。
+> 建議不要直接 Fork 本儲存庫！\
+> 論文應保持機密，Fork 的儲存庫預設為公開（除非您想貢獻程式碼）。
 
-## 🚀 快速開始 | Quick Start (GitHub Codespaces)
+## 🚀 快速開始 | Quick Start
 
 **適合：** 不想安裝任何軟體、電腦效能有限、或只是想快速預覽的使用者。
 
-這將在您的瀏覽器中啟動一個完整的 VS Code 環境，**無需任何設定**。
+這將在您的瀏覽器中啟動一個完整的 GitHub Codespaces 環境，**無需任何設定**。
 
-1. 點擊頁面右上角的綠色按鈕 **`Code`** > 切換到 **`Codespaces`** 分頁。
-2. 點擊 **`Create codespace on master`**。
+1. 點擊頁面右上角的綠色 **`Code`** 按鈕 > 切換到 **`Codespaces`** 分頁。
+2. 點擊 **`Create codespace on branch-name`**。
 3. 等待瀏覽器載入環境（首次約需 10-15 分鐘）。
 4. **完成!**
 
 > [!TIP]\
-> 打開 `main.tex` 檔案，按下 `Ctrl+S` (存檔) 即可自動觸發編譯。\
+> 打開 `main.tex` 檔案，按下 `Ctrl+S` 即可自動觸發編譯。\
 > 或點擊左側 "TeX" 圖示 > `Build LaTeX project`。\
-> 編譯完成後，PDF 檔會自動顯示在右側視窗中。
+> \
+> 編譯完成後，PDF 檔會自動顯示在右側檔案總管視窗中。\
+> 在 `*.tex` 檔案中按下 `ctrl+alt+j` 會自動跳轉到 PDF 對應的位置。
 
 > [!NOTE]\
-> 接下來就可以根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
+> 接下來請跳過 `⚙️ 本地環境建置`。根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
 
 > [!WARNING]\
 > 免費帳戶每月的 GitHub Codespaces 使用時間配額約為 120 小時。\
 > 實際使用限制請參考 [GitHub 官方說明](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces) 了解更多資訊。
 
-## ⚙️ 本機環境建置 (可選) | Local Installation (Optional)
+## ⚙️ 本地環境建置 | Local Installation
 
-如果您需要**長期離線寫作**或習慣使用本機 VS Code，請選擇以下方式。
+如果您需要**長期離線寫作**或習慣使用本地 VS Code，請選擇以下方式。
 
-### 🐳 Local DevContainer (標準 / 本機開發)
-**適合：** 希望在自己電腦上離線工作、習慣 VS Code 的使用者。
+### 🐳 Local DevContainer (標準 / 本地開發)
+**適合：** 希望在自己電腦上離線工作、習慣本地 VS Code 的使用者。
 
 #### Docker 環境設置
-1. 安裝 Docker Desktop ( https://www.docker.com/products/docker-desktop )，安裝後須重新啟動電腦
+1. 安裝 [Docker Desktop](https://www.docker.com/products/docker-desktop)，安裝後須重新啟動電腦
 2. 安裝 VS Code，並安裝 `Remote Explorer`、`Dev Containers`、`Docker (optional)` 擴充程式
 
 #### 啟動步驟
-1.  下載或 `git clone` 您的論文專案。
-2.  使用 VS Code 開啟專案資料夾。
+1.  `git clone` 您的論文儲存庫。
+2.  使用 VS Code 開啟儲存庫資料夾。
 3.  點擊視窗右下角的提示 **"Reopen in Container"** (或按 `F1` 搜尋 `Dev Containers: Reopen in Container`)。
-    > 第一次啟動需等待下載 Docker Image，約需 10-15 分鐘。
-4.  等待容器啟動，環境即自動配置完成。
+4.  等待容器啟動，環境即自動配置完成（首次約需 10-15 分鐘）。
+5. **完成!**
 
 <details>
-<summary><strong>如果上述方法無法使用，請手動建立 Docker Container (點擊展開)</strong></summary>
+<summary><strong>如果上述步驟無法使用，請手動建立 Docker Container (點擊展開)</strong></summary>
 
 於論文根目錄下開啟 VS Code，並在終端機中輸入以下指令，即可建立 Docker Container :
 
@@ -87,13 +89,13 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 </details>
 
 > [!NOTE]\
-> 接下來就可以根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
+> 接下來請根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
 
 ### 🛠️ Local LaTeX Environment (進階 / 手動配置)
 **適合：** 已熟悉 LaTeX 生態、無法使用 Docker、或需要高度客製化的進階玩家。
 
-> [!WARNING]\
-> 此方法極易因作業系統、字型版本或路徑設定不同而導致編譯失敗。
+> [!CAUTION]\
+> 此方法極易因作業系統、版本或路徑設定不同而導致編譯失敗。
 
 <details>
 <summary><strong>手動安裝教學 (點擊展開)</strong></summary>
@@ -212,7 +214,7 @@ Template Structure
 ```
 
 > [!NOTE]\
-> 請依據內容撰寫在相對應的 .tex 檔案。
+> 請依據內容撰寫在相對應的 .tex 檔案。\
 > 如需增減章節，可在 sections 資料夾中增加/移除 `.tex` 檔進行調整，\
 > 並在主文件 `main.tex` 中根據增減的位置用 `\input{./path/to/texfile}` 語法新增章節，或刪除相關章節即可。
 
@@ -239,27 +241,9 @@ Template Structure
 ## ⚠️ 免責聲明 | Disclaimer
 本模板為非官方版本，因此格式可能有誤，僅供參考，若使用上有任何問題，請自行承擔風險。
 
-建議使用者根據系上的要求進行調整，若有任何問題，請提 issues 或是寄信至[作者信箱](mailto:anson40512@gmail.com)。
+建議使用者根據系上的要求進行調整，若有任何問題，請提 Issues 或是寄信至 [作者信箱](mailto:anson40512@gmail.com)。
 
 ## 📄 License
-MIT License
+[MIT License](LICENSE)
 
-CopyRight (c) 2024 Ting-An Cheng
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Copyright (c) 2024 Ting-An Cheng
