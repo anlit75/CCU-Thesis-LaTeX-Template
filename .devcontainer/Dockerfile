@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-pictures \
     texlive-plain-generic \
     texlive-bibtex-extra \
+    texlive-fonts-recommended \
     biber \
     python3-pygments \
     latexmk \
