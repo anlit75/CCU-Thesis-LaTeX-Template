@@ -21,7 +21,7 @@ jobs:
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-          pre_compile: "mkdir -p ~/.local/share/fonts/ && wget -q -O ~/.local/share/fonts/cwTeXQKai.ttf https://github.com/l10n-tw/cwtex-q-fonts/raw/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv"
+          pre_compile: "mkdir -p ~/.local/share/fonts/ && curl -L -o ~/.local/share/fonts/cwTeXQKai.ttf https://raw.githubusercontent.com/l10n-tw/cwtex-q-fonts-TTFs/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv"
 
       - name: Rename PDF
         run: mv main.pdf CCU_Thesis_Template.pdf
