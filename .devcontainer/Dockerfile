@@ -8,7 +8,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-lang-cjk \
     texlive-latex-extra \
     texlive-science \
+    texlive-pictures \
+    texlive-bibtex-extra \
+    biber \
+    python3-pygments \
     latexmk \
+    make \
     curl \
     fonts-noto-cjk \
     fontconfig \
