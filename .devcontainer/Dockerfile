@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/devcontainers/base:bullseye
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
     texlive-xetex \
     texlive-lang-chinese \
     texlive-lang-cjk \
@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-plain-generic \
     texlive-bibtex-extra \
     texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-publishers \
     biber \
     python3-pygments \
     latexmk \
