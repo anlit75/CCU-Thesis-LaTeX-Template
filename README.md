@@ -1,9 +1,16 @@
 # 國立中正大學碩博士論文LaTeX模板
+
+[![License](https://img.shields.io/github/license/anlit75/ccu-thesis-latex-template)](LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/anlit75/ccu-thesis-latex-template)](https://github.com/anlit75/ccu-thesis-latex-template/releases)
+[![Build Status](https://github.com/anlit75/ccu-thesis-latex-template/actions/workflows/build.yml/badge.svg)](https://github.com/anlit75/ccu-thesis-latex-template/actions)
+<!-- [![Open in Overleaf](https://img.shields.io/badge/Overleaf-Open%20in%20Overleaf-47ba40?style=flat&logo=overleaf)](https://www.overleaf.com/docs?snip_uri=https://github.com/anlit75/ccu-thesis-latex-template/archive/refs/heads/main.zip) -->
+
 整合 Docker 開發環境的國立中正大學學位論文 LaTeX 模板，能自動化解決環境配置與排版合規性問題。確保您在任何作業系統上，都能產出格式一致的學位論文。
 
 > English version of `README` file please refer to [README_English.md](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/master/README_English.md)
 
 ## 目錄 | Table of Contents
+- [💻 線上試玩 | Online Demo](#-線上試玩--online-demo)
 - [⚡ 獲取本模板 | Get The Template](#-獲取本模板--get-the-template)
 - [🚀 快速開始 | Quick Start](#-快速開始--quick-start)
 - [⚙️ 本地環境建置 | Local Installation](#️-本地環境建置--local-installation)
@@ -11,10 +18,18 @@
     - [🛠️ Local LaTeX Environment (進階 / 手動配置)](#️-local-latex-environment-進階--手動配置)
 - [📂 模板檔案結構 | Template Structure](#-模板檔案結構--template-structure)
 - [📖 模板使用說明 | User Guide](#-模板使用說明--user-guide)
-    - [🎨 模板範例演示 | Template Demonstration](#-模板範例演示--template-demonstration)
+- [🎨 模板範例演示 | Template Demonstration](#-模板範例演示--template-demonstration)
 - [🤝 致謝 | Acknowledgement](#-致謝--acknowledgement)
 - [⚠️ 免責聲明 | Disclaimer](#️-免責聲明--disclaimer)
 - [📄 License](#-license)
+
+## 💻 線上試玩 | Online Demo
+如果你只想看看環境長怎樣，或測試編譯結果，可以點擊下方按鈕快速啟動：\
+\
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/anlit75/ccu-thesis-latex-template)
+
+> [!CAUTION]\
+> *此模式無法直接儲存進度，請勿用於正式寫作*
 
 ## ⚡ 獲取本模板 | Get The Template
 
@@ -205,10 +220,6 @@ Template Structure
 ├── figures
 │   ├── watermark.jpg                   // 浮水印
 │   └── ...
-├── demo
-│   ├── master_chinese_template.pdf     // 碩士繁體中文論文範例檔案
-│   ├── doctor_chinese_template.pdf     // 博士繁體中文論文範例檔案
-│   └── ...
 ├── ccusetup.tex                        // 模板設定
 └── ccuthesis.cls                       // 模板文件
 ```
@@ -224,10 +235,8 @@ Template Structure
 2. [模板使用說明](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/User-Guide)
 3. [LaTeX基本語法](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax)
 
-### 🎨 模板範例演示 | Template Demonstration
-以下為模板的範例檔案，僅供參考 :
-- [demo/master_chinese_template.pdf](./demo/master_chinese_template.pdf) 為**碩士繁體中文**論文範例檔案
-- [demo/doctor_chinese_template.pdf](./demo/doctor_chinese_template.pdf) 為**博士繁體中文**論文範例檔案
+## 🎨 模板範例演示 | Template Demonstration
+模板的範例 PDF 檔案請至 [GitHub release](https://github.com/anlit75/ccu-thesis-latex-template/releases) 下載參考。
 
 ## 🤝 致謝 | Acknowledgement
 感謝以下模板作者的貢獻，提供了許多參考，使得本模板能夠順利完成 :

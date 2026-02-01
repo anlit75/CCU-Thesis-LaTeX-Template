@@ -1,9 +1,15 @@
 # National Chung Cheng University (CCU) Thesis LaTeX Template
 
+[![License](https://img.shields.io/github/license/anlit75/ccu-thesis-latex-template)](LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/anlit75/ccu-thesis-latex-template)](https://github.com/anlit75/ccu-thesis-latex-template/releases)
+[![Build Status](https://github.com/anlit75/ccu-thesis-latex-template/actions/workflows/build.yml/badge.svg)](https://github.com/anlit75/ccu-thesis-latex-template/actions)
+<!-- [![Open in Overleaf](https://img.shields.io/badge/Overleaf-Open%20in%20Overleaf-47ba40?style=flat&logo=overleaf)](https://www.overleaf.com/docs?snip_uri=https://github.com/anlit75/ccu-thesis-latex-template/archive/refs/heads/main.zip) -->
+
 A Dockerized LaTeX template for National Chung Cheng University theses automates environment setup and formatting compliance.\
 Ensures reproducible results across any operating system, allowing you to focus solely on research.
 
 ## Table of Contents
+- [💻 Online Demo](#-online-demo)
 - [⚡ Get The Template](#-get-the-template)
 - [🚀 Quick Start](#-quick-start)
 - [⚙️ Local Installation](#️-local-installation)
@@ -11,10 +17,18 @@ Ensures reproducible results across any operating system, allowing you to focus 
     - [🛠️ Local LaTeX Environment (Advanced / Manual Configuration)](#️-local-latex-environment-advanced--manual-configuration)
 - [📂 Template Structure](#-template-structure)
 - [📖 User Guide](#-user-guide)
-    - [🎨 Template Demonstration](#-template-demonstration)
+- [🎨 Template Demonstration](#-template-demonstration)
 - [🤝 Acknowledgement](#-acknowledgement)
 - [⚠️ Disclaimer](#️-disclaimer)
 - [📄 License](#-license)
+
+## 💻 Online Demo
+If you just want to see how the environment looks or test the compilation results, you can quickly launch it by clicking the button below:\
+\
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/anlit75/ccu-thesis-latex-template)
+
+> [!CAUTION]\
+> *This mode cannot directly save progress, please do not use it for formal writing*
 
 ## ⚡ Get The Template
 
@@ -215,10 +229,6 @@ Template Structure
 ├── figures
 │   ├── watermark.jpg                   // Watermark
 │   └── ...
-├── demo
-│   ├── master_chinese_template.pdf     // Master's Thesis Example (Traditional Chinese)
-│   ├── doctor_chinese_template.pdf     // Doctoral Thesis Example (Traditional Chinese)
-│   └── ...
 ├── ccusetup.tex                        // Template configurations
 └── ccuthesis.cls                       // Template class file
 
@@ -237,7 +247,7 @@ Please read in the following order and make configuration adjustments accordingl
 2. [User Guide](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/User-Guide-English)
 3. [LaTeX Basic Syntax](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax-English)
 
-### 🎨 Template Demonstration
+## 🎨 Template Demonstration
 Below are prefilled thesis using the template for your reference :
 - [demo/master_chinese_template.pdf](./demo/master_chinese_template.pdf) is a demo file of **Master Traditional Chinese** thesis
 - [demo/doctor_chinese_template.pdf](./demo/doctor_chinese_template.pdf) is a demo file of **Ph.D. Traditional Chinese** dissertations
