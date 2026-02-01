@@ -2,7 +2,7 @@ name: Build Thesis PDF
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: [ "master", "main", "dev" ]
     tags: [ 'v*' ]
   pull_request:
     branches: [ "master", "main" ]
@@ -33,12 +33,12 @@ jobs:
       - name: Configure main.tex
         run: |
           echo "Configuring for: Degree=${{ matrix.degree }}, Lang=${{ matrix.language }}, Mode=${{ matrix.mode }}"
-          
+
           # 修改學位
           if [ "${{ matrix.degree }}" == "doctor" ]; then
             sed -i 's/degree\s*=\s*master/degree    = doctor/' main.tex
           fi
-          
+
           # 修改語言
           if [ "${{ matrix.language }}" == "english" ]; then
             sed -i 's/language\s*=\s*chinese/language  = english/' main.tex
