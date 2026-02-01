@@ -98,9 +98,9 @@ Next, in the `Remote Explorer` extension, you will see the newly created contain
 Right-click on the `thesis` folder and select `Open in Container in Current Window` to enter the container environment.
 
 <div style="text-align: center;">
-    <img src="./figures/RemoteExplorer.png" alt="Remote Explorer"> <br>
+    <img src="https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/RemoteExplorer.png?raw=true" alt="Remote Explorer"> <br>
     Remote Explorer - Dev Container <br><br>
-    <img src="./figures/attach.png" alt="Open in Container in Current Window"> <br>
+    <img src="https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/attach.png?raw=true" alt="Open in Container in Current Window"> <br>
     Open in Container in Current Window <br><br>
 </div>
 
@@ -169,7 +169,7 @@ Move the group `latexmk (xelatex)` to the top, as shown below:
 In the Keyboard Shortcuts Settings, you can configure the shortcut for `SyncTex` as shown in the image below.
 The default is `ctrl+alt+j`, but you can adjust as needed.
 
-![SyncTex](./figures/synctex.png)
+![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/synctex.png?raw=true)
 
 - Press `ctrl+Left-Click` on the text in the PDF file to automatically jump to the corresponding location in the .tex file.
 - In the `.tex` file, use `ctrl+alt+j` to automatically jump to the corresponding location in the PDF file.
@@ -211,7 +211,7 @@ For further settings please refer to [LaTeX Utilities Wiki](https://github.com/t
 ```
 Template Structure
 ├── main.tex                            // Main document
-├── main.pdf                            // Compiled PDF of the main document
+├── main.pdf                            // [Automatically generated] Compiled PDF of the main document
 ├── frontpages
 │   ├── abstract.tex                    // Chinese/English Abstract
 │   ├── acknowledgement.tex             // Acknowledgement

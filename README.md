@@ -95,9 +95,9 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 接著在 `Remote Explorer` 擴充程式中會看到剛建立的 container，如下圖所示，接著在 `thesis` 資料夾處右鍵，選擇 `Open in Container in Current Window` 即可進入 container 環境中。
 
 <div style="text-align: center;">
-    <img src="./figures/RemoteExplorer.png" alt="Remote Explorer"> <br>
+    <img src="https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/RemoteExplorer.png?raw=true" alt="Remote Explorer"> <br>
     Remote Explorer - Dev Container <br><br>
-    <img src="./figures/attach.png" alt="Open in Container in Current Window"> <br>
+    <img src="https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/attach.png?raw=true" alt="Open in Container in Current Window"> <br>
     Open in Container in Current Window <br><br>
 </div>
 
@@ -162,7 +162,7 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 ##### LaTeX Workshop SyncTex
 在 Shorcut Settings 中可以設置 `SyncTex` 的快捷鍵 (如下圖所示)，預設為 `ctrl+alt+j`，可自行調整。
 
-![SyncTex](./figures/synctex.png)
+![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/synctex.png?raw=true)
 
 - `ctrl+Left-Click` PDF檔案中的文字，會自動跳轉到對應的 `.tex` 檔案中
 - 在`.tex`檔案中使用 `ctrl+alt+j` 會自動跳轉到對應的PDF檔案中
@@ -202,7 +202,7 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 ```
 Template Structure
 ├── main.tex                            // 主文件
-├── main.pdf                            // 主文件編譯後的PDF檔
+├── main.pdf                            // [自動生成] 主文件編譯後的PDF檔
 ├── frontpages
 │   ├── abstract.tex                    // 中/英文摘要
 │   ├── acknowledgement.tex             // 致謝
