@@ -4,8 +4,15 @@ on:
   push:
     branches: [ "master", "main", "dev" ]
     tags: [ 'v*' ]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
   pull_request:
     branches: [ "master", "main" ]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
   workflow_dispatch:
 
 jobs:
