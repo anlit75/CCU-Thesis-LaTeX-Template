@@ -3,52 +3,98 @@ name: Build Thesis PDF
 on:
   push:
     branches: [ "master", "main" ]
-    tags:
-      - 'v*'
+    tags: [ 'v*' ]
   pull_request:
     branches: [ "master", "main" ]
   workflow_dispatch:
 
 jobs:
-  build_latex:
+  build_matrix:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 定義變體
+        degree: [master, doctor]
+        language: [chinese]
+        mode: [final, draft]
+        # PR只跑一組標準設定
+        exclude:
+          - degree: ${{ github.event_name == 'pull_request' && 'doctor' || '' }}
+          - mode: ${{ github.event_name == 'pull_request' && 'draft' || '' }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
+      # ---------------------------------------------------------
+      # 1. 動態修改參數
+      # ---------------------------------------------------------
+      - name: Configure main.tex
+        run: |
+          echo "Configuring for: Degree=${{ matrix.degree }}, Lang=${{ matrix.language }}, Mode=${{ matrix.mode }}"
+          
+          # 修改學位
+          if [ "${{ matrix.degree }}" == "doctor" ]; then
+            sed -i 's/degree\s*=\s*master/degree    = doctor/' main.tex
+          fi
+          
+          # 修改語言
+          if [ "${{ matrix.language }}" == "english" ]; then
+            sed -i 's/language\s*=\s*chinese/language  = english/' main.tex
+          fi
+
+          # 修改 Draft 模式
+          if [ "${{ matrix.mode }}" == "draft" ]; then
+            sed -i 's/%\s*draft/  draft/' main.tex
+          fi
+
+      # ---------------------------------------------------------
+      # 2. 編譯核心
+      # ---------------------------------------------------------
+      - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          latexmk_use_xelatex: true
           pre_compile: "mkdir -p ~/.local/share/fonts/ && curl -L -o ~/.local/share/fonts/cwTeXQKai.ttf https://raw.githubusercontent.com/l10n-tw/cwtex-q-fonts-TTFs/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv"
+          # 使用 -jobname 避免檔名衝突，並強制使用 xelatex
+          args: >
+            -jobname=${{ matrix.degree }}_${{ matrix.language }}_template_${{ matrix.mode }}
+            -xelatex
+            -file-line-error
+            -halt-on-error
+            -interaction=nonstopmode
 
-      - name: Rename PDF
-        run: mv main.pdf CCU_Thesis_Template.pdf
-
-      - name: Upload PDF artifact
+      # ---------------------------------------------------------
+      # 3. 上傳產物 (供 Release 或 Debug 用)
+      # ---------------------------------------------------------
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Thesis-PDF
-          path: CCU_Thesis_Template.pdf
+          name: PDF-${{ matrix.degree }}-${{ matrix.language }}-${{ matrix.mode }}
+          path: "*.pdf"
           retention-days: 5
 
+  # ---------------------------------------------------------
+  # Release Job (只有打 Tag 時才會執行)
+  # ---------------------------------------------------------
   release:
-    needs: build_latex
+    needs: build_matrix
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Download Artifact
+      - name: Download All Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: Thesis-PDF
+          path: artifacts
+          merge-multiple: true # 將所有矩陣產生的 PDF 合併到同一資料夾
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: CCU_Thesis_Template.pdf
+          files: artifacts/*.pdf
           draft: false
           prerelease: false
         env:
