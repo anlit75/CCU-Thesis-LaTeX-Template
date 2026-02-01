@@ -154,7 +154,7 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 
 實際操作效果如下所示 :
 
-![SyncTex](./figures/sync_demo.gif)
+![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/sync_demo.gif?raw=true)
 
 ##### LaTeX Utilities Settings
 此擴充程式可以在**貼上**時自動生成模板，適用於表格及圖片，請先在 `settings.json` 中輸入下方設定 :
@@ -177,7 +177,7 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 
 實際操作效果如下所示 :
 
-![formattedPaste](./figures/paste_demo.gif)
+![formattedPaste](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/paste_demo.gif?raw=true)
 
 更詳細的設定請參考 [LaTeX Utilities Wiki](https://github.com/tecosaur/LaTeX-Utilities/wiki)
 

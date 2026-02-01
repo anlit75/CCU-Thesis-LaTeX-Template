@@ -80,7 +80,7 @@ Open VS Code in the root directory of the thesis template, and enter the followi
 docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 ```
 
-Next, in the `Remote Explorer` extension, you will see the newly created container as shown in the following image.  
+Next, in the `Remote Explorer` extension, you will see the newly created container as shown in the following image.
 Right-click on the `thesis` folder and select `Open in Container in Current Window` to enter the container environment.
 
 <div style="text-align: center;">
@@ -114,7 +114,7 @@ Right-click on the `thesis` folder and select `Open in Container in Current Wind
 > After the installation is complete, VSCode must be restarted!
 
 #### LaTeX Workshop Settings
-In the `settings.json` file, you can rearrange the order of the recipes, and the one at the top will be the default compiler.  
+In the `settings.json` file, you can rearrange the order of the recipes, and the one at the top will be the default compiler.
 Move the group `latexmk (xelatex)` to the top, as shown below:
 
 ```json
@@ -152,7 +152,7 @@ Move the group `latexmk (xelatex)` to the top, as shown below:
 ```
 
 #### LaTeX Workshop SyncTex
-In the Keyboard Shortcuts Settings, you can configure the shortcut for `SyncTex` as shown in the image below.  
+In the Keyboard Shortcuts Settings, you can configure the shortcut for `SyncTex` as shown in the image below.
 The default is `ctrl+alt+j`, but you can adjust as needed.
 
 ![SyncTex](./figures/synctex.png)
@@ -162,10 +162,10 @@ The default is `ctrl+alt+j`, but you can adjust as needed.
 
 The actual operation results are demonstrated as follows :
 
-![SyncTex](./figures/sync_demo.gif)
+![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/sync_demo.gif?raw=true)
 
 #### LaTeX Utilities Settings
-This extension can automatically generate formatted tables and figures when **pasting** into vscode.  
+This extension can automatically generate formatted tables and figures when **pasting** into vscode.
 Please paste the following settings in the `settings.json` file :
 
 ```json
@@ -186,7 +186,7 @@ Please paste the following settings in the `settings.json` file :
 
 The actual operation results are demonstrated as follows :
 
-![formattedPaste](./figures/paste_demo.gif)
+![formattedPaste](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/paste_demo.gif?raw=true)
 
 For further settings please refer to [LaTeX Utilities Wiki](https://github.com/tecosaur/LaTeX-Utilities/wiki).
 
@@ -230,7 +230,7 @@ Template Structure
 
 ## 📖 User Guide
 
-For detailed instructions on using the template, please refer to the [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki).  
+For detailed instructions on using the template, please refer to the [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki).
 Please read in the following order and make configuration adjustments accordingly :
 
 1. [Editing Thesis Configurations](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/Thesis-Configurations-English)
@@ -238,13 +238,13 @@ Please read in the following order and make configuration adjustments accordingl
 3. [LaTeX Basic Syntax](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax-English)
 
 ### 🎨 Template Demonstration
-Below are prefilled thesis using the template for your reference : 
+Below are prefilled thesis using the template for your reference :
 - [demo/master_chinese_template.pdf](./demo/master_chinese_template.pdf) is a demo file of **Master Traditional Chinese** thesis
 - [demo/doctor_chinese_template.pdf](./demo/doctor_chinese_template.pdf) is a demo file of **Ph.D. Traditional Chinese** dissertations
 
 ## 🤝 Acknowledgement
 
-Huge thanks to the following template authors for their contributions.  
+Huge thanks to the following template authors for their contributions.
 Their work has provided valuable references and has contributed to the successful completion of this template :
 - [Hsins/NTU-Thesis-LaTeX-Template](https://github.com/Hsins/NTU-Thesis-LaTeX-Template)
 - [hasanabs/nsysu-thesis-latex-template](https://github.com/hasanabs/nsysu-thesis-latex-template)
@@ -257,7 +257,7 @@ Their work has provided valuable references and has contributed to the successfu
 
 This template is an unofficial version, and the format may contain errors. It is provided for reference only, and users should use it at their own risk.
 
-It is recommended that users make adjustments according to the requirements of their department. 
+It is recommended that users make adjustments according to the requirements of their department.
 If there are any problem, please feel free to create the issues or send an email to the [author's email](mailto:anson40512@gmail.com).
 
 ## 📄 License
