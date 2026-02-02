@@ -28,7 +28,7 @@ If you just want to see how the environment looks or test the compilation result
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/anlit75/ccu-thesis-latex-template)
 
 > [!CAUTION]\
-> *This mode cannot directly save progress, please do not use it for formal writing*
+> *This mode cannot directly save progress, please do not use it for formal writing.*
 
 ## ⚡ Get The Template
 

@@ -29,7 +29,7 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/anlit75/ccu-thesis-latex-template)
 
 > [!CAUTION]\
-> *此模式無法直接儲存進度，請勿用於正式寫作*
+> *此模式無法直接儲存進度，請勿用於正式寫作。*
 
 ## ⚡ 獲取本模板 | Get The Template
 
@@ -72,8 +72,8 @@
 **適合：** 希望在自己電腦上離線工作、習慣本地 VS Code 的使用者。
 
 #### Docker 環境設置
-1. 安裝 [Docker Desktop](https://www.docker.com/products/docker-desktop)，安裝後須重新啟動電腦
-2. 安裝 VS Code，並安裝 `Remote Explorer`、`Dev Containers`、`Docker (optional)` 擴充程式
+1. 安裝 [Docker Desktop](https://www.docker.com/products/docker-desktop)，安裝後須重新啟動電腦。
+2. 安裝 VS Code，並安裝 `Remote Explorer`、`Dev Containers`、`Docker (optional)` 擴充程式。
 
 #### 啟動步驟
 1.  `git clone` 您的論文儲存庫。
