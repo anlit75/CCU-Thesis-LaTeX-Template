@@ -16,19 +16,81 @@ on:
   workflow_dispatch:
 
 jobs:
+  # ---------------------------------------------------------
+  # Job 1: 判斷要編譯哪些版本 (動態矩陣生成)
+  # ---------------------------------------------------------
+  check_config:
+    runs-on: ubuntu-latest
+    outputs:
+      # 將產生的 JSON 輸出給下一個 Job 使用
+      degrees: ${{ steps.set-matrix.outputs.degrees }}
+      languages: ${{ steps.set-matrix.outputs.languages }}
+      modes: ${{ steps.set-matrix.outputs.modes }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Determine Build Matrix
+        id: set-matrix
+        run: |
+          # 預設值 (Release 模式：全跑)
+          DEGREE_JSON='["master", "doctor"]'
+          LANG_JSON='["chinese", "english"]'
+          MODE_JSON='["final", "draft"]'
+
+          # ---------------------------------------------------
+          # 情境 A: PR (只跑一組)
+          # ---------------------------------------------------
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "Event is Pull Request. Using minimal matrix."
+            DEGREE_JSON='["master"]'
+            LANG_JSON='["chinese"]'
+            MODE_JSON='["final"]'
+
+          # ---------------------------------------------------
+          # 情境 B: Push (非 Tag) -> 讀取 main.tex 設定
+          # ---------------------------------------------------
+          elif [[ "${{ github.ref }}" != refs/tags/* && "${{ github.event_name }}" == "push" ]]; then
+            echo "Event is Push. Parsing main.tex..."
+
+            # 使用 grep 和 cut 抓取 main.tex 裡面的設定
+            # 假設格式為: degree = master,
+            PARSED_DEGREE=$(grep -E '^\s*degree\s*=' main.tex | awk -F "=" '{print $2}' | awk -F "," '{print $1}' | tr -d '[:space:]')
+            PARSED_LANG=$(grep -E '^\s*language\s*=' main.tex | awk -F "=" '{print $2}' | awk -F "," '{print $1}' | tr -d '[:space:]')
+
+            # 檢查是否成功抓取，若失敗則 fallback 回預設
+            if [[ -n "$PARSED_DEGREE" && -n "$PARSED_LANG" ]]; then
+              echo "Detected config: Degree=$PARSED_DEGREE, Lang=$PARSED_LANG"
+              # 轉成 JSON 陣列格式 ["value"]
+              DEGREE_JSON="[\"$PARSED_DEGREE\"]"
+              LANG_JSON="[\"$PARSED_LANG\"]"
+              # Push 時通常只需要看 Final 或是 Draft 其中一個，這裡假設跑 Final 即可，或者你可以維持兩者
+              MODE_JSON='["final"]'
+            else
+              echo "Failed to parse main.tex, falling back to default."
+            fi
+          fi
+
+          # ---------------------------------------------------
+          # 輸出結果
+          # ---------------------------------------------------
+          echo "degrees=$DEGREE_JSON" >> $GITHUB_OUTPUT
+          echo "languages=$LANG_JSON" >> $GITHUB_OUTPUT
+          echo "modes=$MODE_JSON" >> $GITHUB_OUTPUT
+
+  # ---------------------------------------------------------
+  # Job 2: 編譯核心 (依賴 Job 1 的輸出)
+  # ---------------------------------------------------------
   build_matrix:
+    needs: check_config
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        # 定義變體
-        degree: [master, doctor]
-        language: [chinese]
-        mode: [final, draft]
-        # PR只跑一組標準設定
-        exclude:
-          - degree: ${{ github.event_name == 'pull_request' && 'doctor' || '' }}
-          - mode: ${{ github.event_name == 'pull_request' && 'draft' || '' }}
+        # 使用從 check_config 傳過來的動態 JSON
+        degree: ${{ fromJson(needs.check_config.outputs.degrees) }}
+        language: ${{ fromJson(needs.check_config.outputs.languages) }}
+        mode: ${{ fromJson(needs.check_config.outputs.modes) }}
 
     steps:
       - name: Checkout code
@@ -44,11 +106,15 @@ jobs:
           # 修改學位
           if [ "${{ matrix.degree }}" == "doctor" ]; then
             sed -i 's/degree\s*=\s*master/degree    = doctor/' main.tex
+          elif [ "${{ matrix.degree }}" == "master" ]; then
+             sed -i 's/degree\s*=\s*doctor/degree    = master/' main.tex
           fi
 
           # 修改語言
           if [ "${{ matrix.language }}" == "english" ]; then
             sed -i 's/language\s*=\s*chinese/language  = english/' main.tex
+          elif [ "${{ matrix.language }}" == "chinese" ]; then
+            sed -i 's/language\s*=\s*english/language  = chinese/' main.tex
           fi
 
           # 修改 Draft 模式
