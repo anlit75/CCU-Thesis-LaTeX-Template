@@ -5,7 +5,7 @@
 [![Build Status](https://github.com/anlit75/ccu-thesis-latex-template/actions/workflows/build.yml/badge.svg)](https://github.com/anlit75/ccu-thesis-latex-template/actions)
 <!-- [![Open in Overleaf](https://img.shields.io/badge/Overleaf-Open%20in%20Overleaf-47ba40?style=flat&logo=overleaf)](https://www.overleaf.com/docs?snip_uri=https://github.com/anlit75/ccu-thesis-latex-template/archive/refs/heads/main.zip) -->
 
-整合 Docker 開發環境的國立中正大學學位論文 LaTeX 模板，能自動化解決環境配置與排版合規性問題。確保您在任何作業系統上，都能產出格式一致的學位論文。
+整合 Docker 與 GitHub Codespaces 的國立中正大學學位論文 LaTeX 模板，提供開箱即用的「零配置」寫作環境，確保排版合規並自動備份 PDF。
 
 > English version of `README` file please refer to [README_English.md](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/master/README_English.md)
 
@@ -13,9 +13,8 @@
 - [💻 線上試玩 | Online Demo](#-線上試玩--online-demo)
 - [⚡ 獲取本模板 | Get The Template](#-獲取本模板--get-the-template)
 - [🚀 快速開始 | Quick Start](#-快速開始--quick-start)
-- [⚙️ 本地環境建置 | Local Installation](#️-本地環境建置--local-installation)
-    - [🐳 Local DevContainer (標準 / 本地開發)](#-local-devcontainer-標準--本地開發)
-    - [🛠️ Local LaTeX Environment (進階 / 手動配置)](#️-local-latex-environment-進階--手動配置)
+- [🐳 本地環境建置 | Local DevContainer](#-本地環境建置--local-devcontainer)
+- [☁️ 自動編譯與備份 | Auto Build & Backup](#️-自動編譯與備份--auto-build--backup)
 - [📂 模板檔案結構 | Template Structure](#-模板檔案結構--template-structure)
 - [📖 模板使用說明 | User Guide](#-模板使用說明--user-guide)
 - [🎨 模板範例演示 | Template Demonstration](#-模板範例演示--template-demonstration)
@@ -58,24 +57,21 @@
 > 在 `*.tex` 檔案中按下 `ctrl+alt+j` 會自動跳轉到 PDF 對應的位置。
 
 > [!NOTE]\
-> 接下來請跳過 `⚙️ 本地環境建置`。根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
+> 接下來請跳過 `🐳 本地環境建置`。根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
 
 > [!WARNING]\
 > 免費帳戶每月的 GitHub Codespaces 使用時間配額約為 120 小時。\
 > 實際使用限制請參考 [GitHub 官方說明](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces) 了解更多資訊。
 
-## ⚙️ 本地環境建置 | Local Installation
+## 🐳 本地環境建置 | Local DevContainer
 
-如果您需要**長期離線寫作**或習慣使用本地 VS Code，請選擇以下方式。
+**適合：** 需要**長期離線寫作**、希望在自己電腦上離線工作、習慣本地 VS Code 的使用者。
 
-### 🐳 Local DevContainer (標準 / 本地開發)
-**適合：** 希望在自己電腦上離線工作、習慣本地 VS Code 的使用者。
-
-#### Docker 環境設置
+### Docker 環境設置
 1. 安裝 [Docker Desktop](https://www.docker.com/products/docker-desktop)，安裝後須重新啟動電腦。
 2. 安裝 VS Code，並安裝 `Remote Explorer`、`Dev Containers`、`Docker (optional)` 擴充程式。
 
-#### 啟動步驟
+### 啟動步驟
 1.  `git clone` 您的論文儲存庫。
 2.  使用 VS Code 開啟儲存庫資料夾。
 3.  點擊視窗右下角的提示 **"Reopen in Container"** (或按 `F1` 搜尋 `Dev Containers: Reopen in Container`)。
@@ -106,97 +102,15 @@ docker run -itd --name thesis -v .:/home/thesis anlit/thesistex:latest
 > [!NOTE]\
 > 接下來請根據 [模板使用說明](#-模板使用說明--user-guide) 開始撰寫論文。
 
-### 🛠️ Local LaTeX Environment (進階 / 手動配置)
-**適合：** 已熟悉 LaTeX 生態、無法使用 Docker、或需要高度客製化的進階玩家。
+## ☁️ 自動編譯與備份 | Auto Build & Backup
+當您將進度推送 (Push) 到 GitHub 時，系統會自動在雲端執行編譯，為您的論文提供**額外的 PDF 備份**。
 
-> [!CAUTION]\
-> 此方法極易因作業系統、版本或路徑設定不同而導致編譯失敗。
+1. 點擊儲存庫上方的 **`Actions`** 分頁。
+2. 點擊最新的 Workflow 紀錄 (通常顯示為 Commit 訊息)。
+3. 在頁面底部的 **`Artifacts`** 區域，點擊 `PDF` 即可下載。
 
-<details>
-<summary><strong>手動安裝教學 (點擊展開)</strong></summary>
-
-#### Local Environment Setup
-1. 安裝 `MiKTex`，並設置為預設的compiler ( https://miktex.org/download )
-2. 安裝 `perl` ( https://strawberryperl.com/ )
-3. 安裝 VS Code，並安裝 `LaTeX Workshop`、`LaTeX Utilities` 擴充程式
-
-> 安裝完成後須重新啟動 VSCode!
-
-##### LaTeX Workshop Settings
-在 `settings.json` 中，recipes 可以調換順序，最上面的是預設執行的compiler，須將 `"latexmk (xelatex)"` 組別移動到最上方，如下所示 :
-
-```json
-"latex-workshop.latex.recipes": [
-    {
-        "name": "latexmk (xelatex)",
-        "tools": [
-            "xelatexmk"
-        ]
-    },
-    {
-        "name": "latexmk",
-        "tools": [
-            "latexmk"
-        ]
-    },
-    {
-        "name": "latexmk (latexmkrc)",
-        "tools": [
-            "latexmk_rconly"
-        ]
-    },
-    {
-        "name": "latexmk (lualatex)",
-        "tools": [
-            "lualatexmk"
-        ]
-    },
-    ...
-],
-
-// 可選參數
-"latex-workshop.latex.autoBuild.run": "onSave",         // 當儲存時自動編譯
-"latex-workshop.latex.autoClean.run": "onSucceeded",    // 當編譯成功時自動清理
-```
-
-##### LaTeX Workshop SyncTex
-在 Shorcut Settings 中可以設置 `SyncTex` 的快捷鍵 (如下圖所示)，預設為 `ctrl+alt+j`，可自行調整。
-
-![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/synctex.png?raw=true)
-
-- `ctrl+Left-Click` PDF檔案中的文字，會自動跳轉到對應的 `.tex` 檔案中
-- 在`.tex`檔案中使用 `ctrl+alt+j` 會自動跳轉到對應的PDF檔案中
-
-實際操作效果如下所示 :
-
-![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/sync_demo.gif?raw=true)
-
-##### LaTeX Utilities Settings
-此擴充程式可以在**貼上**時自動生成模板，適用於表格及圖片，請先在 `settings.json` 中輸入下方設定 :
-
-```json
-//true時使用`ctrl+v`自動套用模板，若為false則需使用`ctrl+shift+v`
-"latex-utilities.formattedPaste.useAsDefault": false,
-
-// 圖片模板 figure template
-"latex-utilities.formattedPaste.image.template": [
-    "\\begin{figure}[!htb]",
-    "\t\\centering",
-    "\t\\includegraphics[width=\\textwidth]{${imageFilePath}}",
-    "\t\\caption{${imageFileNameWithoutExt}}",
-    "\t\\label{fig:${imageFileNameWithoutExt}}",
-    "\\end{figure}",
-    ""
-],
-```
-
-實際操作效果如下所示 :
-
-![formattedPaste](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/paste_demo.gif?raw=true)
-
-更詳細的設定請參考 [LaTeX Utilities Wiki](https://github.com/tecosaur/LaTeX-Utilities/wiki)
-
-</details>
+> [!NOTE]\
+> **注意時效**：雲端生成的 PDF 檔案僅會保留 **5 天**。
 
 ## 📂 模板檔案結構 | Template Structure
 ```
@@ -226,8 +140,7 @@ Template Structure
 
 > [!NOTE]\
 > 請依據內容撰寫在相對應的 .tex 檔案。\
-> 如需增減章節，可在 sections 資料夾中增加/移除 `.tex` 檔進行調整，\
-> 並在主文件 `main.tex` 中根據增減的位置用 `\input{./path/to/texfile}` 語法新增章節，或刪除相關章節即可。
+> 如需增減章節，可在 `sections` 資料夾中增加/移除 `.tex` 檔，並在 `main.tex` 中用 `\input{./path/to/texfile}` 語法進行調整。
 
 ## 📖 模板使用說明 | User Guide
 詳細模板使用說明請見 [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki)，請依造下列順序進行閱讀，並根據指示修改設定 :
@@ -236,7 +149,7 @@ Template Structure
 3. [LaTeX基本語法](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax)
 
 ## 🎨 模板範例演示 | Template Demonstration
-模板的範例 PDF 檔案請至 [GitHub release](https://github.com/anlit75/ccu-thesis-latex-template/releases) 下載參考。
+模板的範例 PDF 檔案請至 [Releases](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/releases) 下載參考。
 
 ## 🤝 致謝 | Acknowledgement
 感謝以下模板作者的貢獻，提供了許多參考，使得本模板能夠順利完成 :

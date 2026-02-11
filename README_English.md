@@ -5,16 +5,14 @@
 [![Build Status](https://github.com/anlit75/ccu-thesis-latex-template/actions/workflows/build.yml/badge.svg)](https://github.com/anlit75/ccu-thesis-latex-template/actions)
 <!-- [![Open in Overleaf](https://img.shields.io/badge/Overleaf-Open%20in%20Overleaf-47ba40?style=flat&logo=overleaf)](https://www.overleaf.com/docs?snip_uri=https://github.com/anlit75/ccu-thesis-latex-template/archive/refs/heads/main.zip) -->
 
-A Dockerized LaTeX template for National Chung Cheng University theses automates environment setup and formatting compliance.\
-Ensures reproducible results across any operating system, allowing you to focus solely on research.
+An out-of-the-box CCU Thesis LaTeX Template integrated with Docker and GitHub Codespaces, offering a zero-config writing environment with strict formatting compliance and automated PDF backups.
 
 ## Table of Contents
 - [💻 Online Demo](#-online-demo)
 - [⚡ Get The Template](#-get-the-template)
 - [🚀 Quick Start](#-quick-start)
-- [⚙️ Local Installation](#️-local-installation)
-    - [🐳 Local DevContainer (Standard / Local Development)](#-local-devcontainer-standard--local-development)
-    - [🛠️ Local LaTeX Environment (Advanced / Manual Configuration)](#️-local-latex-environment-advanced--manual-configuration)
+- [🐳 Local DevContainer](#-local-devcontainer)
+- [☁️ Auto Build & Backup](#️-auto-build--backup)
 - [📂 Template Structure](#-template-structure)
 - [📖 User Guide](#-user-guide)
 - [🎨 Template Demonstration](#-template-demonstration)
@@ -63,13 +61,9 @@ This will launch a full GitHub Codespaces environment in your browser with **no 
 > Free accounts have a monthly GitHub Codespaces usage quota of approximately 120 hours.\
 > Please refer to the [Official GitHub Documentation](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces) for actual usage limits and more information.
 
-## ⚙️ Local Installation
+## 🐳 Local DevContainer
 
-If you require **long-term offline writing** or prefer using local VS Code, please choose one of the following methods.
-
-### 🐳 Local DevContainer (Standard / Local Development)
-
-**Suitable for:** Users who want to work offline on their own computer and are accustomed to local VS Code.
+**Suitable for:** Users who require **long-term offline writing** or want to work offline on their own computer and are accustomed to local VS Code.
 
 #### Docker Environment Setup
 
@@ -109,102 +103,15 @@ Right-click on the `thesis` folder and select `Open in Container in Current Wind
 > [!NOTE]\
 > Proceed to the [User Guide](#-user-guide) to start writing your thesis.
 
-### 🛠️ Local LaTeX Environment (Advanced / Manual Configuration)
+## ☁️ Auto Build & Backup
+The system automatically compiles your thesis in the cloud whenever you **push** changes to GitHub, providing an **additional PDF backup**.
 
-**Suitable for:** Advanced users familiar with the LaTeX ecosystem who cannot use Docker or require high customization.
+1. Click the **`Actions`** tab at the top of the repository.
+2. Click the latest workflow run (usually displayed as the commit message).
+3. Scroll down to the **`Artifacts`** section and click `PDF` to download.
 
-> [!CAUTION]\
-> This method is highly susceptible to compilation failures due to differences in operating systems, versions, or path settings.
-
-<details>
-<summary><strong>Manual Installation Tutorial (Click to expand)</strong></summary>
-
-#### Local Environment Setup
-
-1. Install `MiKTex` and set it as the default compiler ( [https://miktex.org/download](https://miktex.org/download) ).
-2. Install `perl` ( [https://strawberryperl.com/](https://strawberryperl.com/) ).
-3. Install VS Code and the `LaTeX Workshop` and `LaTeX Utilities` extensions.
-
-> After the installation is complete, VSCode must be restarted!
-
-#### LaTeX Workshop Settings
-In the `settings.json` file, you can rearrange the order of the recipes, and the one at the top will be the default compiler.
-Move the group `latexmk (xelatex)` to the top, as shown below:
-
-```json
-"latex-workshop.latex.recipes": [
-    {
-        "name": "latexmk (xelatex)",
-        "tools": [
-            "xelatexmk"
-        ]
-    },
-    {
-        "name": "latexmk",
-        "tools": [
-            "latexmk"
-        ]
-    },
-    {
-        "name": "latexmk (latexmkrc)",
-        "tools": [
-            "latexmk_rconly"
-        ]
-    },
-    {
-        "name": "latexmk (lualatex)",
-        "tools": [
-            "lualatexmk"
-        ]
-    },
-    ...
-],
-
-// Optional parameters
-"latex-workshop.latex.autoBuild.run": "onSave",         // automatically compile when saving
-"latex-workshop.latex.autoClean.run": "onSucceeded",    // automatically clean up when compilation is successful
-```
-
-#### LaTeX Workshop SyncTex
-In the Keyboard Shortcuts Settings, you can configure the shortcut for `SyncTex` as shown in the image below.
-The default is `ctrl+alt+j`, but you can adjust as needed.
-
-![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/synctex.png?raw=true)
-
-- Press `ctrl+Left-Click` on the text in the PDF file to automatically jump to the corresponding location in the .tex file.
-- In the `.tex` file, use `ctrl+alt+j` to automatically jump to the corresponding location in the PDF file.
-
-The actual operation results are demonstrated as follows :
-
-![SyncTex](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/sync_demo.gif?raw=true)
-
-#### LaTeX Utilities Settings
-This extension can automatically generate formatted tables and figures when **pasting** into vscode.
-Please paste the following settings in the `settings.json` file :
-
-```json
-// The template is automatically applied when `ctrl+v` is used. If it is false, you need to use `ctrl+shift+v`
-"latex-utilities.formattedPaste.useAsDefault": false,
-
-// figure template
-"latex-utilities.formattedPaste.image.template": [
-    "\\begin{figure}[!htb]",
-    "\t\\centering",
-    "\t\\includegraphics[width=\\textwidth]{${imageFilePath}}",
-    "\t\\caption{${imageFileNameWithoutExt}}",
-    "\t\\label{fig:${imageFileNameWithoutExt}}",
-    "\\end{figure}",
-    ""
-],
-```
-
-The actual operation results are demonstrated as follows :
-
-![formattedPaste](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/blob/assets/figures/paste_demo.gif?raw=true)
-
-For further settings please refer to [LaTeX Utilities Wiki](https://github.com/tecosaur/LaTeX-Utilities/wiki).
-
-</details>
+> [!NOTE]\
+> **Retention Period**: The cloud-generated PDF files are only retained for **5 days**.
 
 ## 📂 Template Structure
 
@@ -248,9 +155,7 @@ Please read in the following order and make configuration adjustments accordingl
 3. [LaTeX Basic Syntax](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax-English)
 
 ## 🎨 Template Demonstration
-Below are prefilled thesis using the template for your reference :
-- [demo/master_chinese_template.pdf](./demo/master_chinese_template.pdf) is a demo file of **Master Traditional Chinese** thesis
-- [demo/doctor_chinese_template.pdf](./demo/doctor_chinese_template.pdf) is a demo file of **Ph.D. Traditional Chinese** dissertations
+The sample PDF file for the template can be downloaded from [Releases](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/releases).
 
 ## 🤝 Acknowledgement
 
