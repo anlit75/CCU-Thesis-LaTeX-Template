@@ -1,0 +1,41 @@
+{
+    // 設定 LaTeX Workshop 預設使用 latexmk (xelatex)
+    "latex-workshop.latex.recipes": [
+        {
+        "name": "latexmk (xelatex)",
+        "tools": ["xelatexmk"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+        "name": "xelatexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-xelatex",
+            "-shell-escape",
+            "-outdir=%OUTDIR%",
+            "%DOC%"
+        ],
+        "env": {}
+        }
+    ],
+
+    // 可選參數
+    "latex-workshop.latex.autoBuild.run": "onSave",         // 當儲存時自動編譯
+    "latex-workshop.latex.autoClean.run": "onSucceeded",    // 當編譯成功時自動清理
+
+    // 圖片模板 figure template
+    "latex-utilities.formattedPaste.image.template": [
+        "\\begin{figure}[!htb]",
+        "\t\\centering",
+        "\t\\includegraphics[width=\\textwidth]{${imageFilePath}}",
+        "\t\\caption{${imageFileNameWithoutExt}}",
+        "\t\\label{fig:${imageFileNameWithoutExt}}",
+        "\\end{figure}",
+        ""
+    ],
+    "files.autoSave": "onFocusChange"
+}
