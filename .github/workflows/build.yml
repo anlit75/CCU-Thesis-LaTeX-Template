@@ -33,50 +33,32 @@ jobs:
       - name: Determine Build Matrix
         id: set-matrix
         run: |
-          # 預設值 (Release 模式：全跑)
-          DEGREE_JSON='["master", "doctor"]'
-          LANG_JSON='["chinese", "english"]'
-          MODE_JSON='["final", "draft"]'
+          IS_OFFICIAL_RELEASE=${{ startsWith(github.ref, 'refs/tags/') && github.repository == 'anlit75/CCU-Thesis-LaTeX-Template' }}
 
-          # ---------------------------------------------------
-          # 情境 A: PR (只跑一組)
-          # ---------------------------------------------------
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            echo "Event is Pull Request. Using minimal matrix."
-            DEGREE_JSON='["master"]'
-            LANG_JSON='["chinese"]'
-            MODE_JSON='["final"]'
+          if [ "$IS_OFFICIAL_RELEASE" == "true" ]; then
+            echo "🚀 Official Release Detected. Building FULL Matrix..."
+            echo "degrees=['master', 'doctor']" >> $GITHUB_OUTPUT
+            echo "languages=['chinese', 'english']" >> $GITHUB_OUTPUT
+            echo "modes=['final', 'draft']" >> $GITHUB_OUTPUT
+          else
+            echo "🔧 User Build Detected (Push/PR/User-Tag). Parsing main.tex..."
 
-          # ---------------------------------------------------
-          # 情境 B: Push (非 Tag) -> 讀取 main.tex 設定
-          # ---------------------------------------------------
-          elif [[ "${{ github.ref }}" != refs/tags/* && "${{ github.event_name }}" == "push" ]]; then
-            echo "Event is Push. Parsing main.tex..."
-
-            # 使用 grep 和 cut 抓取 main.tex 裡面的設定
-            # 假設格式為: degree = master,
+            # 抓取設定
             PARSED_DEGREE=$(grep -E '^\s*degree\s*=' main.tex | awk -F "=" '{print $2}' | awk -F "," '{print $1}' | tr -d '[:space:]')
             PARSED_LANG=$(grep -E '^\s*language\s*=' main.tex | awk -F "=" '{print $2}' | awk -F "," '{print $1}' | tr -d '[:space:]')
 
-            # 檢查是否成功抓取，若失敗則 fallback 回預設
-            if [[ -n "$PARSED_DEGREE" && -n "$PARSED_LANG" ]]; then
-              echo "Detected config: Degree=$PARSED_DEGREE, Lang=$PARSED_LANG"
-              # 轉成 JSON 陣列格式 ["value"]
-              DEGREE_JSON="[\"$PARSED_DEGREE\"]"
-              LANG_JSON="[\"$PARSED_LANG\"]"
-              # Push 時通常只需要看 Final 或是 Draft 其中一個，這裡假設跑 Final 即可，或者你可以維持兩者
-              MODE_JSON='["final"]'
-            else
-              echo "Failed to parse main.tex, falling back to default."
+            # 如果抓不到，就跑預設值 (碩士/中文/Final)
+            if [[ -z "$PARSED_DEGREE" || -z "$PARSED_LANG" ]]; then
+              echo "⚠️ Parse failed! Fallback to default (master/chinese)."
+              PARSED_DEGREE="master"
+              PARSED_LANG="chinese"
             fi
-          fi
 
-          # ---------------------------------------------------
-          # 輸出結果
-          # ---------------------------------------------------
-          echo "degrees=$DEGREE_JSON" >> $GITHUB_OUTPUT
-          echo "languages=$LANG_JSON" >> $GITHUB_OUTPUT
-          echo "modes=$MODE_JSON" >> $GITHUB_OUTPUT
+            # 輸出單一矩陣
+            echo "degrees=['$PARSED_DEGREE']" >> $GITHUB_OUTPUT
+            echo "languages=['$PARSED_LANG']" >> $GITHUB_OUTPUT
+            echo "modes=['final']" >> $GITHUB_OUTPUT
+          fi
 
   # ---------------------------------------------------------
   # Job 2: 編譯核心 (依賴 Job 1 的輸出)
@@ -132,7 +114,7 @@ jobs:
           pre_compile: "mkdir -p ~/.local/share/fonts/ && curl -L -o ~/.local/share/fonts/cwTeXQKai.ttf https://raw.githubusercontent.com/l10n-tw/cwtex-q-fonts-TTFs/master/ttf/cwTeXQKai-Medium.ttf && fc-cache -fv"
           # 使用 -jobname 避免檔名衝突，並強制使用 xelatex
           args: >
-            -jobname=${{ matrix.degree }}_${{ matrix.language }}_template_${{ matrix.mode }}
+            -jobname=${{ matrix.degree }}_${{ matrix.language }}_${{ matrix.mode }}
             -xelatex
             -file-line-error
             -halt-on-error
@@ -144,7 +126,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: PDF-${{ matrix.degree }}-${{ matrix.language }}-${{ matrix.mode }}
+          name: ${{ matrix.degree }}-${{ matrix.language }}-${{ matrix.mode }}
           path: "*.pdf"
           retention-days: 5
 
