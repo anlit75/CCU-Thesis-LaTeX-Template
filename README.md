@@ -1,3 +1,5 @@
+
+
 # 國立中正大學碩博士論文LaTeX模板
 
 [![Build Status](https://github.com/anlit75/ccu-thesis-latex-template/actions/workflows/build.yml/badge.svg)](https://github.com/anlit75/ccu-thesis-latex-template/actions)
@@ -97,22 +99,22 @@ Template Structure
 ├── main.tex                            // 主文件
 ├── main.pdf                            // [自動生成] 主文件編譯後的PDF檔
 ├── frontpages
-│   ├── abstract.tex                    // 中/英文摘要
-│   ├── acknowledgement.tex             // 致謝
-│   ├── denotation.tex                  // 符號列表
-│   └── verification.pdf                // 論文審定書PDF檔
+│   ├── abstract.tex                    // 中/英文摘要
+│   ├── acknowledgement.tex             // 致謝
+│   ├── denotation.tex                  // 符號列表
+│   └── verification.pdf                // 論文審定書PDF檔
 ├── sections
-│   ├── introduction.tex                // 緒論
-│   ├── related_work.tex                // 文獻探討
-│   ├── method.tex                      // 研究方法
-│   ├── experiments.tex                 // 研究結果
-│   └── conclusion.tex                  // 結論
+│   ├── introduction.tex                // 緒論
+│   ├── related_work.tex                // 文獻探討
+│   ├── method.tex                      // 研究方法
+│   ├── experiments.tex                 // 研究結果
+│   └── conclusion.tex                  // 結論
 ├── backpages
-│   ├── appendix.tex                    // 附錄
-│   └── reference.bib                   // 參考文獻資料庫
+│   ├── appendix.tex                    // 附錄
+│   └── reference.bib                   // 參考文獻資料庫
 ├── figures
-│   ├── watermark.jpg                   // 浮水印
-│   └── ...
+│   ├── watermark.jpg                   // 浮水印
+│   └── ...
 ├── ccusetup.tex                        // 模板設定
 └── ccuthesis.cls                       // 模板文件
 ```
@@ -122,7 +124,7 @@ Template Structure
 > 如需增減章節，可在 `sections` 資料夾中增加/移除 `.tex` 檔，並在 `main.tex` 中用 `\input{./path/to/texfile}` 語法進行調整。
 
 ## 📖 模板使用說明 | User Guide
-詳細模板使用說明請見 [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki)，請依造下列順序進行閱讀，並根據指示修改設定 :
+詳細模板使用說明請見 [Wiki Page](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki)，請依照下列順序進行閱讀，並根據指示修改設定 :
 1. [模板資料設定](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/Thesis-Configurations)
 2. [模板使用說明](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/User-Guide)
 3. [LaTeX基本語法](https://github.com/anlit75/CCU-Thesis-LaTeX-Template/wiki/LaTeX-Basic-Syntax)
